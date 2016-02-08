@@ -185,8 +185,65 @@ textarea {
     clear: both;
 }
 
+.navbar {
+    text-transform:uppercase;
+    background-color:#333333;
+    border-radius:0px;
+    border:0px;
+}
+
+.navbar-default .navbar-brand, 
+ul.nav.navbar-nav li a{
+    color:#dddddd;
+    font-size:14px;
+}
+
+.navbar-default .navbar-brand{
+    padding-right:20px;
+}
+
+ul.nav.navbar-nav li a{
+    padding-left:7px;
+    padding-right:7px;
+}
+
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-nav>li>a:focus, 
+.navbar-default .navbar-nav>li>a:hover {
+    color: #fff;
+    background-color: transparent;
+}
+.take_survey{
+    font-size:26px;
+    margin-bottom:30px;
+}
+
+.take_survey p{
+    min-height: 80px;
+}
+
+.take_survey button{
+    font-size:32px;
+    border-radius:10px;
+
+    min-width: 200px;
+    max-width: 500px;
+
+    width: 100%;
+    height: 80px;
+
+
+    color: #fff;
+    background-color: #A32A37;
+    border-bottom-color: darkred !important;
+    border-top-color: darkred !important;
+    border-left-color: darkred !important;
+    border-right-color: darkred !important;
+}
 /***** Navbar *****/
 
+/*
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 #navbar,
 #navbar ul,
@@ -374,7 +431,6 @@ textarea {
   background: #777777;
   float:right;
 }
-/*
 @media all and (max-width: 768px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: 1024px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px), only screen and (min-resolution: 192dpi) and (max-width: 1024px), only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
   #navbar {
     width: 100%;

@@ -1,5 +1,46 @@
 {% extends "layout.html" %}
-{% block title %}Hello{% endblock %}
+{% block title %}Electionaire West Bengal{% endblock %}
 {% block content %}
-Hello
+<div class="row take_survey">
+    <div class="take_survey text-center col-md-4">
+        <p>
+        কোন রাজনৈতিক দল আপনি মত মনে করে?
+        </p>
+        <a href="/survey_bn">
+            <button>
+                জরিপ গ্রহণ!
+            </button>
+        </a>
+    </div>
+    <div class="take_survey text-center col-md-4">
+        <p>
+        कौन सा राजनीतिक दल आप की तरह सोचता है?
+        </p>
+        <a href="/survey_hi">
+            <button>
+                सर्वेक्षण ले!
+            </button>
+        </a>
+    </div>
+    <div class="take_survey text-center col-md-4">
+        <p>Which party thinks like you?</p>
+        <a href="/survey_en">
+            <button>Take the survey!</button>
+        </a>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="text-center col-sm-12">
+        <a href="/about">
+            <p>
+            এই ব্যঙ্গ সম্পর্কে
+            </p>
+            <p>
+            इस प्रश्नोत्तरी के बारे में
+            </p>
+            <p>About this quiz</p>
+        </a>
+    </div>
+</div>
 {% endblock %}
