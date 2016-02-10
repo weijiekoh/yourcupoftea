@@ -1,14 +1,24 @@
 {% extends "layout.html" %}
 {% block title %}Survey{% endblock %}
 {% block head %}
-<link href="/static/css/bootstrap-slider.min.css" rel="stylesheet">
-<link href="/static/css/awesome-bootstrap-checkbox.css" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css" />
+
+<!--Bootstrap slider-->
+<!--<link href="/static/css/bootstrap-slider.min.css" rel="stylesheet">-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.16/css/bootstrap-slider.min.css" />
+
+<!--Awesome bootstrap checkbox-->
+<!--<link href="/static/css/awesome-bootstrap-checkbox.css" rel="stylesheet">-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.5/awesome-bootstrap-checkbox.min.css" rel="stylesheet" />
+
+<!--FontAwesome-->
+<!--<link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css" />-->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous"
+integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" />
 
 <style>
 body{
-    background-color: #2D4255;
-    background-image:none;
+    background-color: #2D4255 !important;
+    background-image:none !important;
 }
 </style>
 {% endblock %}
@@ -103,7 +113,10 @@ body{
 </div>
 
 {% block bottom %}
-<script type='text/javascript' src="/static/js/bootstrap-slider.min.js"></script>
+<!--Bootstrap Slider JS-->
+<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.16/bootstrap-slider.min.js"></script>
+<!--<script type='text/javascript' src="/static/js/bootstrap-slider.min.js"></script>-->
+
 <script type='text/javascript'>
 $(document).ready(function() {
         $("#ex1").slider();
