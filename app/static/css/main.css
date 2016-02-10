@@ -185,6 +185,13 @@ textarea {
     clear: both;
 }
 
+/******************/
+
+body{
+    background-image:url("/static/img/bg.jpg");
+    background-size: cover;
+}
+
 
 .navbar {
     text-transform:uppercase;
@@ -278,25 +285,49 @@ ul.nav.navbar-nav li a{
     font-weight:bold;
 }
 
-.radio-container {
-    font-size: 30px;
-    padding-left: 25px;
-    float: left;
-    border-left: 2px solid rgba(150,0,0,0.5);
-}
-
 input[type="radio"], input[type="checkbox"] {
     margin: 4px 0 0;
     margin-top: 1px \9;
     line-height: normal;
 }
-.radio-container label {
+
+.option-container {
+    width:100%;
+    padding-left: 35px !important;
+    float: left;
+    border-left: 2px solid rgba(150,0,0,0.5);
+}
+
+
+.option-container label {
     margin-left: 10px;
-    width: 80%;
+    max-width: 80%;
+    min-width:70%;
     vertical-align: middle;
     font-size:18px;
     font-weight:bold;
-    margin-bottom:0px;
+}
+
+.option-container label,
+.option-container input{
+    margin-bottom:0.33em;
+}
+
+.importance label{
+    width:100% !important;
+    border-radius:0px;
+}
+
+.radio label::after,
+.radio label::before,
+.checkbox label::after,
+.checkbox label::before {
+    margin-top:4px;
+}
+
+.importance input{
+    opacity: 0;
+    z-index: 1;
 }
 
 .question_box h4{
@@ -311,7 +342,6 @@ input[type="radio"], input[type="checkbox"] {
     float: left;
     text-align: center;
     padding-right: 20px;
-    /*min-height: 200px;*/
     min-height:140px;
     display: block;
 }
@@ -353,14 +383,20 @@ input[type="radio"], input[type="checkbox"] {
     background-image: none !important;
 }
 
-
-body{
-    background-image:url("/static/img/bg.jpg");
-    background-size: cover;
+#submit {
+    /*margin-left: 35%;*/
+    width: 30%;
+    height: 60px;
+    background-color: #A32A37;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 25px;
+    border-bottom-color: darkred !important;
+    border-top-color: darkred !important;
+    border-left-color: darkred !important;
+    border-right-color: darkred !important;
+    margin-bottom:20px;
 }
-
-
-
 
 
 /* ==========================================================================
