@@ -354,10 +354,6 @@ input[type="radio"], input[type="checkbox"] {
     font-size: 30pt;
 }
 
-.slider.slider-horizontal{
-    width:100% !important;
-}
-
 .slider.slider-horizontal .slider-track {
     margin-top: 20px !important;
 }
@@ -413,13 +409,17 @@ input[type="radio"], input[type="checkbox"] {
     }
 
     .question_box{
+        border-radius:0px;
         margin-left:0px;
         margin-right:0px;
-        /*border-radius:5px;*/
-        border-radius:0px;
     }
     .quiz_bg_box{
         border-radius:0px;
+        margin-left:0px;
+        margin-right:0px;
+    }
+    .slider.slider-horizontal{
+        width:270px !important;
     }
 }
 
