@@ -240,6 +240,9 @@ input[type="checkbox"].styled:checked + label:after,
 input[type="radio"].styled:checked + label:after {
   font-family: 'FontAwesome';
   content: "\f00c";
+  /*content: "\2713";*/
+  text-align:center;
+  vertical-align:center;
 }
 input[type="checkbox"] .styled:checked + label::before,
 input[type="radio"] .styled:checked + label::before {
