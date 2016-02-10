@@ -1,18 +1,94 @@
 {% extends "layout.html" %}
 {% block title %}Survey{% endblock %}
+{% block head %}
+<link href="/static/css/bootstrap-slider.min.css" rel="stylesheet">
+<style>
+body{
+    background-color: #2D4255;
+    background-image:none;
+}
+</style>
+{% endblock %}
 {% block content %}
-<p style="white-space:pre">
-If they answer not to your call walk alone
-If they are afraid and cower mutely facing the wall,
-O thou unlucky one,
-open your mind and speak out alone.
-If they turn away, and desert you when crossing the wilderness,
-O thou unlucky one,
-trample the thorns under thy tread,
-and along the blood-lined track travel alone.
-If they shut doors and do not hold up the light when the night is troubled with storm,
-O thou unlucky one,
-with the thunder flame of pain ignite your own heart,
-and let it burn alone.
-</p>
+
+<div class="row">
+    <div class="quiz_bg_box col-md-8 col-md-offset-2 text-center">
+        <div class="row">
+            <h2>Take the survey to find out which party your views align with.</h2>
+        </div>
+
+        <div class="row question_box">
+            <div class-"row question_text">
+                <h3>Gorkaland should be a separate state of India.</h3>
+            </div>
+
+            <div class-"row question_controls">
+                <div class="col-md-4 text-center">
+                    <div class="slider-explanation">
+                        <p>How important is this issue to you?</p>
+                        <p>(1 = low, 5 = high)</p>
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider slider-horizontal">
+                            <span class="slider-val" id="ex1SliderVal">3</span>
+                            <input id="ex1" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
+                            data-slider-value="3" name="1"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="radio-container">
+                        <input id="a1" type="radio" name="1" value="4"><label for="a1">Yes.</label>
+                        <br />
+                        <input id="a2" type="radio" name="1" value="3"><label for="a2">Yes, but it should have ___.</label>
+                        <br />
+                        <input id="a3" type="radio" name="1" value="2"><label for="a3">Neutral.</label>
+                        <br />
+                        <input id="a4" type="radio" name="1" value="1"><label for="a4">No, but it should have more say in West Bengal politics.</label>
+                        <br />
+                        <input id="a5" type="radio" name="1" value="0"><label for="a5">No.</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<p style="white-space:pre">-->
+<!--If they answer not to your call walk alone-->
+<!--If they are afraid and cower mutely facing the wall,-->
+<!--O thou unlucky one,-->
+<!--open your mind and speak out alone.-->
+<!--If they turn away, and desert you when crossing the wilderness,-->
+<!--O thou unlucky one,-->
+<!--trample the thorns under thy tread,-->
+<!--and along the blood-lined track travel alone.-->
+<!--If they shut doors and do not hold up the light when the night is troubled with storm,-->
+<!--O thou unlucky one,-->
+<!--with the thunder flame of pain ignite your own heart,-->
+<!--and let it burn alone.-->
+<!--</p>-->
+
+{% block bottom %}
+<script type='text/javascript' src="/static/js/bootstrap-slider.min.js"></script>
+<script type='text/javascript'>
+    $(document).ready(function() {
+        $("#ex1").slider();
+        $("#ex1").on("slideStop", function(slideEvt) {
+            $("#ex1SliderVal").text(slideEvt.value);
+        });
+        $("#ex1").on("slide", function(slideEvt) {
+            $("#ex1SliderVal").text(slideEvt.value);
+        });
+
+        $("#ex2").slider();
+        $("#ex2").on("slideStop", function(slideEvt) {
+            $("#ex2SliderVal").text(slideEvt.value);
+        });
+        $("#ex2").on("slide", function(slideEvt) {
+            $("#ex2SliderVal").text(slideEvt.value);
+        });
+    });
+</script>
+{% endblock %}
 {% endblock %}
