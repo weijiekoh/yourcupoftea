@@ -30,85 +30,64 @@ body{
 <div class="row">
     <div class="quiz_bg_box col-md-8 col-md-offset-2 text-center">
         <div class="row">
-            <h2>Take the survey to find out which party your views align with.</h2>
+            <h2>Answer these questions to find out how each party thinks like you.</h2>
         </div>
-
-        <form method="POST" action="/survey">
-            <div class="row question_box">
-                <div class-"row question_text">
-                    <h3>Are tapoica balls essential to bubble tea?</h3>
-                </div>
-
-                <div class-"row question_controls">
-                    <div class="col-md-4 text-center">
-                        <div class="slider-explanation">
-                            <p>How important is this issue to you?</p>
-                            <p>(1 = low, 5 = high)</p>
+        <div class="row">
+            <form method="POST" action="/survey">
+                {% for q in questions %}
+                <div class="row question_box">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>{{ q.text }}</h3>
                         </div>
-                        <div class="slider-container">
-                            <div class="slider slider-horizontal">
-                                <span class="slider-val" id="ex1SliderVal">3</span>
-                                <input id="ex1" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
-                                data-slider-value="3" name="1"/>
+                    </div>
+                    <div class="row question_controls">
+                        <div class="col-md-3">
+                            <div class="slider-container">
+                                <div class="slider slider-horizontal">
+                                    <span class="slider-val" id="{{q.id}}_slider_val">3</span>
+                                    <input id="{{q.id}}_slider" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
+                                    data-slider-value="3" name="1"/>
+                                </div>
+                            </div>
+                            <div class="slider-explanation text-center">
+                                <p>Tap or drag the red dot to select how important this is to you.<br />
+                                (1 = low, 5 = high)</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="option-container radio radio-success">
-                            <input id="a1" type="radio" name="1" value="4" /><label for="a1">Yes.</label>
-                            <br />
-                            <input id="a2" type="radio" name="1" value="3" /><label for="a2">Yes, but I like the tea too.</label>
-                            <br />
-                            <input id="a3" type="radio" name="1" value="2" / ><label for="a3">Neutral.</label>
-                            <br />
-                            <input id="a4" type="radio" name="1" value="1" / ><label for="a4">No, but I don't mind chewing them.</label>
-                            <br />
-                            <input id="a5" type="radio" name="1" value="0" / ><label for="a5">No.</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row question_box">
-                <div class-"row question_text">
-                    <h3>What would you like in your bubble tea?</h3>
-                </div>
-
-                <div class-"row question_controls">
-                    <div class="col-md-4 text-center">
-                        <div class="slider-explanation">
-                            <p>How important is this issue to you?</p>
-                            <p>(1 = low, 5 = high)</p>
-                        </div>
-                        <div class="slider-container">
-                            <div class="slider slider-horizontal">
-                                <span class="slider-val" id="ex2SliderVal">3</span>
-                                <input id="ex2" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
-                                data-slider-value="3" name="1"/>
+                        <div class="col-md-9">
+                        {% if q.type == "pick_one" %}
+                            <div class="option-container radio radio-success">
+                                {% for c in q.choices %}
+                                {% set input_id = q.id ~ "_" ~ loop.index0 %}
+                                <input id="{{input_id}}" type="radio" name="1" /><label for="{{input_id}}">{{c}}</label>
+                                    <br />
+                                {% endfor %}
                             </div>
+                        {% elif q.type == "pick_many" %}
+                            <div class="option-container checkbox checkbox-success">
+                                <div class="pick_many_text">
+                                    <p>Pick as many as you want:</p>
+                                </div>
+                                {% for c in q.choices %}
+                                {% set input_id = q.id ~ "_" ~ loop.index0 %}
+                                <input id="{{input_id}}" type="checkbox" name="1" value="4" class="styled"><label for="{{input_id}}">{{c}}</label>
+                                <br />
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="option-container checkbox checkbox-success">
-                            <input id="b1" type="checkbox" name="1" value="4" class="styled"><label for="b1">Extra sugar.</label>
-                            <br />
-                            <input id="b2" type="checkbox" name="1" value="3" class="styled"><label for="b2">Tapoica pearls.</label>
-                            <br />
-                            <input id="b3" type="checkbox" name="1" value="2" class="styled"><label for="b3">Ai-yu jelly.</label>
-                            <br />
-                            <input id="b4" type="checkbox" name="1" value="1" class="styled"><label for="b4">White pearls.</label>
-                            <br />
-                            <input id="b5" type="checkbox" name="1" value="0" class="styled"><label for="b5">Less sugar.</label>
-                        </div>
+
+                </div>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <button id="submit" type="submit">Submit</button>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <button id="submit" type="submit">Submit</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -119,22 +98,16 @@ body{
 
 <script type='text/javascript'>
 $(document).ready(function() {
-        $("#ex1").slider();
-        $("#ex1").on("slideStop", function(slideEvt) {
-            $("#ex1SliderVal").text(slideEvt.value);
-            });
-        $("#ex1").on("slide", function(slideEvt) {
-            $("#ex1SliderVal").text(slideEvt.value);
-            });
-
-        $("#ex2").slider();
-        $("#ex2").on("slideStop", function(slideEvt) {
-            $("#ex2SliderVal").text(slideEvt.value);
-            });
-        $("#ex2").on("slide", function(slideEvt) {
-            $("#ex2SliderVal").text(slideEvt.value);
-            });
+{% for q in questions %}
+    $("#{{q.id}}_slider").slider();
+    $("#{{q.id}}_slider").on("slideStop", function(slideEvt) {
+        $("#{{q.id}}_slider_val").text(slideEvt.value);
         });
+    $("#{{q.id}}_slider").on("slide", function(slideEvt) {
+        $("#{{q.id}}_slider_val").text(slideEvt.value);
+        });
+{% endfor %}
+    });
 </script>
 {% endblock %}
 {% endblock %}

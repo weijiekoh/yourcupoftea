@@ -1,4 +1,5 @@
 from app import app
+from questions import questions
 # from app import babel
 from flask import render_template, request, g
 # from config import LANGUAGES
@@ -26,4 +27,4 @@ def survey_hi():
 
 @app.route("/survey_en")
 def survey_en():
-    return render_template("survey_en.html")
+    return render_template("survey_en.html", questions=questions)

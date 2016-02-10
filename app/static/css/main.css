@@ -218,6 +218,12 @@ ul.nav.navbar-nav li a{
     color: #fff !important;
     background-color: transparent;
 }
+
+.navbar .navbar-header{
+    margin-right: 0;
+    margin-left: 32px;
+}
+
 .take_survey{
     font-size:26px;
     margin-bottom:30px;
@@ -257,12 +263,12 @@ ul.nav.navbar-nav li a{
     /*min-width: 100%;*/
     min-height: 250px;
     background-color: #EFFBFF !important;
-    padding: 20px;
+    padding: 30px;
     padding-bottom:10px;
     padding-top: 5px;
     border-radius: 25px;
-    margin-left:10px;
-    margin-right:10px;
+    margin-left:15px;
+    margin-right:15px;
     margin-bottom: 20px;
     text-align:left;
 }
@@ -279,6 +285,7 @@ ul.nav.navbar-nav li a{
 
 .quiz_bg_box h3{
     font-weight:bold;
+    /*padding-left:10px;*/
 }
 
 input[type="radio"], input[type="checkbox"] {
@@ -294,13 +301,12 @@ input[type="radio"], input[type="checkbox"] {
     border-left: 2px solid rgba(150,0,0,0.5);
 }
 
-
 .option-container label {
     margin-left: 10px;
     max-width: 80%;
     min-width:70%;
     vertical-align: middle;
-    font-size:18px;
+    font-size:14pt;
     font-weight:bold;
 }
 
@@ -332,22 +338,26 @@ input[type="radio"], input[type="checkbox"] {
     font-weight:bold;
 }
 
+.pick_many_text{
+    margin-left: -10px;
+}
+
 .slider-container {
     font-size: 20px;
     width:100%;
     float: left;
     text-align: center;
-    padding-right: 20px;
-    min-height:140px;
+    min-height:120px;
     display: block;
 }
 
 .slider-explanation p{
-    font-size:16px;
+    font-size:14px;
+    line-height:normal;
 }
 
 .slider-val {
-    font-size: 35px;
+    font-size: 30px;
 }
 
 .slider.slider-horizontal{
@@ -392,6 +402,31 @@ input[type="radio"], input[type="checkbox"] {
     border-left-color: darkred !important;
     border-right-color: darkred !important;
     margin-bottom:20px;
+}
+
+@media (max-width:992px) { 
+    .navbar .navbar-header{
+        margin-right: 0;
+        margin-left: 0px;
+    }
+    .option-container {
+        border-left:none;
+        border-top: 2px solid rgba(150,0,0,0.5);
+        padding-top:15px;
+    }
+    .option-container label {
+        font-size:16pt;
+    }
+
+    .question_box{
+        margin-left:0px;
+        margin-right:0px;
+        /*border-radius:5px;*/
+        border-radius:0px;
+    }
+    .quiz_bg_box{
+        border-radius:0px;
+    }
 }
 
 
