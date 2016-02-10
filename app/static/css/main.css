@@ -381,12 +381,12 @@ input[type="radio"], input[type="checkbox"] {
 
 #submit {
     /*margin-left: 35%;*/
-    width: 30%;
+    width: 200px;
     height: 60px;
     background-color: #A32A37 !important;
     color: #fff;
     border-radius: 10px;
-    font-size: 25pt;
+    font-size: 24pt;
     border-bottom-color: darkred !important;
     border-top-color: darkred !important;
     border-left-color: darkred !important;
@@ -419,7 +419,7 @@ input[type="radio"], input[type="checkbox"] {
         margin-right:0px;
     }
     .slider.slider-horizontal{
-        width:270px !important;
+        width:230px !important;
     }
 }
 
