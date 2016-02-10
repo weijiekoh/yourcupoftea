@@ -31,28 +31,16 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" -->
-                <!--data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
-                <!--<span class="sr-only">Toggle navigation</span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-            <!--</button>-->
-            <!--[><a class="navbar-brand" href="/">Home</a><]-->
-            <ul class="nav navbar-nav">
-                <li><a href='/survey_bn'>বাঙালি </a></li>
-                <li><a href='/survey_hi'>हिन्दी</a></li>
-                <li><a href="/survey_en">English</a></li>
-            </ul>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<div class="container-fluid navigation">
+    <div class="row">
+        <div class="navigation_links col-md-8 col-md-offset-2">
+            <a href='/survey_bn'>বাঙালি </a>
+            <a href='/survey_hi'>हिन्दी</a>
+            <a href="/survey_en">English</a>
         </div>
     </div>
-</nav>
+</div>
+
 <div class="container-fluid">
     {% block content %}{% endblock %}
 </div>
@@ -70,3 +58,4 @@
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 </body>
 </html>
+{% block posthtml %}{% endblock %}

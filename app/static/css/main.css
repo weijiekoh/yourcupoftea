@@ -187,45 +187,39 @@ textarea {
 
 /******************/
 
-
-
-.navbar {
+.navigation{
     text-transform:uppercase !important;
     background-color:#333333 !important;
     border-radius:0px !important;
     border:0px !important;
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
 }
 
-.navbar-default .navbar-brand, 
-ul.nav.navbar-nav li a{
+.navigation a{
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-top: 15px;
+    padding-bottom: 15px;
     color:#dddddd !important;
-    font-size:14px;
+    font-size:14pt;
+    float:left;
+    color:#dddddd !important;
 }
 
-.navbar-default .navbar-brand{
-    padding-right:20px;
-}
-
-ul.nav.navbar-nav li a{
-    padding-left:7px;
-    padding-right:7px;
-}
-
-.navbar-default .navbar-brand:focus,
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-nav>li>a:focus, 
-.navbar-default .navbar-nav>li>a:hover {
+.navigation a:hover {
     color: #fff !important;
     background-color: transparent;
+    text-decoration:none;
 }
 
-.navbar .navbar-header{
-    margin-right: 0;
-    margin-left: 32px;
+.navigation_links{
+    padding-left:0px;
 }
 
 .take_survey{
-    font-size:26px;
+    font-size:20pt;
     margin-bottom:30px;
     color:#fff;
 }
@@ -233,7 +227,7 @@ ul.nav.navbar-nav li a{
 #about-links a{
     color:#fff;
     text-decoration:underline;
-    font-size:16px;
+    font-size:16pt;
 }
 
 .take_survey p{
@@ -241,7 +235,7 @@ ul.nav.navbar-nav li a{
 }
 
 .take_survey button{
-    font-size:32px;
+    font-size:28pt;
     border-radius:10px;
 
     min-width: 200px;
@@ -333,13 +327,13 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .question_box h4{
-    font-size:20px;
     color:#A32A37 !important;
     font-weight:bold;
 }
 
 .pick_many_text{
     margin-left: -10px;
+    font-size:14pt;
 }
 
 .slider-container {
@@ -352,12 +346,12 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .slider-explanation p{
-    font-size:14px;
+    font-size:12pt;
     line-height:normal;
 }
 
 .slider-val {
-    font-size: 30px;
+    font-size: 30pt;
 }
 
 .slider.slider-horizontal{
@@ -396,7 +390,7 @@ input[type="radio"], input[type="checkbox"] {
     background-color: #A32A37 !important;
     color: #fff;
     border-radius: 10px;
-    font-size: 25px;
+    font-size: 25pt;
     border-bottom-color: darkred !important;
     border-top-color: darkred !important;
     border-left-color: darkred !important;
