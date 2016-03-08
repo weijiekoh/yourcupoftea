@@ -24,11 +24,11 @@ body{
 <div class="row">
     <div class="quiz_bg_box col-md-8 col-md-offset-2 text-center">
         <div class="row">
-            <h2>Answer these questions to find out how each political party thinks like you.</h2>
+            <h2 class="col-md-offset-2 col-md-8">Find out how much each political party contesting in the 2016 West Bengal State Elections thinks like you.</h2>
         </div>
         <div class="row">
-            <form method="POST" action="/survey">
-                {% for q in questions %}
+            <form method="POST" action="/results">
+                {% for q_id, q in questions.iteritems() %}
                 <div class="row question_box">
                     <div class="row">
                         <div class="col-md-12">
@@ -39,9 +39,10 @@ body{
                         <div class="col-md-5">
                             <div class="slider-container">
                                 <div class="slider slider-horizontal">
-                                    <span class="slider-val" id="{{q.id}}_slider_val">3</span>
-                                    <input id="{{q.id}}_slider" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
-                                    data-slider-value="3" name="1"/>
+                                    <span class="slider-val" id="slider_val_{{q_id}}">3</span>
+                                    <input id="slider_{{q_id}}" 
+                                    name="slider_{{q_id}}" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
+                                    data-slider-value="3" />
                                 </div>
                             </div>
                             <div class="slider-explanation text-center">
@@ -53,9 +54,11 @@ body{
                         {% if q.type == "pick_one" %}
                             <div class="option-container radio radio-success">
                                 {% for c in q.choices %}
-                                {% set input_id = q.id ~ "_" ~ loop.index0 %}
-                                <input id="{{input_id}}" type="radio" name="1" /><label for="{{input_id}}">{{c}}</label>
-                                    <br />
+                                {% set input_id = "radio_" ~ q_id ~ "_" ~ loop.revindex0 %}
+                                {% set name = "radio_" ~ q_id %}
+                                <input id="{{input_id}}" name="{{name}}" value="{{loop.revindex0}}" type="radio" />
+                                <label for="{{input_id}}">{{c}}</label>
+                                <br />
                                 {% endfor %}
                             </div>
                         {% elif q.type == "pick_many" %}
@@ -64,8 +67,10 @@ body{
                                     <p>Pick as many as you want:</p>
                                 </div>
                                 {% for c in q.choices %}
-                                {% set input_id = q.id ~ "_" ~ loop.index0 %}
-                                <input id="{{input_id}}" type="checkbox" name="1" value="4" class="styled"><label for="{{input_id}}">{{c}}</label>
+                                {% set input_id = "checkbox" ~ q_id ~ "_" ~ loop.index0 %}
+                                {% set name = "checkbox_" ~ q_id %}
+                                <input id="{{input_id}}" name="{{name}}" type="checkbox" value="{{loop.index0}}" class="styled">
+                                <label for="{{input_id}}">{{c}}</label>
                                 <br />
                                 {% endfor %}
                             </div>
@@ -89,13 +94,13 @@ body{
 
     <script type='text/javascript'>
     $(document).ready(function() {
-    {% for q in questions %}
-        $("#{{q.id}}_slider").slider();
-        $("#{{q.id}}_slider").on("slideStop", function(slideEvt) {
-            $("#{{q.id}}_slider_val").text(slideEvt.value);
+    {% for q_id, q in questions.iteritems() %}
+        $("#slider_{{q_id}}").slider();
+        $("#slider_{{q_id}}").on("slideStop", function(slideEvt) {
+            $("#slider_val_{{q_id}}").text(slideEvt.value);
             });
-        $("#{{q.id}}_slider").on("slide", function(slideEvt) {
-            $("#{{q.id}}_slider_val").text(slideEvt.value);
+        $("#slider_{{q_id}}").on("slide", function(slideEvt) {
+            $("#slider_val_{{q_id}}").text(slideEvt.value);
             });
     {% endfor %}
         });

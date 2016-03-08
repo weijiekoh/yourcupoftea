@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Results{% endblock %}
+{% block head %}
+<style>
+body{
+    background-color: #aaaaaa !important;
+    background-image:none !important;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class = "container">
+{% for party_id, score in results.iteritems() %}
+    <div class="row">
+        <div class="col-sm-2">
+            {{parties[party_id]["logo"]}}
+        </div>
+        <div class="col-sm-4">
+            <h1>{{parties[party_id]["name"]}}</h1>
+        </div>
+        <div class="col-sm-2">
+            <h1>{{score|round(1)}}%</h1>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
