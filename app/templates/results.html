@@ -7,14 +7,12 @@ body{
     background-image:none !important;
 }
 </style>
-{% endblock %}
-{% block head %}
 <meta property="og:title" content="Election Mantra" />
 <meta property="og:url" content="{{request.url}}" />
 <meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg" />
 <meta property="og:description"   content="Take the survey to find out which party thinks like you." />
-
 {% endblock %}
+
 {% block content %}
 {% set fb_share %}
 <div class = "row share">
