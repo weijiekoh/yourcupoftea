@@ -375,6 +375,10 @@ input[type="radio"], input[type="checkbox"] {
     height: 40px !important;
 }
 
+.slider-handle.round{
+    /*border:solid 2px;*/
+    /*border-color:#2D4255;*/
+}
 
 .slider-track-low, .slider-selection {
     color: #2E040E !important;
