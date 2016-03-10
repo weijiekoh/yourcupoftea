@@ -77,8 +77,14 @@ def result_fb_str(result_str):
     # make sure the input includes all the parties we have and only these parties
     assert sorted_parties == sorted(parties.keys()), "Invalid sharer url"
 
-    for party in sorted(result_str.split(",")):
-        s = party.split(":")
+    # sort by score, not party ID:
+    score_sorted_results = []
+    for r in result_str.split(","):
+        s = r.split(":")
+        score_sorted_results.append([s[0], s[1]])
+    score_sorted_results = sorted(score_sorted_results, key=lambda x:x[1], reverse=True)
+
+    for s in score_sorted_results:
         party_id = int(s[0])
         party_score = s[1]
         display += "%s: %s%%, " % (parties[party_id]["initials"], party_score)
