@@ -92,26 +92,6 @@ textarea {
 }
 
 /* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ==========================================================================
    Helper classes
    ========================================================================== */
 
@@ -361,10 +341,10 @@ input[type="radio"], input[type="checkbox"] {
     height: 7px !important;
 }
 
-.tooltip.top {
-    margin-top: -10px !important;
-    margin-left: -10px !important;
-}
+/*.tooltip.top {*/
+    /*margin-top: -10px !important;*/
+    /*margin-left: -10px !important;*/
+/*}*/
 
 .slider-handle {
     background-color: #A32A37 !important;
@@ -406,6 +386,30 @@ input[type="radio"], input[type="checkbox"] {
     margin-bottom:20px;
 }
 
+.result_box{
+    /*min-width: 100%;*/
+    /*min-height: 250px;*/
+    background-color: #EFFBFF !important;
+    padding: 30px;
+    padding-bottom:10px;
+    padding-top: 5px;
+    border-radius: 25px;
+    /*margin-left:15px;*/
+    /*margin-right:15px;*/
+    margin-bottom: 10px;
+}
+
+.result_party_name, .result_party_score{
+    font-size:14pt;
+}
+
+.result_party_name{
+}
+
+.result_party_score{
+}
+
+
 @media (max-width:992px) { 
     .navbar .navbar-header{
         margin-right: 0;
@@ -432,6 +436,19 @@ input[type="radio"], input[type="checkbox"] {
     }
     .slider.slider-horizontal{
         width:230px !important;
+    }
+
+    .result_box{
+        /*margin-left:5px;*/
+        /*margin-right:5px;*/
+        border-radius:5px;
+    }
+    .result_box p{
+        font-size:12pt !important;
+    }
+    .result_box img{
+        width:50px;
+        height:50px;
     }
 }
 
