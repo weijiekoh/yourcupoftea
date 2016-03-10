@@ -20,6 +20,7 @@ parties = \
 {
     0:{
         "name": "Anything but Tapoica",
+        "initials": "ABT",
         "logo": "at.png",
         "positions": {
             0: 0,
@@ -32,6 +33,7 @@ parties = \
 
     1:{
         "name": "Pro-sugar",
+        "initials": "PS",
         "logo": "ps.png",
         "positions": {
             0: 2,
@@ -44,6 +46,7 @@ parties = \
 
     2:{
         "name": "Global SunBucks",
+        "initials": "GS",
         "logo": "sb.png",
         "positions": {
             0: 2,
@@ -56,6 +59,7 @@ parties = \
 
     3:{
         "name": "Toppings R Great",
+        "initials": "TRG",
         "logo": "trg.png",
         "positions": {
             0: 4,
