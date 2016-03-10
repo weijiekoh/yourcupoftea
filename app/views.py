@@ -22,8 +22,7 @@ def survey():
 
 @app.route("/survey_hi")
 def survey_hi():
-    return render_template("survey_hi.html")
-
+    return render_template("survey_hi.html") 
 
 @app.route("/survey_en")
 def survey_en():
@@ -37,9 +36,6 @@ def results():
     from parties import parties
 
     results = ranking.calculate(request.form.lists(), parties, questions)
-    import pprint
-    form_data = pprint.pformat(request.form.lists())
-    print form_data
     return render_template("results.html", 
             results=results, parties=parties,
             smart_share_url=smart_share_url(results))
@@ -52,7 +48,12 @@ def results_for_fb(base64_result):
     if re.findall(base64_regex, base64_result):
         import base64
         try:
+            import urlparse
+            u = urlparse.urlparse(request.url)
+            domain = '{uri.scheme}://{uri.netloc}/'.format(uri=u)
+            fb_share_image = domain + "static/img/parties/at.png"
             return render_template("result_fb_share.html", 
+                    fb_share_image=fb_share_image,
                     result_fb_str=result_fb_str(base64.decodestring(base64_result)))
         except (UnicodeDecodeError, AssertionError) as e:
             return render_template("index.html")
