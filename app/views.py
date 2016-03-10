@@ -46,7 +46,7 @@ def results():
 
 
 base64_regex = "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
-@app.route("/results/<base64_result>", methods=["GET"])
+@app.route("/results/<base64_result>", methods=["GET", "POST"])
 def results_for_fb(base64_result):
     import re
     if re.findall(base64_regex, base64_result):
