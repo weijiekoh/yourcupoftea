@@ -56,11 +56,11 @@ def results_for_fb(base64_result):
             fb_share_image = domain + "static/img/parties/at.png"
             raw_result_str = base64.decodestring(base64_result)
             sorted_results = smart_share_decode_and_sort(raw_result_str)
-            print sorted_results
+            result_share_str = "My top 3 party matches in the 2016 West Bengal Vidhan Sabha Election: " + format_share_str(sorted_results)
 
             return render_template("results.html", 
                     fb_share_image=fb_share_image,
-                    result_fb_str=result_fb_str(sorted_results),
+                    result_share_str=result_share_str,
                    results=sorted_results, parties=parties)
         except (UnicodeDecodeError, AssertionError) as e:
             return render_template("index.html")
@@ -94,13 +94,13 @@ def smart_share_decode_and_sort(raw_result_str):
 
 class InvalidShareString: pass
 
-def result_fb_str(sorted_results):
+def format_share_str(sorted_results):
     """
     Formats a dict of party_id:score etc to "ABC: xx.x%, ..."
     """
     from parties import parties
     display = ""
-    for s in sorted_results:
+    for s in sorted_results[:3]:
         party_id = int(s[0])
         party_score = s[1]
         display += "%s: %s%%, " % (parties[party_id]["initials"], party_score)

@@ -10,7 +10,7 @@ body{
 <meta property="og:title" content="My Election Mantra results" />
 <meta property="og:url" content="{{request.base_url}}" />
 <meta property="og:image" content="{{fb_share_image}}" />
-<meta property="og:description" content="My views on policies gave me these results: {{result_fb_str}}" />
+<meta property="og:description" content="{{result_share_str}}" />
 {% endblock %}
 
 {% block content %}
@@ -19,6 +19,11 @@ body{
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-offset-1 col-sm-10 col-xs-10 col-xs-offset-1 share_text_and_button">
         <span>Share your results:</span>
         <div class="fb-share-button" data-href="{{request.url}}" data-layout="button"></div>
+
+        <a href="https://twitter.com/share" class="twitter-share-button" 
+            data-url="https://enigmatic-ravine-83476.herokuapp.com" 
+            data-text="{{result_share_str}}">Tweet</a>
+
     </div>
 </div>
 {% endset %}
@@ -51,4 +56,5 @@ js = d.createElement(s); js.id = id;
 js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5";
 fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 {% endblock %}

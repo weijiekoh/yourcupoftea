@@ -419,9 +419,9 @@ input[type="radio"], input[type="checkbox"] {
     margin-top:5px;
 }
 
-.share .fb-share-button {
+.share .fb-share-button,
+.share .twitter-share-button{
     float:right;
-    margin-right:13px;
     margin-top:-5px;
     transform: scale(2);
     -ms-transform: scale(2);
@@ -435,6 +435,13 @@ input[type="radio"], input[type="checkbox"] {
     -webkit-transform-origin: top center;
 }
 
+.share .twitter-share-button{
+    margin-right:13px;
+}
+
+.share .twitter-share-button{
+    margin-right:73px;
+}
 
 @media (max-width:992px) { 
     .take_survey p{
