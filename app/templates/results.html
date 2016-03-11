@@ -29,7 +29,9 @@ body{
 
 <div class = "row">
     <div class = "quiz_bg_box col-md-8 col-md-offset-2">
+        <div class="first_share">
         {{ fb_share|safe }}
+        </div>
         <br />
         {% for party_id, score in results %}
         <div class="row">

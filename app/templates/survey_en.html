@@ -95,16 +95,34 @@ body{
     <!--<script type='text/javascript' src="/static/js/bootstrap-slider.min.js"></script>-->
 
     <script type='text/javascript'>
-    $(document).ready(function() {
-    {% for q_id, q in questions.iteritems() %}
-    $("#slider_{{q_id}}").slider({tooltip:"hide"});
-        $("#slider_{{q_id}}").on("slideStop", function(slideEvt) {
-            $("#slider_val_{{q_id}}").text(slideEvt.value);
+        var change_slider_val = function(id, val){
+            $("#slider_val_" + id).text(val);
+            var slider_vals = "";
+            for (i = 0; i < {{questions|length}}; i++) { 
+                slider_vals += $("#slider_val_" + i).text();
+            }
+            window.location.hash = slider_vals;
+        }
+
+        $(document).ready(function() {
+            var original_hash = window.location.hash;
+            original_hash = original_hash.substring(1, original_hash.length);
+            {% for q_id, q in questions.iteritems() %}
+            $("#slider_{{q_id}}").slider({tooltip:"hide"});
+                $("#slider_{{q_id}}").on("slideStop", function(slideEvt) {
+                    change_slider_val({{q_id}}, slideEvt.value);
+                    });
+                $("#slider_{{q_id}}").on("slide", function(slideEvt) {
+                    change_slider_val({{q_id}}, slideEvt.value);
             });
-        $("#slider_{{q_id}}").on("slide", function(slideEvt) {
-            $("#slider_val_{{q_id}}").text(slideEvt.value);
-            });
-    {% endfor %}
+            {% endfor %}
+
+            var slider_vals = original_hash.split("");
+            for (i=0; i < slider_vals.length; i++){
+                $("#slider_val_" + i).text(slider_vals[i]);
+                var s = $("#slider_" + i).slider();
+                s.slider('setValue', parseInt(slider_vals[i]));
+            }
         });
     </script>
 {% endblock %}

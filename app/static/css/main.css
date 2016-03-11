@@ -169,7 +169,6 @@ input[type="radio"], input[type="checkbox"] {
     min-width:70%;
     vertical-align: middle;
     font-size:14pt;
-    font-weight:bold;
 }
 
 .option-container label,
@@ -201,6 +200,8 @@ input[type="radio"], input[type="checkbox"] {
 
 .pick_many_text{
     margin-left: -10px;
+    font-weight:bold;
+    text-decoration:underline;
     font-size:14pt;
 }
 
@@ -287,6 +288,10 @@ input[type="radio"], input[type="checkbox"] {
     margin-top:35px;
 }
 
+.result_party_score{
+    font-weight:bold;
+}
+
 .result_party_img{
         margin-top:5px;
     }
@@ -307,8 +312,13 @@ input[type="radio"], input[type="checkbox"] {
 
 .share{
     margin-bottom:5px;
+    margin-top:10px;
+}
+
+.first_share{
     margin-top:20px;
 }
+
 .share .share_text{
     font-size:14pt;
     margin-top:3px;
