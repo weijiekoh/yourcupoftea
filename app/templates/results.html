@@ -7,10 +7,10 @@ body{
     background-image:none !important;
 }
 </style>
-<meta property="og:title" content="Election Mantra" />
-<meta property="og:url" content="{{request.url}}/{{smart_share_url}}" />
-<meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg" />
-<meta property="og:description" content="Take the survey to find out which party thinks like you." />
+<meta property="og:title" content="My Election Mantra results" />
+<meta property="og:url" content="{{request.base_url}}" />
+<meta property="og:image" content="{{fb_share_image}}" />
+<meta property="og:description" content="My views on policies gave me these results: {{result_fb_str}}" />
 {% endblock %}
 
 {% block content %}
@@ -18,13 +18,13 @@ body{
 <div class = "row share">
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-offset-1 col-sm-10 col-xs-10 col-xs-offset-1 share_text_and_button">
         <span>Share your results:</span>
-        <div class="fb-share-button" data-href="{{request.url}}/{{smart_share_url}}" data-layout="button"></div>
+        <div class="fb-share-button" data-href="{{request.url}}" data-layout="button"></div>
     </div>
 </div>
 {% endset %}
 {{ fb_share|safe }}
 <br />
-{% for party_id, score in results.iteritems() %}
+{% for party_id, score in results %}
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-offset-1 col-sm-10 col-xs-10 col-xs-offset-1 result_box">
             <div class="col-xs-2">
