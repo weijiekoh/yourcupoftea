@@ -16,10 +16,9 @@ body{
 {% block content %}
 {% set fb_share %}
 <div class = "row share">
-    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-offset-1 col-sm-10 col-xs-10 col-xs-offset-1 share_text_and_button">
-        <span>Share your results:</span>
+    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-xs-10 col-xs-offset-1 share_text_and_button">
+        <span class="share_text">Show your friends!</span>
         <div class="fb-share-button" data-href="{{request.url}}" data-layout="button"></div>
-
         <a href="https://twitter.com/share" class="twitter-share-button" 
             data-url="https://enigmatic-ravine-83476.herokuapp.com" 
             data-text="{{result_share_str}}">Tweet</a>
@@ -27,25 +26,30 @@ body{
     </div>
 </div>
 {% endset %}
-{{ fb_share|safe }}
-<br />
-{% for party_id, score in results %}
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-offset-1 col-sm-10 col-xs-10 col-xs-offset-1 result_box">
-            <div class="col-xs-2">
-                <img src="/static/img/parties/{{parties[party_id]['logo']}}" width="100" height="100" />
-            </div>
-            <div class="col-xs-6 col-xs-offset-1">
-                <p class="result_party_name">{{parties[party_id]["name"]}}</p>
-            </div>
-            <div class="col-xs-3">
-                <p class="result_party_score">{{score|round(1)}}%</p>
+
+<div class = "row">
+    <div class = "quiz_bg_box col-md-8 col-md-offset-2">
+        {{ fb_share|safe }}
+        <br />
+        {% for party_id, score in results %}
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-xs-10 col-xs-offset-1 result_box">
+                <div class="col-xs-2">
+                    <img class="result_party_img" src="/static/img/parties/{{parties[party_id]['logo']}}" width="100" height="100" />
+                </div>
+                <div class="col-xs-6 col-xs-offset-1">
+                    <p class="result_party_name">{{parties[party_id]["name"]}}</p>
+                </div>
+                <div class="col-xs-3">
+                    <p class="result_party_score">{{score|round(1)}}%</p>
+                </div>
             </div>
         </div>
+        {% endfor %}
+        {{fb_share|safe}}
+        <br />
     </div>
-{% endfor %}
-{{fb_share|safe}}
-<br />
+</div>
 {% endblock %}
 {% block bottom %}
 <div id="fb-root"></div>

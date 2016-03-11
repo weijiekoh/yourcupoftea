@@ -29,6 +29,10 @@ def survey_en():
     from questions import questions
     return render_template("survey_en.html", questions=questions)
 
+@app.route("/results", methods=["GET"])
+def results_get():
+    return redirect("/")
+
 @app.route("/results", methods=["POST"])
 def results():
     import ranking
@@ -56,7 +60,7 @@ def results_for_fb(base64_result):
             fb_share_image = domain + "static/img/parties/at.png"
             raw_result_str = base64.decodestring(base64_result)
             sorted_results = smart_share_decode_and_sort(raw_result_str)
-            result_share_str = "My top 3 party matches in the 2016 West Bengal Vidhan Sabha Election: " + format_share_str(sorted_results)
+            result_share_str = "My top 3 party matches in the 2016 West Bengal Vidhan Sabha Elections: " + format_share_str(sorted_results)
 
             return render_template("results.html", 
                     fb_share_image=fb_share_image,

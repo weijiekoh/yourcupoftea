@@ -1,28 +1,9 @@
 /*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
-
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
 html {
     color: #222;
     font-size: 1em;
     line-height: 1.4;
 }
-
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * These selection rule sets have to be separate.
- * Customize the background color to match your design.
- */
 
 ::-moz-selection {
     background: #b3d4fc;
@@ -34,10 +15,6 @@ html {
     text-shadow: none;
 }
 
-/*
- * A better looking default horizontal rule
- */
-
 hr {
     display: block;
     height: 1px;
@@ -47,24 +24,9 @@ hr {
     padding: 0;
 }
 
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
+audio, canvas, iframe, img, svg, video {
     vertical-align: middle;
 }
-
-/*
- * Remove default fieldset styles.
- */
 
 fieldset {
     border: 0;
@@ -72,17 +34,9 @@ fieldset {
     padding: 0;
 }
 
-/*
- * Allow only vertical resizing of textareas.
- */
-
 textarea {
     resize: vertical;
 }
-
-/* ==========================================================================
-   Browser Upgrade Prompt
-   ========================================================================== */
 
 .browserupgrade {
     margin: 0.2em 0;
@@ -91,22 +45,9 @@ textarea {
     padding: 0.2em 0;
 }
 
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Hide visually and from screen readers
- */
-
 .hidden {
     display: none !important;
 }
-
-/*
- * Hide only visually, but have it available for screen readers:
- * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- */
 
 .visuallyhidden {
     border: 0;
@@ -119,12 +60,6 @@ textarea {
     width: 1px;
 }
 
-/*
- * Extends the .visuallyhidden class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
-
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
     clip: auto;
@@ -135,25 +70,10 @@ textarea {
     width: auto;
 }
 
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-
 .invisible {
     visibility: hidden;
 }
 
-/*
- * Clearfix: contain floats
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
- */
 
 .clearfix:before,
 .clearfix:after {
@@ -164,8 +84,6 @@ textarea {
 .clearfix:after {
     clear: both;
 }
-
-/******************/
 
 .navigation{
     text-transform:uppercase !important;
@@ -341,11 +259,6 @@ input[type="radio"], input[type="checkbox"] {
     height: 7px !important;
 }
 
-/*.tooltip.top {*/
-    /*margin-top: -10px !important;*/
-    /*margin-left: -10px !important;*/
-/*}*/
-
 .slider-handle {
     background-color: #A32A37 !important;
     background-image: none !important;
@@ -404,46 +317,85 @@ input[type="radio"], input[type="checkbox"] {
     margin-top:35px;
 }
 
-.result_party_score{
-}
-
-.share{
-    margin-bottom:10px;
-}
-
-.share span{
-    font-size:14pt;
-}
-
-.share .share_text_and_button{
-    margin-top:5px;
-}
+.result_party_img{
+        margin-top:5px;
+    }
 
 .share .fb-share-button,
 .share .twitter-share-button{
-    float:right;
-    margin-top:-5px;
     transform: scale(2);
     -ms-transform: scale(2);
     -webkit-transform: scale(2);
     -o-transform: scale(2);
     -moz-transform: scale(2);
-    transform-origin: top center;
-    -ms-transform-origin: top center;
-    -webkit-transform-origin: top center;
-    -moz-transform-origin: top center;
-    -webkit-transform-origin: top center;
+    transform-origin: center center;
+    -ms-transform-origin: center center;
+    -webkit-transform-origin: center center;
+    -moz-transform-origin: center center;
+    -webkit-transform-origin: center center;
+}
+
+.share{
+    margin-bottom:5px;
+    margin-top:20px;
+}
+.share .share_text{
+    font-size:14pt;
+    margin-top:3px;
+}
+
+.share .fb-share-button{
+    margin-left:43px;
 }
 
 .share .twitter-share-button{
-    margin-right:13px;
-}
-
-.share .twitter-share-button{
-    margin-right:73px;
+    margin-left:75px;
+    margin-top:-1px;
+    transform: scale(2.03);
+    -ms-transform: scale(2.03);
+    -webkit-transform: scale(2.03);
+    -o-transform: scale(2.03);
+    -moz-transform: scale(2.03);
 }
 
 @media (max-width:992px) { 
+    .share{
+        margin-bottom:0px;
+        margin-top:0px;
+    }
+
+    .share .fb-share-button,
+    .share .twitter-share-button{
+        margin-top:11px;
+        float:left;
+        margin-left:0px;
+        transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+        -moz-transform: scale(1);
+        transform-origin: center center;
+        -ms-transform-origin: center center;
+        -webkit-transform-origin: center center;
+        -moz-transform-origin: center center;
+        -webkit-transform-origin: center center;
+    }
+
+    .share .fb-share-button{
+        margin-left:10px;
+    }
+
+    .share .twitter-share-button{
+        margin-left:5px;
+    }
+
+    .share .share_text{
+        margin-top:11px;
+        font-size:10pt;
+        font-weight:bold;
+        float:left;
+    }
+
     .take_survey p{
         min-height:0px;
     }
@@ -496,15 +448,20 @@ input[type="radio"], input[type="checkbox"] {
     .result_box p{
         font-size:12pt !important;
     }
+
     .result_box img{
         width:50px;
         height:50px;
     }
+
+    .result_party_img{
+        margin-top:10px;
+    }
+
     .result_party_name, .result_party_score{
         font-size:14pt;
         margin-top:15px;
     }
-
 }
 
 
