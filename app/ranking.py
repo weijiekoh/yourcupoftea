@@ -2,8 +2,6 @@
 Calculates party % points based on their positions and a user's responses
 """
 
-import questions
-
 SLIDER = "slider_"
 RADIO = "radio_"
 CHECKBOX = "checkbox_"
@@ -41,7 +39,8 @@ def sort_responses(responses):
         #handle checkbox results
         elif response[0].startswith(CHECKBOX):
             qn_num = int(response[0][len(CHECKBOX):])
-            choices = map(lambda x:int(x), response[1])
+            choices = [int(x) for x in response[1]]
+            # map(lambda x:int(x), response[1])
 
             if qn_num in results:
                 results[qn_num]["checkbox"] = choices
@@ -90,8 +89,8 @@ def calculate_score(sorted_responses, party_positions, questions):
     sorted_responses = fill_in_blank_responses(sorted_responses, questions)
 
     min_max_dev_per_qn = min_max_deviations(party_positions, questions)
-    min_possible_total_deviation = sum([x[0] for k, x in min_max_dev_per_qn.iteritems()])
-    max_possible_total_deviation = sum([x[1] for k, x in min_max_dev_per_qn.iteritems()])
+    min_possible_total_deviation = sum([x[0] for x in min_max_dev_per_qn.values()])
+    max_possible_total_deviation = sum([x[1] for x in min_max_dev_per_qn.values()])
 
     total_deviation = 0.0
 

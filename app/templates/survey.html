@@ -24,8 +24,8 @@ body{
 <div class="row">
     <div class="quiz_bg_box col-md-8 col-md-offset-2 text-center">
         <div class="row">
-            <h2 class="col-md-offset-2 col-md-8">
-                Find out how much each political party contesting in the 2016 West Bengal State Elections thinks like you.
+            <h2 class="col-md-offset-2 col-md-8 find_out_text">
+                {{trans["survey"]["find_out"][lang]}}
             </h2>
         </div>
         <div class="row">
@@ -34,7 +34,7 @@ body{
                 <div class="row question_box">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3>{{ q.text }}</h3>
+                            <h3>{{ q["text"][lang] }}</h3>
                         </div>
                     </div>
                     <div class="row question_controls">
@@ -48,8 +48,8 @@ body{
                                 </div>
                             </div>
                             <div class="slider-explanation text-center">
-                                <p>Tap or drag the red dot to select how important this is to you.<br />
-                                (1 = low, 5 = high)</p>
+                                <p>{{trans["survey"]["drag_dot"][lang]}}<br />
+                                   {{trans["survey"]["low_high"][lang]}}</p>
                             </div>
                         </div>
                         <div class="col-md-7">
@@ -59,20 +59,20 @@ body{
                                 {% set input_id = "radio_" ~ q_id ~ "_" ~ loop.revindex0 %}
                                 {% set name = "radio_" ~ q_id %}
                                 <input id="{{input_id}}" name="{{name}}" value="{{loop.revindex0}}" type="radio" />
-                                <label for="{{input_id}}">{{c}}</label>
+                                <label for="{{input_id}}">{{c[lang]}}</label>
                                 <br />
                                 {% endfor %}
                             </div>
                         {% elif q.type == "pick_many" %}
                             <div class="option-container checkbox checkbox-success">
                                 <div class="pick_many_text">
-                                    <p>Pick as many as you want:</p>
+                                    <p>{{trans["survey"]["pick_many"][lang]}}</p>
                                 </div>
                                 {% for c in q.choices %}
                                 {% set input_id = "checkbox" ~ q_id ~ "_" ~ loop.index0 %}
                                 {% set name = "checkbox_" ~ q_id %}
                                 <input id="{{input_id}}" name="{{name}}" type="checkbox" value="{{loop.index0}}" class="styled">
-                                <label for="{{input_id}}">{{c}}</label>
+                                <label for="{{input_id}}">{{c[lang]}}</label>
                                 <br />
                                 {% endfor %}
                             </div>
@@ -82,7 +82,7 @@ body{
 
                 </div>
                 {% endfor %}
-                <button id="submit" type="submit">Submit</button>
+                <button id="submit" type="submit">{{trans["survey"]["submit"][lang]}}</button>
             </form>
         </div>
     </div>
@@ -106,7 +106,6 @@ body{
 
         $(document).ready(function() {
             var original_hash = window.location.hash;
-            original_hash = original_hash.substring(1, original_hash.length);
             {% for q_id, q in questions.iteritems() %}
             $("#slider_{{q_id}}").slider({tooltip:"hide"});
                 $("#slider_{{q_id}}").on("slideStop", function(slideEvt) {
@@ -117,6 +116,7 @@ body{
             });
             {% endfor %}
 
+            original_hash = original_hash.substring(1, original_hash.length);
             var slider_vals = original_hash.split("");
             for (i=0; i < slider_vals.length; i++){
                 $("#slider_val_" + i).text(slider_vals[i]);

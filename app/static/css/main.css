@@ -230,6 +230,14 @@ input[type="radio"], input[type="checkbox"] {
     height: 7px !important;
 }
 
+.slider-tick{
+    background-image: linear-gradient(to bottom,#aaaaaa 0,#aaaaaa 100%) !important;
+    opacity:1 !important; 
+    width: 17px !important;
+    height: 17px !important;
+    margin-top:-5px !important;
+}
+
 .slider-handle {
     background-color: #A32A37 !important;
     background-image: none !important;
@@ -284,7 +292,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .result_party_name, .result_party_score{
-    font-size:14pt;
+    font-size:16pt;
     margin-top:35px;
 }
 
@@ -293,8 +301,19 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .result_party_img{
-        margin-top:5px;
-    }
+    margin-top:5px;
+}
+
+.result_invite{
+    margin-top:20px;
+    margin-bottom:10px;
+    font-size:18pt;
+    font-weight:bold;
+}
+
+.result_invite a{
+    text-decoration:underline;
+}
 
 .share .fb-share-button,
 .share .twitter-share-button{
@@ -312,11 +331,10 @@ input[type="radio"], input[type="checkbox"] {
 
 .share{
     margin-bottom:5px;
-    margin-top:10px;
 }
 
-.first_share{
-    margin-top:20px;
+.last_share{
+    margin-top:10px;
 }
 
 .share .share_text{
@@ -397,6 +415,10 @@ input[type="radio"], input[type="checkbox"] {
         margin-right: 0;
         margin-left: 0px;
     }
+
+    .find_out_text{
+        font-size:14pt !important;
+    }
     .option-container {
         border-left:none;
         border-top: 2px solid rgba(150,0,0,0.5);
@@ -441,5 +463,14 @@ input[type="radio"], input[type="checkbox"] {
     .result_party_name, .result_party_score{
         font-size:14pt;
         margin-top:15px;
+    }
+
+    .result_invite{
+        font-size:14pt;
+        margin-bottom:0px;
+    }
+
+    .result_invite a{
+        width:100%;
     }
 }
