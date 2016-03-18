@@ -27,7 +27,10 @@ body{
             data-text="{{result_share_str}}">Tweet</a>
 
         <div class="btn-group whatsapp-share-button">
-            <a class="btn btn-primary" href="whatsapp://send?{{result_share_str|e}}" data-action="share/whatsapp/share"><i class="fa fa-whatsapp icon-white"></i> WhatsApp</a>
+            <a class="btn btn-primary" href="whatsapp://send"
+                data-text="{{result_share_str|e}}"
+                data-href=""
+                data-action="share/whatsapp/share"><i class="fa fa-whatsapp icon-white"></i> WhatsApp</a>
           </div>
     </div>
 </div>
