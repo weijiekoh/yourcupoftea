@@ -315,19 +315,6 @@ input[type="radio"], input[type="checkbox"] {
     text-decoration:underline;
 }
 
-.share .fb-share-button{
-    transform: scale(2);
-    -ms-transform: scale(2);
-    -webkit-transform: scale(2);
-    -o-transform: scale(2);
-    -moz-transform: scale(2);
-    transform-origin: center center;
-    -ms-transform-origin: center center;
-    -webkit-transform-origin: center center;
-    -moz-transform-origin: center center;
-    -webkit-transform-origin: center center;
-}
-
 .share{
     margin-bottom:5px;
 }
@@ -337,39 +324,57 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .share .share_text{
-    font-size:14pt;
-    margin-top:3px;
+    font-size:16pt;
+    float:left;
+    margin-right:15px;
+    margin-top:7px;
 }
 
-.share .fb-share-button{
-    margin-left:43px;
+.share_btns{
+    float:left;
 }
 
-.share .twitter-share-button{
-    margin-left:75px;
-    margin-top:-5px;
-    transform: scale(2.03);
-    transform-origin: center center;
-    -ms-transform: scale(2.03);
-    -webkit-transform: scale(2.03);
-    -o-transform: scale(2.03);
-    -moz-transform: scale(2.03);
-}
-
-.share .whatsapp-share-button{
-    margin-left:47px;
-    margin-top:-5px !important;
+.btn-whatsapp,
+.btn-facebook,
+.btn-twitter {
+    font-size:16pt !important;
+    border:0px;
+    color: #fff
 }
 
 .share .whatsapp-share-button .btn{
-    padding-top:5px;
-    padding-bottom:5px;
-    font-size:20px !important;
     background-color:#57bb63;
-    border-color:#57bb63;
 }
 
-.share .whatsapp-share-button a{
+.btn-whatsapp:link, .btn-whatsapp:visited {
+    color: #fff
+}
+
+.btn-whatsapp:active, .btn-whatsapp:hover {
+    background: #61d26a !important;
+    color: #fff
+}
+
+.btn-facebook {
+    background: #3b5998;
+}
+.btn-facebook:link, .btn-facebook:visited {
+    color: #fff
+}
+.btn-facebook:active, .btn-facebook:hover {
+    background: #30477a;
+}
+
+.btn-twitter {
+    background: #00acee;
+}
+
+.btn-twitter:link, .btn-twitter:visited {
+    color: #fff
+}
+.btn-twitter:active, .btn-twitter:hover {
+    background: #0087bd;
+    color: #fff
 }
 
 @media (max-width:992px) { 
@@ -378,36 +383,11 @@ input[type="radio"], input[type="checkbox"] {
         margin-top:0px;
     }
 
-    .share .fb-share-button,
-    .share .twitter-share-button{
-        margin-top:11px;
-        float:left;
-        margin-left:0px;
-        transform: scale(1);
-        -ms-transform: scale(1);
-        -webkit-transform: scale(1);
-        -o-transform: scale(1);
-        -moz-transform: scale(1);
-        transform-origin: center center;
-        -ms-transform-origin: center center;
-        -webkit-transform-origin: center center;
-        -moz-transform-origin: center center;
-        -webkit-transform-origin: center center;
-    }
-
-    .share .fb-share-button{
-        margin-left:10px;
-    }
-
-    .share .twitter-share-button{
-        margin-left:5px;
-    }
-
     .share .share_text{
-        margin-top:11px;
-        font-size:10pt;
+        font-size:12pt;
         font-weight:bold;
         float:left;
+        margin-top:0px;
     }
 
     .take_survey p{
@@ -489,4 +469,15 @@ input[type="radio"], input[type="checkbox"] {
     .result_invite a{
         width:100%;
     }
+    .btn-whatsapp,
+    .btn-facebook,
+    .btn-twitter {
+        font-size:9pt !important;
+        margin-top:5px;
+    }
+
+    .share_btns{
+        min-width:100%;
+    }
+
 }

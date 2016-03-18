@@ -96,9 +96,13 @@ def results_for_fb(base64_result):
             result_share_str = translations["results"]["share_str"][lang] + \
                     format_share_str(sorted_results)
 
+            whatsapp_share_str = translations["results"]["share_str"][lang] + "\n\n" + \
+                    format_share_str(sorted_results, whatsapp=True)
+
             return render_template("results.html", 
                     fb_share_image=fb_share_image,
                     result_share_str=result_share_str,
+                    whatsapp_share_str=whatsapp_share_str,
                     parties=parties,
                     lang=lang, 
                     trans=translations,
@@ -148,7 +152,7 @@ def smart_share_decode_and_sort(raw_result_str):
 class InvalidShareString: pass
 
 
-def format_share_str(sorted_results):
+def format_share_str(sorted_results, whatsapp=False):
     """
     Formats a dict of party_id:score etc to "ABC: xx.x%, ..."
     """
@@ -156,7 +160,10 @@ def format_share_str(sorted_results):
     for s in sorted_results[:3]:
         party_id = int(s[0])
         party_score = s[1]
-        display += "%s: %s%%, " % (parties[party_id]["initials"], party_score)
+        if whatsapp:
+            display += "%s: %s%% \n" % (parties[party_id]["initials"], party_score)
+        else:
+            display += "%s: %s%%, " % (parties[party_id]["initials"], party_score)
 
     return display[:len(display)-2]
 

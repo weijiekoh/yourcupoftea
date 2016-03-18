@@ -39,7 +39,7 @@ translations = \
         "show_friends":{
             "bn":"",
             "hi":"",
-            "en":"Show your friends!",
+            "en":"Share your results:",
         },
         "share_str":{
             "bn":"",
