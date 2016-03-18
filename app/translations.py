@@ -6,74 +6,87 @@ translations = \
 {
     "500": {
         "error":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"Server error."
             },
     },
 
     "404": {
         "click_here":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"Click here."
             },
         "not_found":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"Page not found. Were you looking for the survey?",
             },
     },
 
     "results": {
+        "facebook":{
+            "bn":u"ফেসবুক",
+            "hi":u"फेसबुक",
+            "en":"Facebook",
+        },
+        "twitter":{
+            "bn":u"টুইটার",
+            "hi":u"ट्विटर",
+            "en":"Twitter",
+        },
+        "whatsapp":{
+            "bn":u"হোয়াটসঅ্যাপ",
+            "hi":u"वाट्सऐप",
+            "en":"WhatsApp",
+        },
         "here_my":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"Here are my results.",
         },
         "click_take_quiz":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"Click here to take the quiz!",
         },
         "show_friends":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"Share your results:",
         },
         "share_str":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en": "My top 3 party matches in the 2016 West Bengal Vidhan Sabha Elections: "
         },
-
-
     },
 
     "survey": {
         "find_out":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"Find out how much each political party contesting in the 2016 West Bengal State Elections thinks like you.",
         },
         "drag_dot":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"Drag the red dot to select how important this question is to you."
         },
         "low_high":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"(1 = low, 5 = high)"
         },
         "pick_many":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"Pick as many as you want:",
         },
         "submit":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"Submit",
         },
 

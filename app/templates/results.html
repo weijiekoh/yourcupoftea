@@ -31,7 +31,7 @@ body{
                     class="btn btn-facebook"
                     title="Share on Facebook" target="_blank">
 
-                    <i class="fa fa-facebook icon-white"></i> Facebook
+                    <i class="fa fa-facebook icon-white"></i> {{trans["results"]["facebook"][lang]}}
                 </a>
             </div>
 
@@ -43,7 +43,7 @@ body{
                     class="btn btn-twitter"
                     title="Share on Twitter" target="_blank">
 
-                    <i class="fa fa-twitter icon-white"></i> Twitter
+                    <i class="fa fa-twitter icon-white"></i> {{trans["results"]["twitter"][lang]}}
                 </a>
             </div>
 
@@ -52,7 +52,7 @@ body{
                     title="Share on Whatsapp" 
                     href= "whatsapp://send?text={{whatsapp_share_str|urlencode}}%0A%0ATry it at: {{request.url_root}}?utm_source=wa">
 
-                    <i class="fa fa-whatsapp icon-white"></i> WhatsApp
+                    <i class="fa fa-whatsapp icon-white"></i> {{trans["results"]["whatsapp"][lang]}}
                 </a>
             </div>
         </div>
@@ -63,7 +63,7 @@ body{
     <div class = "quiz_bg_box col-md-8 col-md-offset-2">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1 result_invite">
-                <p>{{trans["results"]["here_my"][lang]}} <wbr>
+                <p>{{trans["results"]["here_my"][lang]}}
                     <a href="/survey_en">{{trans["results"]["click_take_quiz"][lang]}}</a></p>
             </div>
         </div>

@@ -54,12 +54,8 @@ def error_500(e):
 @app.route("/results", methods=["POST"])
 def results():
     import app.ranking
-
     rankings = app.ranking.calculate(request.form.lists(), parties, questions)
     return redirect(url_for("results") + "/" + smart_share_code(rankings))
-    # return render_template("results.html",
-            # results=results, parties=parties,
-            # smart_share_url=request.url + "/" + smart_share_code(results))
 
 
 @app.route("/results/<base64_result>", methods=["GET", "POST"])
@@ -98,7 +94,7 @@ def results_for_fb(base64_result):
 
             whatsapp_share_str = translations["results"]["share_str"][lang] + "\n\n" + \
                     format_share_str(sorted_results, whatsapp=True)
-
+                    
             return render_template("results.html", 
                     fb_share_image=fb_share_image,
                     result_share_str=result_share_str,
@@ -111,7 +107,8 @@ def results_for_fb(base64_result):
             # else:
                 # return render_template("index.html")
 
-        except (UnicodeDecodeError, AssertionError):
+        except (UnicodeDecodeError, AssertionError) as e:
+            print e
             return render_template("index.html")
     else:
         return render_template("index.html")
