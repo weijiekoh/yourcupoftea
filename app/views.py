@@ -37,17 +37,17 @@ def survey_en():
 
 
 @app.errorhandler(404)
-def error_404():
+def error_404(e):
     return render_template('404.html', trans=translations), 404
 
 
 @app.errorhandler(405)
-def error_405():
+def error_405(e):
     return render_template('404.html', trans=translations), 405
 
 
 @app.errorhandler(500)
-def error_500():
+def error_500(e):
     return render_template('500.html', trans=translations), 500
 
 

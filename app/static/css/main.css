@@ -315,8 +315,7 @@ input[type="radio"], input[type="checkbox"] {
     text-decoration:underline;
 }
 
-.share .fb-share-button,
-.share .twitter-share-button{
+.share .fb-share-button{
     transform: scale(2);
     -ms-transform: scale(2);
     -webkit-transform: scale(2);
@@ -348,12 +347,29 @@ input[type="radio"], input[type="checkbox"] {
 
 .share .twitter-share-button{
     margin-left:75px;
-    margin-top:-1px;
+    margin-top:-5px;
     transform: scale(2.03);
+    transform-origin: center center;
     -ms-transform: scale(2.03);
     -webkit-transform: scale(2.03);
     -o-transform: scale(2.03);
     -moz-transform: scale(2.03);
+}
+
+.share .whatsapp-share-button{
+    margin-left:47px;
+    margin-top:-5px !important;
+}
+
+.share .whatsapp-share-button .btn{
+    padding-top:5px;
+    padding-bottom:5px;
+    font-size:20px !important;
+    background-color:#57bb63;
+    border-color:#57bb63;
+}
+
+.share .whatsapp-share-button a{
 }
 
 @media (max-width:992px) { 

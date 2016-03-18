@@ -14,7 +14,7 @@ body{
 {% endblock %}
 
 {% block content %}
-{% set fb_share %}
+{% macro fb_share() -%}
 <div class = "row share">
     <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-xs-10 col-xs-offset-1 share_text_and_button">
         <span class="share_text">
@@ -25,9 +25,13 @@ body{
         <a href="https://twitter.com/share" class="twitter-share-button" 
             data-url="https://enigmatic-ravine-83476.herokuapp.com" 
             data-text="{{result_share_str}}">Tweet</a>
+
+        <div class="btn-group whatsapp-share-button">
+            <a class="btn btn-primary" href="whatsapp://send?{{result_share_str|e}}" data-action="share/whatsapp/share"><i class="fa fa-whatsapp icon-white"></i> WhatsApp</a>
+          </div>
     </div>
 </div>
-{% endset %}
+{%- endmacro %}
 <div class = "row">
     <div class = "quiz_bg_box col-md-8 col-md-offset-2">
         <div class="row">
@@ -36,7 +40,7 @@ body{
                     <a href="/survey_en">{{trans["results"]["click_take_quiz"][lang]}}</a></p>
             </div>
         </div>
-        {{ fb_share|safe }}
+        {{ fb_share()|safe }}
         <br />
         {% for party_id, score in results %}
         <div class="row">
@@ -54,7 +58,7 @@ body{
         </div>
         {% endfor %}
         <div class="last_share">
-        {{fb_share|safe}}
+        {{fb_share()|safe}}
         </div>
         <br />
     </div>
@@ -69,4 +73,10 @@ js = d.createElement(s); js.id = id;
 js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5";
 fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}
+{% block posthtml %}
+<!--FontAwesome-->
+<!--<link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css" />-->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous"
+integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" />
 {% endblock %}
