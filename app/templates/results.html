@@ -37,8 +37,8 @@ body{
 
             <div class="btn-group twitter-share-button">
                 <!--TODO: Use bitly url! -->
-                <a href="https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_source=tw"
-                    onclick="window.open('https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_source=tw','name','width=694,height=432')"
+                <a href="https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw"
+                    onclick="window.open('https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw','name','width=694,height=432')"
                     target="popup" 
                     class="btn btn-twitter"
                     title="Share on Twitter" target="_blank">
@@ -50,7 +50,7 @@ body{
             <div class="btn-group whatsapp-share-button">
                 <a class="btn btn-whatsapp" 
                     title="Share on Whatsapp" 
-                    href="whatsapp://send?text={{whatsapp_share_str|urlencode}}%0A%0ATry it at: {{request.url_root ~ "?utm_source=wa"|urlencode}}">
+                    href="whatsapp://send?text={{whatsapp_share_str|urlencode}}%0A%0ATry it at: {{request.url_root ~ "?utm_medium=wa"|urlencode}}">
 
                     <i class="fa fa-whatsapp icon-white"></i> {{trans["results"]["whatsapp"][lang]}}
                 </a>
