@@ -47,9 +47,6 @@ body{
                 </a>
             </div>
 
-            {#
-                    href= "whatsapp://send?text={{whatsapp_share_str|urlencode}}%0A%0ATry it at: {{request.url_root}}?utm_source=wa">
-                    #}
             <div class="btn-group whatsapp-share-button">
                 <a class="btn btn-whatsapp" 
                     title="Share on Whatsapp" 
@@ -57,7 +54,6 @@ body{
 
                     <i class="fa fa-whatsapp icon-white"></i> {{trans["results"]["whatsapp"][lang]}}
                 </a>
-                <a href="whatsapp://send?text=Web development scripts | Tutorials and examples | Free script downloads - http://webdevelopmentscripts.com"><span style="color:rgb(0, 0, 255)">Click to share on whatsapp</span></a>
             </div>
         </div>
     </div>
