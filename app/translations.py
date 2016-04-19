@@ -6,7 +6,7 @@ translations = \
 {
     "500": {
         "error":{
-            "bn":u"",
+            "bn":u"সার্ভার কাজ করছে না",
             "hi":u"",
             "en":"Server error."
             },
@@ -14,12 +14,12 @@ translations = \
 
     "404": {
         "click_here":{
-            "bn":u"",
+            "bn":u"এখানে ক্লিক করুন",
             "hi":u"",
             "en":"Click here."
             },
         "not_found":{
-            "bn":u"",
+            "bn":u"আপনি কি প্রশ্নবলী খুজছিলেন ",
             "hi":u"",
             "en":"Page not found. Were you looking for the survey?",
             },
@@ -42,22 +42,22 @@ translations = \
             "en":"WhatsApp",
         },
         "here_my":{
-            "bn":u"",
+            "bn":u"এই আমার ফল ",
             "hi":u"",
             "en":"Here are my results.",
         },
         "click_take_quiz":{
-            "bn":u"",
+            "bn":u"প্রশ্নের উত্তর দিতে এখানে ক্লিক করুন",
             "hi":u"",
             "en":"Click here to take the quiz!",
         },
         "show_friends":{
-            "bn":u"",
+            "bn":u"আপনার ফলাফল সবাই কে জানান",
             "hi":u"",
             "en":"Share your results:",
         },
         "share_str":{
-            "bn":u"",
+            "bn":u"বিধান সভা নির্বাচনে আমার সর্বোত্তম ৩ টি রাজনৈতিক দোল হলো : ",
             "hi":u"",
             "en": "My top 3 party matches in the 2016 West Bengal Vidhan Sabha Elections: "
         },
@@ -65,27 +65,27 @@ translations = \
 
     "survey": {
         "find_out":{
-            "bn":u"",
+            "bn":u"জানুন কোন রাজনৈতিক দোল আপনার মত ভাবে",
             "hi":u"",
             "en":"Find out how much each political party contesting in the 2016 West Bengal State Elections thinks like you.",
         },
         "drag_dot":{
-            "bn":u"",
+            "bn":u"লাল বিন্দু টেনে আপনার কাছে এই প্রশ্নের গুরুত্ব ইঙ্গিত করুন",
             "hi":u"",
             "en":"Drag the red dot to select how important this question is to you."
         },
         "low_high":{
-            "bn":u"",
+            "bn":u"(১ = সর্বনিম্ন, কম; ৫= সর্বোত্তম , বেশি  )",
             "hi":u"",
             "en":"(1 = low, 5 = high)"
         },
         "pick_many":{
-            "bn":u"",
+            "bn":u"যতগুলো প্রযোজ্য নির্বাচন করুন:",
             "hi":u"",
             "en":"Pick as many as you want:",
         },
         "submit":{
-            "bn":u"",
+            "bn":u"জমা দিন",
             "hi":u"",
             "en":"Submit",
         },

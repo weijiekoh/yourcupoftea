@@ -21,17 +21,17 @@ questions = collections.OrderedDict({
             },
 
         "choices":[ {
-            "bn":"",
+            "bn":"হ্যাঁ",
             "hi":"",
             "en": "Yes",
             },
             {
-            "bn":"",
+            "bn":"নিরপেক্ষ",
             "hi":"",
             "en": "Neutral",
             },
             {
-            "bn":"",
+            "bn":"না",
             "hi":"",
             "en": "No"
             }, ]
@@ -46,17 +46,17 @@ questions = collections.OrderedDict({
             },
 
         "choices":[ {
-            "bn":"",
+            "bn":"হ্যাঁ",
             "hi":"",
             "en": "Yes",
             },
             {
-            "bn":"",
+            "bn":"নিরপেক্ষ",
             "hi":"",
             "en": "Neutral",
             },
             {
-            "bn":"",
+            "bn":"না",
             "hi":"",
             "en": "No"
             }, ],

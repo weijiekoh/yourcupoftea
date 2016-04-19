@@ -111,8 +111,8 @@ def calculate_score(sorted_responses, party_id, party_positions, questions):
 
     total_deviation = 0
     # iterate through each response 
-    print "=============="
-    print "Party:", party_id
+    # print "=============="
+    # print "Party:", party_id
     for qn_num, response in sorted_responses.iteritems():
         qn_deviation = 0.0
         if "radio" in response:

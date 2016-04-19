@@ -128,7 +128,7 @@ def smart_share_decode_and_sort(raw_result_str):
     found = re.findall(veri_regex, raw_result_str)
     # print "=============="
     # print veri_regex
-    # print raw_result_str
+    print raw_result_str
     # print found
     # print "=============="
 
