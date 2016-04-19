@@ -6,33 +6,34 @@ from app.parties import parties
 from app.party_positions import party_positions
 # from config import LANGUAGES
 
+import urlparse
+
+u = urlparse.urlparse(request.url)
+domain = '{uri.scheme}://{uri.netloc}/'.format(uri=u)
+fb_share_image = domain + "static/img/combined_logos.png"
+
 @app.route("/")
 def index():
-    import urlparse
-
-    u = urlparse.urlparse(request.url)
-    domain = '{uri.scheme}://{uri.netloc}/'.format(uri=u)
-    fb_share_image = domain + "static/img/combined_logos.png"
     return render_template("index.html", trans=translations, fb_share_image=fb_share_image)
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    return render_template("about.html", fb_share_image=fb_share_image)
 
 
 # Bengali survey
 @app.route("/survey_bn")
 def survey():
     return render_template("survey.html", questions=questions,
-            trans=translations, lang="bn")
+            trans=translations, lang="bn", fb_share_image=fb_share_image)
 
 
 # Hindi survey
 @app.route("/survey_hi")
 def survey_hi():
     return render_template("survey.html", questions=questions,
-            trans=translations, lang="hi")
+            trans=translations, lang="hi", fb_share_image=fb_share_image)
 
 
 # English survey
@@ -44,7 +45,7 @@ def survey_en():
     # return render_template("survey.html", questions=shuffled_qns,
             # trans=translations, lang="en")
     return render_template("survey.html", questions=questions,
-            trans=translations, lang="en")
+            trans=translations, lang="en", fb_share_image=fb_share_image)
 
 
 @app.errorhandler(404)
@@ -77,12 +78,6 @@ def results_for_fb(base64_result):
     if re.findall(base64_regex, base64_result):
         import base64
         try:
-            import urlparse
-
-            u = urlparse.urlparse(request.url)
-            domain = '{uri.scheme}://{uri.netloc}/'.format(uri=u)
-            fb_share_image = domain + "static/img/combined_logos.png"
-
             raw_result_str = base64.decodestring(base64_result)
             sorted_results = smart_share_decode_and_sort(raw_result_str)
 
