@@ -25,6 +25,11 @@ translations = \
             },
     },
     "index": {
+        "tagline":{
+            "bn":u"নীতি বুঝুন নির্বাচন করুন",
+            "hi":u"<Hindi tagline>",
+            "en":"Think Elections. Know Policies."
+        },
         "which_party":{
             "bn":u"কোন রাজনৈতিক দোল আপনার মত চিন্তা করে?",
             "hi":u"",
@@ -79,7 +84,7 @@ translations = \
             "en":"Share your results:",
         },
         "share_str":{
-            "bn":u"জানুন ২০১৬ এর বিধান সভা নির্বাচনে কোন রাজনৈতিক দোল  আপনার মতো চিন্তা করে",
+            "bn":u"বিধান সভা নির্বাচনে আমার সর্বোত্তম ৩ টি রাজনৈতিক দোল হলো : ",
             "hi":u"",
             "en": "My top 3 party matches in the 2016 West Bengal Vidhan Sabha Elections: "
         },
@@ -92,7 +97,7 @@ translations = \
 
     "survey": {
         "find_out":{
-            "bn":u"জানুন কোন রাজনৈতিক দোল আপনার মত ভাবে",
+            "bn":u"জানুন ২০১৬ এর বিধান সভা নির্বাচনে কোন রাজনৈতিক দোল  আপনার মতো চিন্তা করে",
             "hi":u"",
             "en":"Find out how much each political party contesting in the 2016 West Bengal State Elections thinks like you.",
         },
@@ -102,7 +107,7 @@ translations = \
             "en":"Drag the red dot to select how important this question is to you."
         },
         "low_high":{
-            "bn":u"(১ = সর্বনিম্ন, কম; ৫= সর্বোত্তম , বেশি  )",
+            "bn":u"(1 = সর্বনিম্ন, কম; 5 = সর্বোত্তম , বেশি)",
             "hi":u"",
             "en":"(1 = low, 5 = high)"
         },
