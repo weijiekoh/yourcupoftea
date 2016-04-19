@@ -8,7 +8,12 @@ from app.party_positions import party_positions
 
 @app.route("/")
 def index():
-    return render_template("index.html", trans=translations)
+    import urlparse
+
+    u = urlparse.urlparse(request.url)
+    domain = '{uri.scheme}://{uri.netloc}/'.format(uri=u)
+    fb_share_image = domain + "static/img/combined_logos.png"
+    return render_template("index.html", trans=translations, fb_share_image=fb_share_image)
 
 
 @app.route("/about")
