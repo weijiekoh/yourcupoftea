@@ -71,7 +71,7 @@ def results_for_fb(base64_result):
 
             u = urlparse.urlparse(request.url)
             domain = '{uri.scheme}://{uri.netloc}/'.format(uri=u)
-            fb_share_image = domain + "static/img/parties/at.png"
+            fb_share_image = domain + "static/img/combined_logos.png"
 
             raw_result_str = base64.decodestring(base64_result)
             sorted_results = smart_share_decode_and_sort(raw_result_str)
