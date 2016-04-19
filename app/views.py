@@ -8,32 +8,33 @@ from app.party_positions import party_positions
 
 import urlparse
 
-u = urlparse.urlparse(request.url)
-domain = '{uri.scheme}://{uri.netloc}/'.format(uri=u)
-fb_share_image = domain + "static/img/combined_logos.png"
+def fb_share_image():
+    u = urlparse.urlparse(request.url)
+    domain = '{uri.scheme}://{uri.netloc}/'.format(uri=u)
+    return domain + "static/img/combined_logos.png"
 
 @app.route("/")
 def index():
-    return render_template("index.html", trans=translations, fb_share_image=fb_share_image)
+    return render_template("index.html", trans=translations, fb_share_image=fb_share_image())
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html", fb_share_image=fb_share_image)
+    return render_template("about.html", fb_share_image=fb_share_image())
 
 
 # Bengali survey
 @app.route("/survey_bn")
 def survey():
     return render_template("survey.html", questions=questions,
-            trans=translations, lang="bn", fb_share_image=fb_share_image)
+            trans=translations, lang="bn", fb_share_image=fb_share_image())
 
 
 # Hindi survey
 @app.route("/survey_hi")
 def survey_hi():
     return render_template("survey.html", questions=questions,
-            trans=translations, lang="hi", fb_share_image=fb_share_image)
+            trans=translations, lang="hi", fb_share_image=fb_share_image())
 
 
 # English survey
@@ -45,7 +46,7 @@ def survey_en():
     # return render_template("survey.html", questions=shuffled_qns,
             # trans=translations, lang="en")
     return render_template("survey.html", questions=questions,
-            trans=translations, lang="en", fb_share_image=fb_share_image)
+            trans=translations, lang="en", fb_share_image=fb_share_image())
 
 
 @app.errorhandler(404)
@@ -102,7 +103,7 @@ def results_for_fb(base64_result):
                     format_share_str(sorted_results, whatsapp=True)
                     
             return render_template("results.html", 
-                    fb_share_image=fb_share_image,
+                    fb_share_image=fb_share_image(),
                     result_share_str=result_share_str,
                     whatsapp_share_str=whatsapp_share_str,
                     parties=parties,
