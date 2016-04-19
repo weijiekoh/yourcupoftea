@@ -3,6 +3,7 @@ from flask import render_template, request, redirect, url_for
 from app.questions import questions
 from app.translations import translations
 from app.parties import parties
+from app.party_positions import party_positions
 # from config import LANGUAGES
 
 @app.route("/")
@@ -54,7 +55,7 @@ def error_500(e):
 @app.route("/results", methods=["POST"])
 def results():
     import app.ranking
-    rankings = app.ranking.calculate(request.form.lists(), parties, questions)
+    rankings = app.ranking.calculate(request.form.lists(), parties, party_positions, questions)
     return redirect(url_for("results") + "/" + smart_share_code(rankings))
 
 
@@ -120,21 +121,26 @@ def smart_share_decode_and_sort(raw_result_str):
     """
     import re
     # data verification
-    veri_regex = "(?:\d:[\d\.]{2,4},){" + str(len(parties)-1) + \
-            "}\d:[\d\.]{2,4}"
+    veri_regex = "(?:\d:[\d\.]{2,4},|\d:100.0,){" + str(len(parties)-1) + \
+            "}\d:[\d\.]{2,4}|\d:100.0"
     # matches something like 0:74.3,1:70.0,2:88.0,3:67.7, depending on the no.
     # of parties in parties.py
     found = re.findall(veri_regex, raw_result_str)
+    # print "=============="
+    # print veri_regex
+    # print raw_result_str
+    # print found
+    # print "=============="
 
     # throw an exeception if the url is invalid to prevent abuse
-    assert len(found) > 0, "Invalid sharer url"
+    assert len(found) > 0, "Invalid sharer url: no parties given in string"
 
     sorted_parties = sorted([int(x.split(":")[0]) for x in \
         sorted(found[0].split(","))])
 
     # make sure the input includes all the parties we have and only these
     # parties
-    assert sorted_parties == sorted(parties.keys()), "Invalid sharer url"
+    assert sorted_parties == sorted(parties.keys()), "Invalid sharer url: wrong number of parties"
 
     # sort by score, not party ID:
     score_sorted_results = []

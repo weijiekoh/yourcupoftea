@@ -50,7 +50,7 @@ def sort_responses(responses):
     return results
 
 
-def calculate(responses, parties, questions):
+def calculate(responses, parties, party_positions, questions):
     """
     Given the form responses from a user, return a dict with the scores for each party.
     e.g. {"0": 90, "1": 28, "3": 59}
@@ -60,12 +60,12 @@ def calculate(responses, parties, questions):
     results = {}
     sorted_responses = sort_responses(responses)
     for party_id, party in parties.iteritems():
-        results[party_id] = calculate_score(sorted_responses, party["positions"], questions)
+        results[party_id] = calculate_score(sorted_responses, party_id, party_positions, questions)
 
     return results
 
 
-def calculate_score(sorted_responses, party_positions, questions):
+def calculate_score(sorted_responses, party_id, party_positions, questions):
     """
     Calculate the score for this party given its positions and the responses
     from one user.
@@ -86,30 +86,59 @@ def calculate_score(sorted_responses, party_positions, questions):
     """
 
     # sorted_responses = fill_in_blank_responses(sorted_responses, questions)
+
     sorted_responses = remove_empty_answers(sorted_responses)
 
     if len(sorted_responses) == 0:
         return 0
 
-    min_max_dev_per_qn = min_max_deviations(party_positions, questions)
-    min_possible_total_deviation = sum([x[0] for x in min_max_dev_per_qn.values()])
-    max_possible_total_deviation = sum([x[1] for x in min_max_dev_per_qn.values()])
+    max_possible_total_deviation = 0
+    for qn_num, positions in party_positions[party_id].iteritems():
+        if qn_num in sorted_responses:
 
-    total_deviation = 0.0
+            # calculate max dev for this pick-one question
+            if type(positions) is int:
+                p = positions # for clarity
+                max_possible_total_deviation += (abs(p) + 4)
 
+            # calculate max dev for this pick-many question
+            elif type(positions) == list:
+                for val in positions:
+                    if val > 0:
+                        max_possible_total_deviation += val
+
+    min_possible_total_deviation = 0
+
+    total_deviation = 0
     # iterate through each response 
+    print "=============="
+    print "Party:", party_id
     for qn_num, response in sorted_responses.iteritems():
-        sub_deviation = 0.0
-
+        qn_deviation = 0.0
         if "radio" in response:
-            sub_deviation = abs(party_positions[qn_num] - response["radio"])
+            answer = 4 * response["radio"] - 4
+            party_position = party_positions[party_id][qn_num]
+            qn_deviation = abs(party_position - answer)
         elif "checkbox" in response:
-            sub_deviation = len(set(party_positions[qn_num]).difference(set(response["checkbox"])))
+            checkbox_score = 0
+            for checked_item in response["checkbox"]:
+                checkbox_score += party_positions[party_id][qn_num][checked_item]
 
-        total_deviation += (response["importance"] / 5.0) * sub_deviation
+            max_possible_dev_for_qn = 0
+            for val in party_positions[party_id][qn_num]:
+                if val > 0:
+                    max_possible_dev_for_qn += val
 
-    return 100 - 100 * (total_deviation / (max_possible_total_deviation - min_possible_total_deviation))
+            qn_deviation += max_possible_dev_for_qn - checkbox_score
 
+        total_deviation += (response["importance"] / 5.0) * qn_deviation
+
+    # print "total_dev", total_deviation
+    # print "max dev", max_possible_total_deviation
+    # print "min dev", min_possible_total_deviation
+    # print "=============="
+
+    return 100.0 - 100.0 * (total_deviation / (max_possible_total_deviation - min_possible_total_deviation))
 
 
 def min_max_deviations(party_positions, questions):
