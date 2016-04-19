@@ -35,6 +35,11 @@ translations = \
             "hi":u"",
             "en":"Take the quiz!"
         },
+        "about_quiz":{
+            "bn":u"এই প্রশ্নবলী সম্পর্কে",
+            "hi":u"",
+            "en":"About this quiz",
+        },
     },
 
     "results": {
@@ -52,6 +57,11 @@ translations = \
             "bn":u"হোয়াটসঅ্যাপ",
             "hi":u"वाट्सऐप",
             "en":"WhatsApp",
+        },
+        "try_it_at":{
+            "bn":u"এখানে দেখুন",
+            "hi":u"",
+            "en":"Try it at",
         },
         "here_my":{
             "bn":u"এই আমার ফল ",
@@ -72,6 +82,11 @@ translations = \
             "bn":u"জানুন ২০১৬ এর বিধান সভা নির্বাচনে কোন রাজনৈতিক দোল  আপনার মতো চিন্তা করে",
             "hi":u"",
             "en": "My top 3 party matches in the 2016 West Bengal Vidhan Sabha Elections: "
+        },
+        "fb_share_title":{
+            "bn":u"",
+            "hi":u"",
+            "en": "My <SITENAME> Results",
         },
     },
 

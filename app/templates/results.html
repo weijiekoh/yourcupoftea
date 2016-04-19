@@ -11,7 +11,7 @@ body{
     background-image:none !important;
 }
 </style>
-<meta property="og:title" content="My Election Mantra results" />
+<meta property="og:title" content="{{trans["results"]["fb_share_title"][lang]}}" />
 <meta property="og:url" content="{{request.base_url}}" />
 <meta property="og:image" content="{{fb_share_image}}" />
 <meta property="og:description" content="{{result_share_str}}" />
@@ -50,7 +50,7 @@ body{
             <div class="btn-group whatsapp-share-button">
                 <a class="btn btn-whatsapp" 
                     title="Share on Whatsapp" 
-                    href="whatsapp://send?text={{whatsapp_share_str|urlencode}}%0A%0ATry it at: {{request.url_root ~ "?utm_medium=wa"|urlencode}}">
+                    href="whatsapp://send?text={{whatsapp_share_str|urlencode}}%0A%0A{{trans["results"]["try_it_at"][lang]}}: {{request.url_root ~ "?utm_medium=wa"|urlencode}}">
 
                     <i class="fa fa-whatsapp icon-white"></i> {{trans["results"]["whatsapp"][lang]}}
                 </a>
