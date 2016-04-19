@@ -138,7 +138,11 @@ def calculate_score(sorted_responses, party_id, party_positions, questions):
     # print "min dev", min_possible_total_deviation
     # print "=============="
 
-    return 100.0 - 100.0 * (total_deviation / (max_possible_total_deviation - min_possible_total_deviation))
+    deviation_difference = max_possible_total_deviation - min_possible_total_deviation
+    if deviation_difference == 0:
+        return 0
+
+    return 100.0 - 100.0 * (total_deviation / deviation_difference)
 
 
 def min_max_deviations(party_positions, questions):
