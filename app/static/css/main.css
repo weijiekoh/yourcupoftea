@@ -158,6 +158,7 @@ input[type="radio"], input[type="checkbox"] {
 
 .option-container {
     width:100%;
+    min-height:200px !important;
     padding-left: 35px !important;
     float: left;
     border-left: 2px solid rgba(150,0,0,0.5);
