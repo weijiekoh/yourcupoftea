@@ -47,7 +47,6 @@ def sort_responses(responses):
             else:
                 results[qn_num] = {"checkbox": choices}
 
-
     return results
 
 
@@ -86,7 +85,11 @@ def calculate_score(sorted_responses, party_positions, questions):
     min_possible_deviation is 0. This may change.
     """
 
-    sorted_responses = fill_in_blank_responses(sorted_responses, questions)
+    # sorted_responses = fill_in_blank_responses(sorted_responses, questions)
+    sorted_responses = remove_empty_answers(sorted_responses)
+
+    if len(sorted_responses) == 0:
+        return 0
 
     min_max_dev_per_qn = min_max_deviations(party_positions, questions)
     min_possible_total_deviation = sum([x[0] for x in min_max_dev_per_qn.values()])
@@ -122,6 +125,15 @@ def min_max_deviations(party_positions, questions):
 
         elif type(position) is int:
             result[qn_num] = (0,  abs(2 - position) + 2)
+
+    return result
+
+
+def remove_empty_answers(responses):
+    result = {}
+    for qn_num, response in responses.iteritems():
+        if "radio" in response or "checkbox" in response:
+            result[qn_num] = response
 
     return result
 
