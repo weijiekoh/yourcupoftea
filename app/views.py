@@ -33,6 +33,11 @@ def survey_hi():
 # English survey
 @app.route("/survey_en")
 def survey_en():
+    # import random
+    # shuffled_qns = sorted(questions.items(), key=lambda x: random.random())
+
+    # return render_template("survey.html", questions=shuffled_qns,
+            # trans=translations, lang="en")
     return render_template("survey.html", questions=questions,
             trans=translations, lang="en")
 

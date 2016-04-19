@@ -91,7 +91,7 @@ translations = \
         "fb_share_title":{
             "bn":u"",
             "hi":u"",
-            "en": "My <SITENAME> Results",
+            "en": "Find out which party thinks like you!",
         },
     },
 

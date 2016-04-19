@@ -96,6 +96,10 @@ textarea {
     visibility:hide;
 }
 
+.about_box{
+    background-color: #EFFBFF !important;
+}
+
 #about-links a{
     color:#fff;
     text-decoration:underline;
