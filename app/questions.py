@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Defines the questions in the quiz.
 
@@ -15,24 +16,24 @@ questions = collections.OrderedDict({
     0:{
         "type":"pick_one",
         "text":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en": "Civil rights, such as democracy and secularism, must be protected.",
             },
 
         "choices":[ {
-            "bn":"হ্যাঁ",
-            "hi":"",
+            "bn":u"হ্যাঁ",
+            "hi":u"",
             "en": "Yes",
             },
             {
-            "bn":"নিরপেক্ষ",
-            "hi":"",
+            "bn":u"নিরপেক্ষ",
+            "hi":u"",
             "en": "Neutral",
             },
             {
-            "bn":"না",
-            "hi":"",
+            "bn":u"না",
+            "hi":u"",
             "en": "No"
             }, ]
         },
@@ -46,18 +47,18 @@ questions = collections.OrderedDict({
             },
 
         "choices":[ {
-            "bn":"হ্যাঁ",
-            "hi":"",
+            "bn":u"হ্যাঁ",
+            "hi":u"",
             "en": "Yes",
             },
             {
-            "bn":"নিরপেক্ষ",
-            "hi":"",
+            "bn":u"নিরপেক্ষ",
+            "hi":u"",
             "en": "Neutral",
             },
             {
-            "bn":"না",
-            "hi":"",
+            "bn":u"না",
+            "hi":u"",
             "en": "No"
             }, ],
         },
@@ -65,33 +66,33 @@ questions = collections.OrderedDict({
     2: {
         "type":"pick_many",
         "text":{
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en":"For better governance, corruption among the ruling classes needs to be tackled with the following methods:",
             },
         "choices":[ {
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en": "Enact strong policy initiaitives to identify and tackle corruption issues",
             },
             {
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en": "Implement e-governance and digital transparency for greater accountability",
             },
             {
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en": "Ensure public accountability for government positions",
             },
             {
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en": "Track black money and black market trades",
             },
             {
-            "bn":"",
-            "hi":"",
+            "bn":u"",
+            "hi":u"",
             "en": "Deal with financial scandals such as the Saradha Group scandal as an immediate priority"
             }, ]
         },
