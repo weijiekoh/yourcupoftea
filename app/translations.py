@@ -24,6 +24,18 @@ translations = \
             "en":"Page not found. Were you looking for the survey?",
             },
     },
+    "index": {
+        "which_party":{
+            "bn":u"কোন রাজনৈতিক দোল আপনার মত চিন্তা করে?",
+            "hi":u"",
+            "en":"Which party thinks like you?",
+        },
+        "take_quiz":{
+            "bn":u"প্রশ্নের উত্তর দিন",
+            "hi":u"",
+            "en":"Take the quiz!"
+        },
+    },
 
     "results": {
         "facebook":{
@@ -57,7 +69,7 @@ translations = \
             "en":"Share your results:",
         },
         "share_str":{
-            "bn":u"বিধান সভা নির্বাচনে আমার সর্বোত্তম ৩ টি রাজনৈতিক দোল হলো : ",
+            "bn":u"জানুন ২০১৬ এর বিধান সভা নির্বাচনে কোন রাজনৈতিক দোল  আপনার মতো চিন্তা করে",
             "hi":u"",
             "en": "My top 3 party matches in the 2016 West Bengal Vidhan Sabha Elections: "
         },

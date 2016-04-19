@@ -8,7 +8,7 @@ from app.party_positions import party_positions
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", trans=translations)
 
 
 @app.route("/about")
@@ -110,7 +110,7 @@ def results_for_fb(base64_result):
 
         except (UnicodeDecodeError, AssertionError) as e:
             print e
-            return render_template("index.html")
+            return render_template("index.html", trans=translations)
     else:
         return render_template("index.html")
 

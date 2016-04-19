@@ -76,7 +76,7 @@ body{
                     <img class="result_party_img" src="/static/img/parties/{{parties[party_id]['logo']}}" width="100" height="100" />
                 </div>
                 <div class="col-xs-6 col-xs-offset-1">
-                    <p class="result_party_name">{{parties[party_id]["name"]}}</p>
+                    <p class="result_party_name">{{parties[party_id]["name"][lang]}}</p>
                 </div>
                 <div class="col-xs-3">
                     <p class="result_party_score">{{score|round(1)}}%</p>
