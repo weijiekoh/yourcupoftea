@@ -457,6 +457,9 @@ input[type="radio"], input[type="checkbox"] {
     .slider.slider-horizontal{
         width:230px !important;
     }
+    .demo_box form{
+        font-size:12pt;
+    }
 
     .result_box{
         /*margin-left:5px;*/
