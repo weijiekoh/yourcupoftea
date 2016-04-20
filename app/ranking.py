@@ -130,6 +130,8 @@ def calculate_score(sorted_responses, party_id, party_positions, questions):
                     max_possible_dev_for_qn += val
 
             qn_deviation += max_possible_dev_for_qn - checkbox_score
+            # print "cs", checkbox_score
+            # print "mq", max_possible_dev_for_qn
 
         total_deviation += (response["importance"] / 5.0) * qn_deviation
 
@@ -142,7 +144,12 @@ def calculate_score(sorted_responses, party_id, party_positions, questions):
     if deviation_difference == 0:
         return 0
 
-    return 100.0 - 100.0 * (total_deviation / deviation_difference)
+    result = 100.0 - 100.0 * (total_deviation / deviation_difference)
+
+    if result < 0:
+        return 0
+    else:
+        return result
 
 
 def min_max_deviations(party_positions, questions):

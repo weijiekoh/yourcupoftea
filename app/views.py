@@ -142,11 +142,11 @@ def smart_share_decode_and_sort(raw_result_str):
     # matches something like 0:74.3,1:70.0,2:88.0,3:67.7, depending on the no.
     # of parties in parties.py
     found = re.findall(veri_regex, raw_result_str)
-    # print "=============="
+    print "=============="
     # print veri_regex
     print raw_result_str
-    # print found
-    # print "=============="
+    print found
+    print "=============="
 
     # throw an exeception if the url is invalid to prevent abuse
     assert len(found) > 0, "Invalid sharer url: no parties given in string"
