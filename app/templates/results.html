@@ -28,13 +28,13 @@ body{
                 <form action="https://docs.google.com/forms/d/1letpiXhw03DParcsktbXKVCs9EFfdr5zijxeBvHQQbA/formResponse" 
                     target="_self" method="POST" id="demog_form">
                     <select name="entry.362550305">
-                        <option value="">Gender:</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
+                        <option value="">{{trans["results"]["gender"][lang]}}:</option>
+                        <option value="Male">{{trans["results"]["male"][lang]}}</option>
+                        <option value="Female">{{trans["results"]["female"][lang]}}</option>
+                        <option value="Other">{{trans["results"]["other_gender"][lang]}}</option>
                     </select>
                     <select name="entry.925273060">
-                        <option value="">Age:</option>
+                        <option value="">{{trans["results"]["age"][lang]}}:</option>
                         <option value="18-25">18-25</option>
                         <option value="26-35">26-35</option>
                         <option value="36-45">36-45</option>
@@ -43,7 +43,7 @@ body{
                         <option value="66+">66+</option>                        
                     </select>
                     <select name="entry.138248999">
-                        <option value="">District:</option>
+                        <option value="">{{trans["results"]["district"][lang]}}:</option>
                         <option value="Alipurduar">Alipurduar</option>
                         <option value="Bankura">Bankura</option>
                         <option value="Bardhaman">Bardhaman</option>
