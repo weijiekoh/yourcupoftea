@@ -279,6 +279,7 @@ input[type="radio"], input[type="checkbox"] {
 .demo_box form{
     font-size:12pt;
 }
+
 .demo_box select{
     font-weight:normal !important;
 }
