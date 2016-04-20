@@ -92,6 +92,14 @@ textarea {
     color:#fff;
 }
 
+.take_survey h3{
+    font-weight:bold !important;
+}
+
+.take_survey p{
+    font-style:italic !important;
+}
+
 .take_survey hr{
     visibility:hide;
 }
@@ -266,6 +274,10 @@ input[type="radio"], input[type="checkbox"] {
 .slider-track-high {
     background-color: dimgrey !important;
     background-image: none !important;
+}
+
+.demo_box select{
+    font-weight:normal !important;
 }
 
 #submit {

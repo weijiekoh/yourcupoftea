@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from app.questions import questions
 from app.translations import translations
 from app.parties import parties
@@ -7,6 +7,8 @@ from app.party_positions import party_positions
 # from config import LANGUAGES
 
 import urlparse
+
+app.secret_key = '\xdf#\\R\xd5}\xdc:lGVX}K\x1e\xb5)\xc8p\x91\xa1\x08\x06\xb9'
 
 def fb_share_image():
     u = urlparse.urlparse(request.url)
@@ -67,6 +69,8 @@ def error_500(e):
 @app.route("/results", methods=["POST"])
 def results():
     import app.ranking
+    data_str = str(request.form.lists())
+    session["demo_data"] = data_str
     rankings = app.ranking.calculate(request.form.lists(), parties, party_positions, questions)
     return redirect(url_for("results") + "/" + smart_share_code(rankings))
 
@@ -101,6 +105,11 @@ def results_for_fb(base64_result):
 
             whatsapp_share_str = translations["results"]["share_str"][lang] + "\n\n" + \
                     format_share_str(sorted_results, whatsapp=True)
+            
+            demo_data = None
+            if "demo_data" in session:
+                demo_data = session["demo_data"]
+            session.pop("demo_data", None)
                     
             return render_template("results.html", 
                     fb_share_image=fb_share_image(),
@@ -109,6 +118,7 @@ def results_for_fb(base64_result):
                     parties=parties,
                     lang=lang, 
                     trans=translations,
+                    demo_data=demo_data,
                     results=sorted_results)
 
             # else:
