@@ -13,7 +13,7 @@ app.secret_key = '\xdf#\\R\xd5}\xdc:lGVX}K\x1e\xb5)\xc8p\x91\xa1\x08\x06\xb9'
 def fb_share_image():
     u = urlparse.urlparse(request.url)
     domain = '{uri.scheme}://{uri.netloc}/'.format(uri=u)
-    return domain + "static/img/combined_logos.png"
+    return domain + "static/img/fb_share_logo.png"
 
 @app.route("/")
 def index():
