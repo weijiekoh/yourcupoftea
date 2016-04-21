@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Results - Electionance{% endblock %}
+{% block title %}{{trans["results"]["your_results"][lang]}}{% endblock %}
 {% block head %}
 <!--FontAwesome-->
 <!--<link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css" />-->
@@ -44,26 +44,26 @@ body{
                     </select>
                     <select name="entry.138248999">
                         <option value="">{{trans["results"]["district"][lang]}}:</option>
-                        <option value="Alipurduar">Alipurduar</option>
-                        <option value="Bankura">Bankura</option>
-                        <option value="Bardhaman">Bardhaman</option>
-                        <option value="Birbhum">Birbhum</option>
-                        <option value="Cooch Behar">Cooch Behar</option>
-                        <option value="Darjeeling">Darjeeling</option>
-                        <option value="East Midnapore">East Midnapore</option>
-                        <option value="Hooghly">Hooghly</option>
-                        <option value="Howrah">Howrah</option>
-                        <option value="Jalpaiguri">Jalpaiguri</option>
-                        <option value="Kolkata">Kolkata</option>
-                        <option value="Malda">Malda</option>
-                        <option value="Murshidabad">Murshidabad</option>
-                        <option value="Nadia">Nadia</option>
-                        <option value="North 24 Parganas">North 24 Parganas</option>
-                        <option value="North Dinajpur">North Dinajpur</option>
-                        <option value="Purulia">Purulia</option>
-                        <option value="South 24 Parganas">South 24 Parganas</option>
-                        <option value="South Dinajpur">South Dinajpur</option>
-                        <option value="West Midnapore">West Midnapore</option>
+                        <option value="Alipurduar">{{trans["results"]["Alipurduar"][lang]}}</option>
+                        <option value="Bankura">{{trans["results"]["Bankura"][lang]}}</option>
+                        <option value="Bardhaman">{{trans["results"]["Bardhaman"][lang]}}</option>
+                        <option value="Birbhum">{{trans["results"]["Birbhum"][lang]}}</option>
+                        <option value="Cooch Behar">{{trans["results"]["Cooch Behar"][lang]}}</option>
+                        <option value="Darjeeling">{{trans["results"]["Darjeeling"][lang]}}</option>
+                        <option value="East Midnapore">{{trans["results"]["East Midnapore"][lang]}}</option>
+                        <option value="Hooghly">{{trans["results"]["Hooghly"][lang]}}</option>
+                        <option value="Howrah">{{trans["results"]["Howrah"][lang]}}</option>
+                        <option value="Jalpaiguri">{{trans["results"]["Jalpaiguri"][lang]}}</option>
+                        <option value="Kolkata">{{trans["results"]["Kolkata"][lang]}}</option>
+                        <option value="Malda">{{trans["results"]["Malda"][lang]}}</option>
+                        <option value="Murshidabad">{{trans["results"]["Murshidabad"][lang]}}</option>
+                        <option value="Nadia">{{trans["results"]["Nadia"][lang]}}</option>
+                        <option value="North 24 Parganas">{{trans["results"]["North 24 Parganas"][lang]}}</option>
+                        <option value="North Dinajpur">{{trans["results"]["North Dinajpur"][lang]}}</option>
+                        <option value="Purulia">{{trans["results"]["Purulia"][lang]}}</option>
+                        <option value="South 24 Parganas">{{trans["results"]["South 24 Parganas"][lang]}}</option>
+                        <option value="South Dinajpur">{{trans["results"]["South Dinajpur"][lang]}}</option>
+                        <option value="West Midnapore">{{trans["results"]["West Midnapore"][lang]}}</option>
                     </select>
                     <input type="hidden" name="entry.48210606" value="{{demo_data}}" />
                     <input type="hidden" name="fvv" value="1">

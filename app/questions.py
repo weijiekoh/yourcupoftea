@@ -43,7 +43,7 @@ questions = collections.OrderedDict({
         "text":{
             "bn":"",
             "hi":"",
-            "en": "The government should rapidly develop West Bengal's road system.",
+            "en": "The government should rapidly develop West Bengal's road infrastructure, with a focus on new roads and highways.",
             },
 
         "choices":[ {

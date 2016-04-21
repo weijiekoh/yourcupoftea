@@ -85,8 +85,7 @@ def calculate_score(sorted_responses, party_id, party_positions, questions):
     min_possible_deviation is 0. This may change.
     """
 
-    # sorted_responses = fill_in_blank_responses(sorted_responses, questions)
-
+    # sorted_responses = fill_in_blank_responses(sorted_responses, questions) 
     sorted_responses = remove_empty_answers(sorted_responses)
 
     if len(sorted_responses) == 0:
@@ -152,23 +151,6 @@ def calculate_score(sorted_responses, party_id, party_positions, questions):
         return result
 
 
-def min_max_deviations(party_positions, questions):
-    """
-    Return a a dict {qn_num: (min total deviation, max total deviation)}
-    """
-
-    result = {}
-    for qn_num, position in party_positions.iteritems():
-        if type(position) is list:
-            max_dev = len(questions[qn_num]["choices"]) - len(position)
-            result[qn_num] = (0, max_dev)
-
-        elif type(position) is int:
-            result[qn_num] = (0,  abs(2 - position) + 2)
-
-    return result
-
-
 def remove_empty_answers(responses):
     result = {}
     for qn_num, response in responses.iteritems():
@@ -178,11 +160,29 @@ def remove_empty_answers(responses):
     return result
 
 
-def fill_in_blank_responses(sorted_responses, questions):
-    for qn_num, question in questions.iteritems():
-        if not ("radio" in sorted_responses[qn_num] or "checkbox" in sorted_responses[qn_num]):
-            if question["type"] == "pick_one":
-                sorted_responses[qn_num]["radio"] = 2
-            elif question["type"] == "pick_many":
-                sorted_responses[qn_num]["checkbox"] = []
-    return  sorted_responses
+# def fill_in_blank_responses(sorted_responses, questions):
+    # for qn_num, question in questions.iteritems():
+        # if not ("radio" in sorted_responses[qn_num] or "checkbox" in sorted_responses[qn_num]):
+            # if question["type"] == "pick_one":
+                # sorted_responses[qn_num]["radio"] = 2
+            # elif question["type"] == "pick_many":
+                # sorted_responses[qn_num]["checkbox"] = []
+    # return  sorted_responses
+
+
+# def min_max_deviations(party_positions, questions): """
+    # Return a a dict {qn_num: (min total deviation, max total deviation)}
+    # """
+
+    # result = {}
+    # for qn_num, position in party_positions.iteritems():
+        # if type(position) is list:
+            # max_dev = len(questions[qn_num]["choices"]) - len(position)
+            # result[qn_num] = (0, max_dev)
+
+        # elif type(position) is int:
+            # result[qn_num] = (0,  abs(2 - position) + 2)
+
+    # return result
+
+

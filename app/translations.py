@@ -25,6 +25,11 @@ translations = \
             },
     },
     "index": {
+        "electionance":{
+            "bn":u"নির্বাচন ধ্বনি",
+            "hi":u"",
+            "en":"Electionance",
+        },
         "tagline":{
             "bn":u"নীতি বুঝুন নির্বাচন করুন",
             "hi":u"<Hindi tagline>",
@@ -48,6 +53,11 @@ translations = \
     },
 
     "results": {
+        "your_results":{
+            "bn":u"",
+            "hi":u"",
+            "en":"Your Electionance Results",
+        },
         "facebook":{
             "bn":u"ফেসবুক",
             "hi":u"फेसबुक",
@@ -84,12 +94,12 @@ translations = \
             "en":"Share your results:",
         },
         "share_str":{
-            "bn":u"বিধান সভা নির্বাচনে আমার সর্বোত্তম ৩ টি রাজনৈতিক দোল হলো : ",
+            "bn":u"বিধান সভা নির্বাচনে আমার সর্বোত্তম ৩ টি রাজনৈতিক দল হলো: ",
             "hi":u"",
             "en": "My top 3 party matches in the 2016 West Bengal Vidhan Sabha Elections: "
         },
         "fb_share_title":{
-            "bn":u"",
+            "bn":u"জানুন কোন রাজনৈতিক দল আপনার মত ভাবে!",
             "hi":u"",
             "en": "Find out which party thinks like you!",
         },
@@ -123,118 +133,113 @@ translations = \
             "hi":u"",
             "en": "Other",
         },
-        "":{
+        "Alipurduar":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Alipurduar",
         },
-        "":{
+        "Bankura":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Bankura",
         },
-        "":{
+        "Bardhaman":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Bardhaman",
         },
-        "":{
+        "Birbhum":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Birbhum",
         },
-        "":{
+        "Cooch Behar":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Cooch Behar",
         },
-        "":{
+        "Darjeeling":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Darjeeling",
         },
-        "":{
+        "East Midnapore":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"East Midnapore",
         },
-        "":{
+        "Hooghly":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Hooghly",
         },
-        "":{
+        "Howrah":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Howrah",
         },
-        "":{
+        "Jalpaiguri":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Jalpaiguri",
         },
-        "":{
+        "Kolkata":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Kolkata",
         },
-        "":{
+        "Malda":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Malda",
         },
-        "":{
+        "Murshidabad":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Murshidabad",
         },
-        "":{
+        "Nadia":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Nadia",
         },
-        "":{
+        "North 24 Parganas":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"North 24 Parganas",
         },
-        "":{
+        "North Dinajpur":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"North Dinajpur",
         },
-        "":{
+        "Purulia":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"Purulia",
         },
-        "":{
+        "South 24 Parganas":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"South 24 Parganas",
         },
-        "":{
+        "South Dinajpur":{
             "bn":u"",
             "hi":u"",
-            "en": "",
+            "en":u"South Dinajpur",
         },
-        "":{
+        "West Midnapore":{
             "bn":u"",
             "hi":u"",
-            "en": "",
-        },
-        "":{
-            "bn":u"",
-            "hi":u"",
-            "en": "",
+            "en":u"West Midnapore",
         },
     },
 
     "survey": {
         "find_out":{
-            "bn":u"জানুন ২০১৬ এর বিধান সভা নির্বাচনে কোন রাজনৈতিক দোল  আপনার মতো চিন্তা করে",
+            "bn":u"জানুন কোন রাজনৈতিক দল আপনার মত ভাবে!",
             "hi":u"",
-            "en":"Find out how much each political party contesting in the 2016 West Bengal State Elections thinks like you.",
+            "en": "Find out which party thinks like you!",
         },
         "drag_dot":{
             "bn":u"লাল বিন্দু টেনে আপনার কাছে এই প্রশ্নের গুরুত্ব ইঙ্গিত করুন",

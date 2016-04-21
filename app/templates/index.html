@@ -17,6 +17,7 @@ body{
 {% block content %}
 <div class="row take_survey">
     <div class="take_survey text-center col-md-4">
+        <h1>{{trans["index"]["electionance"]["bn"]}}</h1>
         <h3>
         {{trans["index"]["tagline"]["bn"]}}
         </h3>
@@ -29,6 +30,7 @@ body{
     </div>
 
     <div class="take_survey text-center col-md-4">
+        <h1>{{trans["index"]["electionance"]["hi"]}}</h1>
         <h3>
         {{trans["index"]["tagline"]["hi"]}}
         </h3>
@@ -41,6 +43,7 @@ body{
     </div>
 
     <div class="take_survey text-center col-md-4">
+        <h1>{{trans["index"]["electionance"]["en"]}}</h1>
         <h3>
         {{trans["index"]["tagline"]["en"]}}
         </h3>
@@ -57,14 +60,16 @@ body{
 <div class="row" id="about-links">
     <div class="text-center col-sm-12">
         <a href="/about">
-            <p>
             {{trans["index"]["about_quiz"]["bn"]}}
             &nbsp;
             {{trans["index"]["about_quiz"]["hi"]}}
             &nbsp;
             {{trans["index"]["about_quiz"]["en"]}}
-            </p>
         </a>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <a href="https://www.facebook.com/electionance">Our Facebook Page</a>
     </div>
 </div>
 {% endblock %}
