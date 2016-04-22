@@ -226,8 +226,8 @@ translations = \
             "bn":u"পুরুলিয়া",
             "hi":u""
         },
-        "South 24 Pargana":{
-            "en":u"South 24 Pargana",
+        "South 24 Parganas":{
+            "en":u"South 24 Parganas",
             "bn":u"দক্ষিণ 24 পরগনা",
             "hi":u""
         },
@@ -272,27 +272,27 @@ translations = \
             "en":"Submit",
         },
         1:{
-            "bn":"১",
+            "bn":u"১",
             "hi":"१",
             "en":"1",
         },
         2:{
-            "bn":"২",
+            "bn":u"২",
             "hi":"२",
             "en":"2",
         },
         3:{
-            "bn":"৩",
+            "bn":u"৩",
             "hi":"३",
             "en":"3",
         },
         4:{
-            "bn":"৪",
+            "bn":u"৪",
             "hi":"४",
             "en":"4",
         },
         5:{
-            "bn":"৫",
+            "bn":u"৫",
             "hi":"५",
             "en":"5",
         },
