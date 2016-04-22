@@ -63,38 +63,38 @@ questions = collections.OrderedDict({
                 }, ],
             },
     2: {
-        "type":"pick_many",
-        "text":{
-            "bn":u"সুশাসনের জন্য, শাসক শ্রেণীর মধ্যে দুর্নীতি এই ভাবে কমানো যায়:",
-            "hi":u"",
-            "en":"For better governance, corruption among the ruling classes needs to be tackled with the following methods:",
-            },
-        "choices":[ {
-            "bn":u"দৃঢ় রাষ্ট্র নীতি দ্বারা দুর্নীতির মোকাবিলা করা উচিত ",
-            "hi":u"",
-            "en": "Enact strong policy initiaitives to identify and tackle corruption issues",
-            },
-            {
-                "bn":u"বৃহত্তর জবাবদিহিতার জন্য ই-গভর্নেন্স এবং ডিজিটাল স্বচ্ছতা উন্নত করা উচিত ",
+            "type":"pick_many",
+            "text":{
+                "bn":u"সুশাসনের জন্য, শাসক শ্রেণীর মধ্যে দুর্নীতি এই ভাবে কমানো যায়:",
                 "hi":u"",
-                "en": "Implement e-governance and digital transparency for greater accountability",
+                "en":"For better governance, corruption among the ruling classes needs to be tackled with the following methods:",
                 },
-            {
-                "bn":u"সরকারি পদের জন্য প্রকাশ্য জবাবদিহিতা খুব জরুরি ",
+            "choices":[ {
+                "bn":u"দৃঢ় রাষ্ট্র নীতি দ্বারা দুর্নীতির মোকাবিলা করা উচিত ",
                 "hi":u"",
-                "en": "Ensure public accountability for government positions",
+                "en": "Enact strong policy initiaitives to identify and tackle corruption issues",
                 },
-            {
-                "bn":u"কালো টাকা এবং কালোবাজারে বাণিজ্য নিয়ন্ত্রণ",
-                "hi":u"",
-                "en": "Track black money and black market trades",
+                {
+                    "bn":u"বৃহত্তর জবাবদিহিতার জন্য ই-গভর্নেন্স এবং ডিজিটাল স্বচ্ছতা উন্নত করা উচিত ",
+                    "hi":u"",
+                    "en": "Implement e-governance and digital transparency for greater accountability",
+                    },
+                {
+                    "bn":u"সরকারি পদের জন্য প্রকাশ্য জবাবদিহিতা খুব জরুরি ",
+                    "hi":u"",
+                    "en": "Ensure public accountability for government positions",
+                    },
+                {
+                    "bn":u"কালো টাকা এবং কালোবাজারে বাণিজ্য নিয়ন্ত্রণ",
+                    "hi":u"",
+                    "en": "Track black money and black market trades",
+                    },
+                {
+                    "bn":u"সারদা কেলেঙ্কারির মত আর্থিক কেলেঙ্কারি অবিলম্বে মোকাবিলা করতে হবে",
+                    "hi":u"",
+                    "en": "Deal with financial scandals such as the Saradha Group scandal as an immediate priority"
+                    }, ]
                 },
-            {
-                "bn":u"সারদা কেলেঙ্কারির মত আর্থিক কেলেঙ্কারি অবিলম্বে মোকাবিলা করতে হবে",
-                "hi":u"",
-                "en": "Deal with financial scandals such as the Saradha Group scandal as an immediate priority"
-                }, ]
-            },
 
     3: {
             "type":"pick_many",
@@ -274,61 +274,61 @@ questions = collections.OrderedDict({
                     "hi":"",
                     "en": "Increase maternity leave for women employees"
                     }, ]
-                }
+                },
     9: {
-        "type":"pick_many",
-        "text":{
-            "bn":"",
-            "hi":"",
-            "en":"Communal violence should be addressed with the following means:",
-            },
-        "choices":[ {
-            "bn":"",
-            "hi":"",
-            "en": "Assist religious minorities with their overall social and economic development",
-            },
-            {
-            "bn":"",
-            "hi":"",
-            "en": "Enact a zero-tolerance policy for communal violence",
-            },
-            {
-            "bn":"",
-            "hi":"",
-            "en": "Increase police presence to improve the overall law and order situation",
-            },
-            {
-            "bn":"",
-            "hi":"",
-            "en": "Strongly uphold secular ideals",
-            }, ]
-        },
+            "type":"pick_many",
+            "text":{
+                "bn":"",
+                "hi":"",
+                "en":"Communal violence should be addressed with the following means:",
+                },
+            "choices":[ {
+                "bn":"",
+                "hi":"",
+                "en": "Assist religious minorities with their overall social and economic development",
+                },
+                {
+                    "bn":"",
+                    "hi":"",
+                    "en": "Enact a zero-tolerance policy for communal violence",
+                    },
+                {
+                    "bn":"",
+                    "hi":"",
+                    "en": "Increase police presence to improve the overall law and order situation",
+                    },
+                {
+                    "bn":"",
+                    "hi":"",
+                    "en": "Strongly uphold secular ideals",
+                    }, ]
+                },
     10: {
-        "type":"pick_many",
-        "text":{
-            "bn":"",
-            "hi":"",
-            "en":"The government should adopt the following policies regarding the Muslim population:",
-            },
-        "choices":[ {
-            "bn":"",
-            "hi":"",
-            "en": "Bring Madrasa curriculums in line with nation-building efforts",
-            },
-            {
-            "bn":"",
-            "hi":"",
-            "en": "Tighten immigration from East Bengal",
-            },
-            {
-            "bn":"",
-            "hi":"",
-            "en": "Oppose all forms of communal violence",
-            },
-            {
-            "bn":"",
-            "hi":"",
-            "en": "Provide special protection to ensure the safety of Muslims and other religious minorities",
-            },]
-        },
+            "type":"pick_many",
+            "text":{
+                "bn":"",
+                "hi":"",
+                "en":"The government should adopt the following policies regarding the Muslim population:",
+                },
+            "choices":[ {
+                "bn":"",
+                "hi":"",
+                "en": "Bring Madrasa curriculums in line with nation-building efforts",
+                },
+                {
+                    "bn":"",
+                    "hi":"",
+                    "en": "Tighten immigration from East Bengal",
+                    },
+                {
+                    "bn":"",
+                    "hi":"",
+                    "en": "Oppose all forms of communal violence",
+                    },
+                {
+                    "bn":"",
+                    "hi":"",
+                    "en": "Provide special protection to ensure the safety of Muslims and other religious minorities",
+                    },]
+                },
     })
