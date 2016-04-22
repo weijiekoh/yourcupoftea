@@ -55,6 +55,30 @@ textarea {
     clear: both;
 }
 
+/* Sticky footer styles */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 70px;
+}
+.footer {
+    background-color: #f5f5f5;
+    text-transform:uppercase !important;
+    text-transform:uppercase !important;
+    background-color:#333333 !important;
+    position: absolute;
+
+    bottom: 0;
+    left:0;
+    width: 100%;
+    height: 60px;
+    margin-left:0px;
+    padding-left:0px;
+}
+
 .navigation{
     text-transform:uppercase !important;
     background-color:#333333 !important;
@@ -63,8 +87,13 @@ textarea {
     position: relative;
     min-height: 50px;
     margin-bottom: 20px;
+    font-size:14pt;
+    color:#dddddd !important;
 }
 
+
+.footer span,
+.footer a,
 .navigation a{
     padding-left: 10px;
     padding-right: 10px;
@@ -76,6 +105,7 @@ textarea {
     color:#dddddd !important;
 }
 
+.footer a,
 .navigation a:hover {
     color: #fff !important;
     background-color: transparent;
@@ -88,7 +118,7 @@ textarea {
 
 .take_survey{
     font-size:20pt;
-    margin-bottom:30px;
+    margin-bottom:30px !important;
     color:#fff;
 }
 
@@ -403,6 +433,21 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 @media (max-width:992px) { 
+    .footer{
+        height:auto !important;
+        min-width:100% !important;
+        max-width:100% !important;
+        padding-left:0px !important;
+    }
+    .footer div{
+        float:left;
+        min-width:100% !important;
+        max-width:100% !important;
+        padding-left:0px !important;
+    }
+    .footer .separator{
+        display:none;
+    }
     .share{
         margin-bottom:0px;
         margin-top:0px;

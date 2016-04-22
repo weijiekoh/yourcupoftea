@@ -31,6 +31,11 @@ translations = \
     #####################
     # Index page
     "index": {
+        "our_fb":{
+            "bn":u"",
+            "hi":u"",
+            "en":"Like us on Facebook",
+        },
         "electionance":{
             "bn":u"নির্বাচন ধ্বনি",
             "hi":u"",
@@ -52,9 +57,9 @@ translations = \
             "en":"Take the quiz!"
         },
         "about_quiz":{
-            "bn":u"এই প্রশ্নবলী সম্পর্কে",
+            "bn":u"",
             "hi":u"",
-            "en":"About this quiz",
+            "en":"About",
         },
     },
 

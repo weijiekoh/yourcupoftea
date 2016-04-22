@@ -56,20 +56,29 @@ body{
         </a>
     </div>
 </div>
-<hr />
-<div class="row" id="about-links">
-    <div class="text-center col-sm-12">
-        <a href="/about">
-            {{trans["index"]["about_quiz"]["bn"]}}
-            &nbsp;
-            {{trans["index"]["about_quiz"]["hi"]}}
-            &nbsp;
-            {{trans["index"]["about_quiz"]["en"]}}
+<footer class="footer">
+    <div class="container">
+        <div>
+            <a href="/about">
+                {{trans["index"]["about_quiz"]["en"]}} -
+                {{trans["index"]["about_quiz"]["bn"]}} -
+                {{trans["index"]["about_quiz"]["hi"]}}
+            </a>
+        </div>
+        <div class="separator">
+            <span>|</span>
+        </div>
+        <div>
+        <a href="https://www.facebook.com/electionance">
+            {{trans["index"]["our_fb"]["en"]}}
+            {{trans["index"]["our_fb"]["bi"]}}
+            {{trans["index"]["our_fb"]["hi"]}}
         </a>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <a href="https://www.facebook.com/electionance">Our Facebook Page</a>
+        </div>
     </div>
-</div>
+</footer>
+<!--<div class="row" id="about-links">-->
+    <!--<div class="text-center col-sm-12">-->
+    <!--</div>-->
+<!--</div>-->
 {% endblock %}
