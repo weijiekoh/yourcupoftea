@@ -4,11 +4,16 @@ from app.questions import questions
 from app.translations import translations
 from app.parties import parties
 from app.party_positions import party_positions
-# from config import LANGUAGES
-
 import urlparse
+import os
 
-app.secret_key = '\xdf#\\R\xd5}\xdc:lGVX}K\x1e\xb5)\xc8p\x91\xa1\x08\x06\xb9'
+
+if "FLASK_SECRET_KEY" in os.environ:
+    # for deployment
+    app.secret_key = os.environ["FLASK_SECRET_KEY"].decode("string_escape")
+else:
+    # for development only
+    app.secret_key = "\xd7\xa7\xae\xa0\xe5\xb4\x12+b&oN1m\x8b\x86j\xd8\xdc\xf59\xb3\xcab"
 
 def fb_share_image():
     u = urlparse.urlparse(request.url)
