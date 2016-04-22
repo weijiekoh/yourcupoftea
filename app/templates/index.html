@@ -16,7 +16,7 @@ body{
 
 {% block content %}
 <div class="row take_survey">
-    <div class="take_survey text-center col-md-4">
+    <div class="take_survey text-center col-md-4 col-md-offset-2">
         <h1>{{trans["index"]["electionance"]["bn"]}}</h1>
         <h3>
         {{trans["index"]["tagline"]["bn"]}}
@@ -26,19 +26,6 @@ body{
         </p>
         <a href="/survey_bn">
             <button>{{trans["index"]["take_quiz"]["bn"]}}</button>
-        </a>
-    </div>
-
-    <div class="take_survey text-center col-md-4">
-        <h1>{{trans["index"]["electionance"]["hi"]}}</h1>
-        <h3>
-        {{trans["index"]["tagline"]["hi"]}}
-        </h3>
-        <p>
-        {{trans["index"]["which_party"]["hi"]}}
-        </p>
-        <a href="/survey_hi">
-            <button>{{trans["index"]["take_quiz"]["hi"]}}</button>
         </a>
     </div>
 
@@ -61,8 +48,7 @@ body{
         <div>
             <a href="/about">
                 {{trans["index"]["about_quiz"]["en"]}} -
-                {{trans["index"]["about_quiz"]["bn"]}} -
-                {{trans["index"]["about_quiz"]["hi"]}}
+                {{trans["index"]["about_quiz"]["bn"]}}
             </a>
         </div>
         <div class="separator">
@@ -71,7 +57,7 @@ body{
         <div>
         <a href="https://www.facebook.com/electionance">
             {{trans["index"]["our_fb"]["en"]}}
-            {{trans["index"]["our_fb"]["bi"]}}
+            {{trans["index"]["our_fb"]["bk"]}}
             {{trans["index"]["our_fb"]["hi"]}}
         </a>
         </div>

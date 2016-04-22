@@ -32,7 +32,7 @@ translations = \
     # Index page
     "index": {
         "our_fb":{
-            "bn":u"",
+            "bn":u"ফেইসবুক এ আমাদের লাইক করুন",
             "hi":u"",
             "en":"Like us on Facebook",
         },
@@ -57,7 +57,7 @@ translations = \
             "en":"Take the quiz!"
         },
         "about_quiz":{
-            "bn":u"",
+            "bn":u"আমাদের সম্পর্কে জানুন",
             "hi":u"",
             "en":"About",
         },
@@ -67,7 +67,7 @@ translations = \
     # Index page
     "results": {
         "your_results":{
-            "bn":u"",
+            "bn":u"আপনার নির্বাচন ধ্বনি ফলাফল",
             "hi":u"",
             "en":"Your Electionance Results",
         },
