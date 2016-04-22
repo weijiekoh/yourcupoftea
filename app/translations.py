@@ -52,7 +52,7 @@ translations = \
             "en":"Which party thinks like you?",
         },
         "take_quiz":{
-            "bn":u"প্রশ্নের উত্তর দিন",
+            "bn":u"প্রশ্নের উত্তর দিন!",
             "hi":u"",
             "en":"Take the quiz!"
         },
