@@ -171,6 +171,10 @@ body {
     border-right-color: darkred !important;
 }
 
+.find_out_text{
+    margin-top:10px !important;
+}
+
 .indiv_qn:not(:last-child){
     border-bottom:solid 2px;
     border-bottom-color: #c37e80 !important;
