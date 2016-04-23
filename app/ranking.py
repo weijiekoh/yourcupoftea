@@ -133,7 +133,11 @@ def calculate_score(sorted_responses, party_id, party_positions, questions):
             # print "cs", checkbox_score
             # print "mq", max_possible_dev_for_qn
 
-        total_deviation += (response["importance"] / 5.0) * qn_deviation
+        importance = 3.0
+        if "importance" in response:
+            importance = response["importance"]
+
+        total_deviation += (importance / 5.0) * qn_deviation
 
     # print "total_dev", total_deviation
     # print "max dev", max_possible_total_deviation
