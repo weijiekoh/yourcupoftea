@@ -34,11 +34,11 @@ body{
         </div>
         <div class="row">
             <form method="POST" action="/results">
-                {% for q_id, q in questions.iteritems() %}
                 <div class="row question_box">
+                {% for q_id, q in questions.iteritems() %}
                     <div class="row">
                         <div class="col-md-12">
-                            <h3>{{ q["text"][lang] }}</h3>
+                            <h3>{{ q["text"][lang] }} ({{trans["survey"]["pick_many"][lang]}})</h3>
                         </div>
                     </div>
                     <div class="row question_controls">
@@ -70,7 +70,6 @@ body{
                         {% elif q.type == "pick_many" %}
                             <div class="option-container checkbox checkbox-success">
                                 <div class="pick_many_text">
-                                    <p>{{trans["survey"]["pick_many"][lang]}}</p>
                                 </div>
                                 {% for c in q.choices %}
                                 {% set input_id = "checkbox" ~ q_id ~ "_" ~ loop.index0 %}
@@ -84,8 +83,8 @@ body{
                         </div>
                     </div>
 
-                </div>
                 {% endfor %}
+                </div>
                 <button id="submit" type="submit">{{trans["survey"]["submit"][lang]}}</button>
             </form>
         </div>

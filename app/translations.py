@@ -269,7 +269,7 @@ translations = \
         "pick_many":{
             "bn":u"যতগুলো প্রযোজ্য নির্বাচন করুন:",
             "hi":u"",
-            "en":"Pick as many as you want:",
+            "en":"pick as many options as you want",
         },
         "submit":{
             "bn":u"জমা দিন",
