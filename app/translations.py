@@ -66,6 +66,11 @@ translations = \
     #####################
     # Index page
     "results": {
+        "how_got":{
+            "bn":u"",
+            "hi":u"",
+            "en":"Click here to learn how we got these results."
+        },
         "your_results":{
             "bn":u"আপনার নির্বাচন ধ্বনি ফলাফল",
             "hi":u"",

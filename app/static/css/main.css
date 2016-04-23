@@ -361,6 +361,10 @@ input[type="radio"], input[type="checkbox"] {
     margin-bottom:20px;
 }
 
+.how_got{
+    text-align:right;
+    font-size:16pt;
+}
 .result_box{
     /*min-width: 100%;*/
     /*min-height: 250px;*/
