@@ -92,7 +92,7 @@ translations = \
             "en":"Try it at",
         },
         "tell_us":{
-            "bn":u"",
+            "bn":u"আপনার বিষয়ে কিছু তথ্য",
             "hi":u"",
             "en":"Please tell us about yourself",
         },
