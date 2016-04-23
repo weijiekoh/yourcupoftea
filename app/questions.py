@@ -71,12 +71,12 @@ questions = collections.OrderedDict({
                 },
             "choices":[ 
                 {
-                    "bn":u"ছোট এবং মাঝারি ব্যবসার প্রসারণ ঘটানো দরকার ",
+                    "bn":u"ছোট এবং মাঝারি ব্যবসার প্রসারণ ঘটানো",
                     "hi":u"",
                     "en":u"Empower small industries, medium, small and micro industries",
                 },
                 {
-                    "bn":u"গ্রামীন কল্যাণ কেন্দ্র করে গ্রামীন শিল্প ও কলা উন্নত করা উচিত",
+                    "bn":u"গ্রামীন কল্যাণ কেন্দ্র করে গ্রামীন শিল্প ও কলা উন্নত করা",
                     "hi":u"",
                     "en":u"Promote rural arts, crafts and artisans with rural welfare as a focal agenda",
                 },
@@ -100,12 +100,12 @@ questions = collections.OrderedDict({
                 },
             "choices":[ 
                 {
-                    "bn":u"বাক স্বাধীনতা এবং ভিন্নমত প্রকাশের অধিকার রক্ষা করা  ",
+                    "bn":u"বাক স্বাধীনতা এবং ভিন্নমত প্রকাশের অধিকার রক্ষা",
                     "hi":u"",
                     "en":u"Protect free speech and spaces for dissent",
                 },
                 {
-                    "bn":u"ভোকেশনাল ট্রেনিং সঙ্গে বৃহত্তর শিল্প সংযোগ স্থাপন",
+                    "bn":u"ভোকেশনাল ট্রেনিং এবং বৃহত্তর শিল্পের সঙ্গে সংযোগ প্রসারণ",
                     "hi":u"",
                     "en":u"Establish greater industry linkages with strong vocational training",
                 },
@@ -115,7 +115,7 @@ questions = collections.OrderedDict({
                     "en":u"De-politicize higher education, especially in faculty appointment and college administration",
                 },
                 {
-                    "bn":u"আরও নতুন কলেজ ও বিশ্ববিদ্যালয় প্রতিষ্ঠান জরুরি ",
+                    "bn":u"আরও নতুন কলেজ ও বিশ্ববিদ্যালয় প্রতিষ্ঠান",
                     "hi":u"",
                     "en":u"Establish more centers and institutes for higher education",
                 },]
@@ -129,17 +129,17 @@ questions = collections.OrderedDict({
                 },
             "choices":[ 
                 {
-                    "bn":u"সামগ্রিক আইন শৃঙ্খলা পরিস্থিতি উন্নত করা যাতে মহিলারা নির্দিধায় জীবনযাপন করতে পারে ",
+                    "bn":u"সামগ্রিক আইন শৃঙ্খলা পরিস্থিতি উন্নত করা যাতে মহিলারা নির্দিধায় বিচলন করতে পারে",
                     "hi":u"",
                     "en":u"Improve law and order to enable women to access all public spaces",
                 },
                 {
-                    "bn":u"নারীশিক্ষা ও আয় নিরাপত্তা কেন্দ্র করা উচিত ",
+                    "bn":u"নারী শিক্ষা ও আয় নিরাপত্তার উপর নীতি কেন্দ্র করা",
                     "hi":u"",
                     "en":u"Place a central focus on women's education and income security",
                 },
                 {
-                    "bn":u"পুলিশ কে আরও লিঙ্গ সংবেদনশীল করা এবং মহিলাদের জন্য আলাদা পুলিশ সংস্থা তৈরী করা",
+                    "bn":u"পুলিশ কে আরও লিঙ্গ সংবেদনশীল করে তোলা এবং মহিলাদের জন্য আলাদা পুলিশ সংস্থা তৈরী করা",
                     "hi":u"",
                     "en":u"Change the police force to be more responsive and gender-sensitive, and introduce police units dedicated to women",
                 },
@@ -168,12 +168,12 @@ questions = collections.OrderedDict({
                     "en":u"Give unemployed workers subsidies and income allowances",
                 },
                 {
-                    "bn":u"বিমা পেনশন ছুটি এবং অন্যান্য সুবিধে দেওয়া সব ধরনের শ্রমিকদের বিশেষ করে দৈনিক কর্মীদের",
+                    "bn":u"বিমা, পেনশন, ছুটি এবং অন্যান্য সুবিধে দেওয়া সব ধরনের শ্রমিকদের, বিশেষ করে দৈনিক কর্মীদের",
                     "hi":u"",
                     "en":u"Provide insurance, pension, benefits and leaves to part time, small, and daily wage workers",
                 },
                 {
-                    "bn":u"মহিলা শ্রমিকদের বিশেষ নজর দেওয়া যেমন সার্বজনীন মাতৃত্ব ছুটি অধিকার এবং অনান্য সুবিধে",
+                    "bn":u"মহিলা শ্রমিকদের কল্যানের প্রতি নজর নজর দেওয়া যেমন সার্বজনীন মাতৃত্ব অবকাশ অধিকার এবং অনান্য সুবিধে",
                     "hi":u"",
                     "en":u"Provide female workers' rights through maternity leaves, benefits and flexibility",
                 },]
@@ -187,22 +187,22 @@ questions = collections.OrderedDict({
                 },
             "choices":[ 
                 {
-                    "bn":u"নতুন ও উন্নত সুপার স্পেচিয়ালিতী হাসপাতাল    তৈরী করা উচিত ",
+                    "bn":u"নতুন ও উন্নত সুপার স্পেচিয়ালিতী হাসপাতাল  তৈরী করা উচিত",
                     "hi":u"",
                     "en":u"Facilitate the construction of super-speciality hospitals",
                 },
                 {
-                    "bn":u"শিশু মৃত্যুহার কমানো এবং বিশেষ করে কন্যা শিশুর রক্ষা করা ",
+                    "bn":u"শিশু মৃত্যুহার কমানো এবং বিশেষ করে কন্যা শিশুর রক্ষা",
                     "hi":u"",
                     "en":u"Reduce child and infant mortality, with a special focus on the girl child",
                 },
                 {
-                    "bn":u"বর্তমান স্বাস্থ্য পরিকাঠামোর ক্ষমতা বৃদ্ধি",
+                    "bn":u"বর্তমান স্বাস্থ্য পরিকাঠামোর ধারণক্ষমতা বৃদ্ধি",
                     "hi":u"",
                     "en":u"Increase the capacity of current health infrastructure",
                 },
                 {
-                    "bn":u"মহিলা শ্রমিকদের জন্য প্রসবকালীন ছুটি বৃদ্ধি",
+                    "bn":u"মহিলা শ্রমিকদের জন্য প্রসবকালীন অবকাশ বৃদ্ধি",
                     "hi":u"",
                     "en":u"Increase maternity leave for women employees",
                 },]
@@ -216,12 +216,12 @@ questions = collections.OrderedDict({
                 },
             "choices":[ 
                 {
-                    "bn":u"বাংলাদেশ থেকে অভিবাসনের উপর কঠোর নিয়ন্ত্রণ পশ্চিমবঙ্গের জনসংখ্যাগত পরিবর্তন রোধ করার জন্য জরুরি ",
+                    "bn":u"পশ্চিমবঙ্গের জনসংখ্যাগত পরিবর্তন রোধ করার জন্য বাংলাদেশ থেকে অভিবাসনের উপর কঠোর নিয়ন্ত্রণ",
                     "hi":u"",
                     "en":u"Tighten immigration from Bangladesh to reduce demographic change in West Bengal",
                 },
                 {
-                    "bn":u"অবৈধ অভিবাসীদের ফেরত পাঠানো জরুরি কিন্তু বৈধ নাগরিকদের অধিকারo রক্ষা করা উচিত ",
+                    "bn":u"অবৈধ অভিবাসীদের ফেরত পাঠানো জরুরি কিন্তু বৈধ নাগরিকদের অধিকারo রক্ষা করা উচিত জরুরি",
                     "hi":u"",
                     "en":u"Deport illegal immigrants but protect Indian citizens",
                 },
@@ -231,7 +231,7 @@ questions = collections.OrderedDict({
                     "en":u"Provide education and job opportunities to persecuted Hindu refugees",
                 },
                 {
-                    "bn":u"সিমান্তরক্ষা বাহিনীর সংখ্যা বৃদ্ধি করা দরকার ",
+                    "bn":u"সিমান্তরক্ষা বাহিনীর সংখ্যা বৃদ্ধি করা",
                     "hi":u"",
                     "en":u"Increase the border security force further",
                 },]
@@ -245,7 +245,7 @@ questions = collections.OrderedDict({
                 },
             "choices":[ 
                 {
-                    "bn":u"ধর্মীয় সংখ্যালঘুদের সামাজিক ও অর্থনৈতিক উন্নয়নের প্রচেষ্টা করতে হবে ",
+                    "bn":u"ধর্মীয় সংখ্যালঘুদের সামাজিক ও অর্থনৈতিক উন্নয়নের প্রচেষ্টা করা",
                     "hi":u"",
                     "en":u"Assist religious minorities with their overall social and economic development",
                 },
@@ -255,7 +255,7 @@ questions = collections.OrderedDict({
                     "en":u"Change Madrasa curriculums to help Muslim students to integrate with wider society",
                 },
                 {
-                    "bn":u"অনুমোদিত মাদ্রাসা দের সরকারী ভাতা দ্বারা সাহায্য করা উচিত",
+                    "bn":u"অনুমোদিত মাদ্রাসা দের সরকারী ভাতা দ্বারা সাহায্য করা",
                     "hi":u"",
                     "en":u"Provide government grants to approved Madrasas",
                 },
@@ -274,17 +274,17 @@ questions = collections.OrderedDict({
                 },
             "choices":[ 
                 {
-                    "bn":u"দৃঢ় রাষ্ট্র নীতি দ্বারা দুর্নীতির মোকাবিলা করা উচিত ",
+                    "bn":u"দৃঢ় রাষ্ট্র নীতি দ্বারা দুর্নীতির মোকাবিলা করা",
                     "hi":u"",
                     "en":u"Enact strong policy initiaitives to identify and tackle corruption issues",
                 },
                 {
-                    "bn":u"বৃহত্তর জবাবদিহিতার জন্য ই-গভর্নেন্স এবং ডিজিটাল স্বচ্ছতা উন্নত করা উচিত ",
+                    "bn":u"বৃহত্তর জবাবদিহিতার জন্য ই-গভর্নেন্স এবং ডিজিটাল স্বচ্ছতা উন্নত করা",
                     "hi":u"",
                     "en":u"Implement e-governance and digital transparency for greater accountability",
                 },
                 {
-                    "bn":u"সরকারি পদের জন্য প্রকাশ্য জবাবদিহিতা খুব জরুরি ",
+                    "bn":u"সরকারি পদের জন্য প্রকাশ্য জবাবদিহিতা জরুরি",
                     "hi":u"",
                     "en":u"Ensure public accountability for government positions",
                 },
@@ -294,7 +294,7 @@ questions = collections.OrderedDict({
                     "en":u"Track black money and black market trades",
                 },
                 {
-                    "bn":u"সারদা কেলেঙ্কারির মত আর্থিক কেলেঙ্কারি অবিলম্বে মোকাবিলা করতে হবে",
+                    "bn":u"সারদা কেলেঙ্কারির মত আর্থিক কেলেঙ্কারি অবিলম্বে মোকাবিলা করা",
                     "hi":u"",
                     "en":u"Deal with financial scandals such as the Saradha Group scandal as an immediate priority",
                 },]
@@ -308,12 +308,12 @@ questions = collections.OrderedDict({
                 },
             "choices":[ 
                 {
-                    "bn":u"বেসরকারী বিনিয়োগ বৃদ্ধি করার চেষ্টা করা উচিত",
+                    "bn":u"বেসরকারী বিনিয়োগ বৃদ্ধি করার চেষ্টা করা",
                     "hi":u"",
                     "en":u"Encourage private investment",
                 },
                 {
-                    "bn":u"বানিজ্যিক এবং শিল্প কেন্দ্র নির্মান করা উচিত, উন্নত পরিকাঠামো আর যোগাযোগ ব্যবস্থা কেন্দ্র করে",
+                    "bn":u"উন্নত পরিকাঠামো আর যোগাযোগ ব্যবস্থা কেন্দ্র করে বানিজ্যিক এবং শিল্প কেন্দ্র নির্মান করা",
                     "hi":u"",
                     "en":u"Build industrial parks and centers with a focus on infrastructure and connectivity",
                 },
@@ -323,12 +323,12 @@ questions = collections.OrderedDict({
                     "en":u"Promote intellectual industries such as IT and services",
                 },
                 {
-                    "bn":u"পশ্চিমবঙ্গে ব্যবসা করার সাধ্যতা কমানোর প্রচেষ্টা করা উচিত ",
+                    "bn":u"পশ্চিমবঙ্গে ব্যবসা করার সহজসাধ্যতা বাড়ানোর প্রচেষ্টা করা",
                     "hi":u"",
                     "en":u"Increase the ease of doing business in Bengal",
                 },
                 {
-                    "bn":u"ব্যবসা ও বানিজ্যের জন্য জমি দখল জরুরি তবে সঠিক বিচার  বিবেচনা করে জমি নেওয়া উচিত",
+                    "bn":u"ব্যবসা ও বানিজ্যের জন্য জমি দখল জরুরি তবে সঠিক বিচার বিবেচনা করে জমি নেওয়া উচিত",
                     "hi":u"",
                     "en":u"Land acquisition is important for industry but should be done cautiously",
                 },]
