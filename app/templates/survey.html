@@ -62,7 +62,7 @@ body{
                             </div>
                             <div class="col-md-7">
                                 {% if q.type == "pick_one" %}
-                                <div class="option-container radio radio-success">
+                                <div class="pick_one_option_container option-container radio radio-success">
                                     {% for c in q.choices %}
                                     {% set input_id = "radio_" ~ q_id ~ "_" ~ loop.revindex0 %}
                                     {% set name = "radio_" ~ q_id %}

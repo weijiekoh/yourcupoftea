@@ -221,6 +221,9 @@ input[type="radio"], input[type="checkbox"] {
     border-left: 2px solid rgba(150,0,0,0.5);
 }
 
+.pick_one_option_container {
+    min-height:100px !important;
+}
 .option-container label {
     margin-left: 10px;
     max-width: 80%;
@@ -508,7 +511,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     .option-container {
         border-left:none;
-        border-top: 2px solid rgba(150,0,0,0.5);
+        /*border-top: 2px solid rgba(150,0,0,0.5);*/
         padding-top:15px;
     }
     .option-container label {
@@ -526,7 +529,7 @@ input[type="radio"], input[type="checkbox"] {
         margin-right:0px;
     }
     .slider.slider-horizontal{
-        width:230px !important;
+        width:190px !important;
     }
     .demo_box form{
         font-size:12pt;
