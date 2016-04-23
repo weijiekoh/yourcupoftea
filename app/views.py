@@ -27,7 +27,7 @@ def index():
 
 @app.route("/about")
 def about():
-    return render_template("about.html", fb_share_image=fb_share_image())
+    return render_template("about.html", trans=translations, fb_share_image=fb_share_image())
 
 
 # Bengali survey

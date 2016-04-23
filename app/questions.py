@@ -210,7 +210,7 @@ questions = collections.OrderedDict({
     7: {
             "type":"pick_many",
             "text":{
-                "bn":u"",
+                "bn":u"বাংলাদেশ থেকে অবৈধ অনুপ্রবেশ রোধ করতে, নিম্নিলিখিত নীতি আবশ্য়ক:",
                 "hi":u"",
                 "en":"Immigration and infiltration from Bangladesh poses a challenge for governance in Bengal and it must be dealt through:",
                 },
@@ -239,18 +239,18 @@ questions = collections.OrderedDict({
     8: {
             "type":"pick_many",
             "text":{
-                "bn":u"",
+                "bn":u"ধর্মীয় সংখ্যালঘুরা বিশেষ করে মুসলমানেরা এখনো অনুন্নত এবং সেই উন্নয়ন প্রসারিত করতে নিম্নিলিখিত করা উচিত:",
                 "hi":u"",
                 "en":"Religious minorities, especially Muslims, are underdeveloped in West Bengal right now and their condition can be alleviated through:",
                 },
             "choices":[ 
                 {
-                    "bn":u"",
+                    "bn":u"ধর্মীয় সংখ্যালঘুদের সামাজিক ও অর্থনৈতিক উন্নয়নের প্রচেষ্টা করতে হবে ",
                     "hi":u"",
                     "en":u"Assist religious minorities with their overall social and economic development",
                 },
                 {
-                    "bn":u"",
+                    "bn":u"মাদ্রাসা পাঠক্রমের পরিবর্তন দরকার, যার  মাধ্যমে মুসলমান ছাত্র সমাজ সামাজিক ভাবে আরও যুক্ত হতে পারবে ",
                     "hi":u"",
                     "en":u"Change Madrasa curriculums to help Muslim students to integrate with wider society",
                 },

@@ -147,6 +147,11 @@ body {
     font-size:16pt;
 }
 
+.about_box{
+    font-size:14pt;
+    text-align:justify !important;
+}
+
 .take_survey p{
     min-height: 80px;
 }
@@ -465,7 +470,7 @@ input[type="radio"], input[type="checkbox"] {
 
     .take_survey{
         font-size:14pt;
-        margin-bottom:25px;
+        margin-bottom:35px;
         margin-top:5px;
     }
 
