@@ -19,7 +19,10 @@ def sort_responses(responses):
         # handle importance slider results
         if response[0].startswith(SLIDER):
             qn_num = int(response[0][len(SLIDER):])
-            importance = int(response[1][0])
+            if len(response[1][0]) == 0:
+                importance = 3
+            else:
+                importance = int(response[1][0])
 
             if qn_num in results:
                 results[qn_num]["importance"] = importance

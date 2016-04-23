@@ -91,15 +91,20 @@ translations = \
             "hi":u"",
             "en":"Try it at",
         },
+        "tell_us":{
+            "bn":u"",
+            "hi":u"",
+            "en":"Please tell us about yourself",
+        },
         "here_my":{
             "bn":u"এই আমার ফল ",
             "hi":u"",
-            "en":"Here are my results.",
+            "en":"Here are my results!",
         },
         "click_take_quiz":{
             "bn":u"প্রশ্নের উত্তর দিতে এখানে ক্লিক করুন",
             "hi":u"",
-            "en":"Click here to take the quiz!",
+            "en":"Click here to take the quiz.",
         },
         "show_friends":{
             "bn":u"আপনার ফলাফল সবাই কে জানান",

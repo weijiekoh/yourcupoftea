@@ -315,6 +315,16 @@ input[type="radio"], input[type="checkbox"] {
     background-image: none !important;
 }
 
+.demo_box{
+    background-color: #EFFBFF !important;
+    padding: 30px;
+    padding-top: 30px;
+    padding-bottom:30px;
+    border-radius: 25px;
+    /*margin-left:15px;*/
+    /*margin-right:15px;*/
+}
+
 .demo_box form{
     font-size:12pt;
 }
