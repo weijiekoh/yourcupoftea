@@ -35,51 +35,53 @@ body{
         <div class="row">
             <form method="POST" action="/results">
                 <div class="row question_box">
-                {% for q_id, q in questions.iteritems() %}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3>{{ q["text"][lang] }} ({{trans["survey"]["pick_many"][lang]}})</h3>
-                        </div>
-                    </div>
-                    <div class="row question_controls">
-                        <div class="col-md-5">
-                            <div class="slider-container">
-                                <div class="slider slider-horizontal">
-                                    <span class="slider-val" id="slider_val_{{q_id}}">3</span>
-                                    <input id="slider_{{q_id}}" 
-                                    name="slider_{{q_id}}" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
-                                    data-slider-value="3" />
-                                </div>
-                            </div>
-                            <div class="slider-explanation text-center">
-                                <p>{{trans["survey"]["drag_dot"][lang]}}<br />
-                                   {{trans["survey"]["low_high"][lang]}}</p>
+                    {% for q_id, q in questions.iteritems() %}
+                    <div class="indiv_qn">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>{{ q["text"][lang] }} ({{trans["survey"]["pick_many"][lang]}})</h3>
                             </div>
                         </div>
-                        <div class="col-md-7">
-                        {% if q.type == "pick_one" %}
-                            <div class="option-container radio radio-success">
-                                {% for c in q.choices %}
-                                {% set input_id = "radio_" ~ q_id ~ "_" ~ loop.revindex0 %}
-                                {% set name = "radio_" ~ q_id %}
-                                <input id="{{input_id}}" name="{{name}}" value="{{loop.revindex0}}" type="radio" />
-                                <label for="{{input_id}}">{{c[lang]}}</label>
-                                <br />
-                                {% endfor %}
-                            </div>
-                        {% elif q.type == "pick_many" %}
-                            <div class="option-container checkbox checkbox-success">
-                                <div class="pick_many_text">
+                        <div class="row question_controls">
+                            <div class="col-md-5">
+                                <div class="slider-container">
+                                    <div class="slider slider-horizontal">
+                                        <span class="slider-val" id="slider_val_{{q_id}}">3</span>
+                                        <input id="slider_{{q_id}}" 
+                                        name="slider_{{q_id}}" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
+                                        data-slider-value="3" />
+                                    </div>
                                 </div>
-                                {% for c in q.choices %}
-                                {% set input_id = "checkbox" ~ q_id ~ "_" ~ loop.index0 %}
-                                {% set name = "checkbox_" ~ q_id %}
-                                <input id="{{input_id}}" name="{{name}}" type="checkbox" value="{{loop.index0}}" class="styled">
-                                <label for="{{input_id}}">{{c[lang]}}</label>
-                                <br />
-                                {% endfor %}
+                                <div class="slider-explanation text-center">
+                                    <p>{{trans["survey"]["drag_dot"][lang]}}<br />
+                                    {{trans["survey"]["low_high"][lang]}}</p>
+                                </div>
                             </div>
-                        {% endif %}
+                            <div class="col-md-7">
+                                {% if q.type == "pick_one" %}
+                                <div class="option-container radio radio-success">
+                                    {% for c in q.choices %}
+                                    {% set input_id = "radio_" ~ q_id ~ "_" ~ loop.revindex0 %}
+                                    {% set name = "radio_" ~ q_id %}
+                                    <input id="{{input_id}}" name="{{name}}" value="{{loop.revindex0}}" type="radio" />
+                                    <label for="{{input_id}}">{{c[lang]}}</label>
+                                    <br />
+                                    {% endfor %}
+                                </div>
+                                {% elif q.type == "pick_many" %}
+                                <div class="option-container checkbox checkbox-success">
+                                    <div class="pick_many_text">
+                                    </div>
+                                    {% for c in q.choices %}
+                                    {% set input_id = "checkbox" ~ q_id ~ "_" ~ loop.index0 %}
+                                    {% set name = "checkbox_" ~ q_id %}
+                                    <input id="{{input_id}}" name="{{name}}" type="checkbox" value="{{loop.index0}}" class="styled">
+                                    <label for="{{input_id}}">{{c[lang]}}</label>
+                                    <br />
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
 

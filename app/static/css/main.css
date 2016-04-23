@@ -171,8 +171,13 @@ body {
     border-right-color: darkred !important;
 }
 
+.indiv_qn:not(:last-child){
+    border-bottom:solid 2px;
+    border-bottom-color: #c37e80 !important;
+    padding-bottom:10px;
+}
+
 .question_box{
-    /*min-width: 100%;*/
     min-height: 250px;
     background-color: #EFFBFF !important;
     padding: 30px;
