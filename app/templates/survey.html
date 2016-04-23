@@ -39,7 +39,10 @@ body{
                     <div class="indiv_qn">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>{{ q["text"][lang] }} ({{trans["survey"]["pick_many"][lang]}})</h3>
+                                <h3>{{ q["text"][lang] }} 
+                                {% if q.type == "pick_many" %}
+                                    ({{trans["survey"]["pick_many"][lang]}})</h3>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row question_controls">

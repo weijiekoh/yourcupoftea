@@ -272,7 +272,7 @@ translations = \
             "en":"(1 = low, 5 = high)"
         },
         "pick_many":{
-            "bn":u"যতগুলো প্রযোজ্য নির্বাচন করুন:",
+            "bn":u"যতগুলো প্রযোজ্য নির্বাচন করুন",
             "hi":u"",
             "en":"Pick as many options as you want",
         },

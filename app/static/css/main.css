@@ -174,7 +174,8 @@ body {
 .indiv_qn:not(:last-child){
     border-bottom:solid 2px;
     border-bottom-color: #c37e80 !important;
-    padding-bottom:10px;
+    padding-bottom:20px;
+    padding-top:20px;
 }
 
 .question_box{
