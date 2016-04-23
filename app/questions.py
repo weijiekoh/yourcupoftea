@@ -27,7 +27,7 @@ questions = collections.OrderedDict({
                 "en":u"Yes",
                 },
             {
-                "bn":u"নিরuপেক্ষ",
+                "bn":u"নিরপেক্ষ",
                 "hi":u"",
                 "en":u"Neutral",
                 },
