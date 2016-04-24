@@ -67,7 +67,7 @@ translations = \
     # Index page
     "results": {
         "how_got":{
-            "bn":u"",
+            "bn":u"আমাদের ফলাফল কিভাবে গণনা করা হয়েছে  সেটা জানতে এখানে ক্লিক করুন ",
             "hi":u"",
             "en":"Click here to learn how we got these results."
         },
@@ -109,7 +109,7 @@ translations = \
         "click_take_quiz":{
             "bn":u"প্রশ্নের উত্তর দিতে এখানে ক্লিক করুন",
             "hi":u"",
-            "en":"Click here to take the quiz.",
+            "en":"Click here to take the quiz again.",
         },
         "show_friends":{
             "bn":u"আপনার ফলাফল সবাই কে জানান",

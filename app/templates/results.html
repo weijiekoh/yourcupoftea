@@ -97,7 +97,6 @@ body{
             </div>
 
             <div class="btn-group twitter-share-button">
-                <!--TODO: Use bitly url! -->
                 <a href="https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw"
                     onclick="window.open('https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw','name','width=694,height=432')"
                     target="popup" 
@@ -124,8 +123,13 @@ body{
     <div class = "quiz_bg_box col-md-8 col-md-offset-2">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1 result_invite">
-                <p>{{trans["results"]["here_my"][lang]}}
-                    <a href="/survey_en">{{trans["results"]["click_take_quiz"][lang]}}</a></p>
+                <p>{{trans["results"]["here_my"][lang]}}</p>
+            </div>
+        </div>
+        <div class="row how_got">
+            <div class="col-md-10 col-md-offset-1">
+                <p><a href="/about">{{trans["results"]["how_got"][lang]}}</a></p>
+                <p><a href="/survey_en">{{trans["results"]["click_take_quiz"][lang]}}</a></p>
             </div>
         </div>
         {{ fb_share()|safe }}
@@ -149,11 +153,6 @@ body{
         {{fb_share()|safe}}
         </div>
         <br />
-        <div class="row how_got">
-            <div class="col-md-10 col-md-offset-1">
-                <p><a href="/about">{{trans["results"]["how_got"][lang]}}</a></p>
-            </div>
-        </div>
     </div>
 </div>
 {% endblock %}

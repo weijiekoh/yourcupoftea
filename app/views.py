@@ -19,6 +19,7 @@ def fb_share_image():
     u = urlparse.urlparse(request.url)
     domain = '{uri.scheme}://{uri.netloc}/'.format(uri=u)
     return domain + "static/img/fb_share_logo.png"
+    # return domain + "static/img/fb_share_pic_bg.png"
 
 @app.route("/")
 def index():
