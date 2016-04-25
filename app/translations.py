@@ -127,7 +127,7 @@ translations = \
             "en": "Find out which party thinks like you!",
         },
         "own_support":{
-            "bn":u"",
+            "bn":u"আপনি কি কোনো রাজনৈতিক দল সমর্থন করেন? যদি উত্তর হ্যান, তাহলে কোন দল?",
             "hi":u"",
             "en":"Do you currently support a political party? If so, which one?"
         },
