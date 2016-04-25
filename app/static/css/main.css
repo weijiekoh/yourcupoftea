@@ -159,7 +159,6 @@ body {
 .take_survey p{
     min-height: 80px;
 }
-
 .take_survey button{
     font-size:20pt !important;
     border-radius:10px;
@@ -173,6 +172,10 @@ body {
     border-top-color: darkred !important;
     border-left-color: darkred !important;
     border-right-color: darkred !important;
+}
+
+.take_survey .bn_btn{
+    font-size:18pt !important;
 }
 
 .find_out_text{
