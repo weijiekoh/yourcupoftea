@@ -65,6 +65,15 @@ body{
                         <option value="South Dinajpur">{{trans["results"]["South Dinajpur"][lang]}}</option>
                         <option value="West Midnapore">{{trans["results"]["West Midnapore"][lang]}}</option>
                     </select>
+                    <br />
+                    <label>{{trans["results"]["own_support"][lang]}}</label>
+                    <select name="entry.343037411">
+                        {% for party_id in parties %}
+                        <option value="{{party_id}}">{{parties[party_id]["initials"]}}</option>
+                        {% endfor %}
+                        <option value="nota">{{trans["results"]["nota"][lang]}}</option>
+                    </select>
+
                     <input type="hidden" name="entry.48210606" value="{{demo_data}}" />
                     <input type="hidden" name="fvv" value="1">
                     <input type="hidden" name="draftResponse" value="[,,&quot;-787165698193165061&quot;] ">

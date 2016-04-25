@@ -126,6 +126,16 @@ translations = \
             "hi":u"",
             "en": "Find out which party thinks like you!",
         },
+        "own_support":{
+            "bn":u"",
+            "hi":u"",
+            "en":"Do you currently support a political party? If so, which one?"
+        },
+        "nota":{
+            "bn":u"কোনোটা না",
+            "hi":u"",
+            "en":"None of the above"
+        },
         "gender":{
             "bn":u"লিঙ্গ",
             "hi":u"",
