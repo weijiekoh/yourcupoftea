@@ -16,31 +16,37 @@ body{
 
 {% block content %}
 <div class="row take_survey">
-    <div class="take_survey text-center col-md-5 col-md-offset-1">
-        <h1>{{trans["index"]["electionance"]["bn"]}}</h1>
-        <h3>
-        {{trans["index"]["tagline"]["bn"]}}
-        </h3>
-        <p>
-        {{trans["index"]["which_party"]["bn"]}}
-        </p>
-        <a href="/survey_bn">
-            <button>{{trans["index"]["take_quiz"]["bn"]}}</button>
-        </a>
-    </div>
-
-    <div class="take_survey text-center col-md-5">
+    <div class="take_survey text-center col-md-8 col-md-offset-2">
+        <div class="desktop_push_down row"></div>
+        
         <h1>{{trans["index"]["electionance"]["en"]}}</h1>
         <h3>
-        {{trans["index"]["tagline"]["en"]}}
+            {{trans["index"]["tagline"]["en"]}}
         </h3>
-        <p>
-        {{trans["index"]["which_party"]["en"]}}
-        </p>
+        <h3>
+            {{trans["index"]["which_party"]["en"]}}
+        </h3>
 
-        <a href="/survey_en">
-            <button>{{trans["index"]["take_quiz"]["en"]}}</button>
-        </a>
+        <h3>{{trans["index"]["electionance"]["bn"]}}</h3>
+        <h4>
+            {{trans["index"]["tagline"]["bn"]}}
+        </h4>
+        <h4>
+            {{trans["index"]["which_party"]["bn"]}}
+        </h4>
+        <br />
+        <div class="col-md-4 col-md-offset-2">
+            <a href="/survey_en">
+                <button>{{trans["index"]["take_quiz"]["en"]}}
+                </button>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="/survey_bn">
+                <button>{{trans["index"]["take_quiz"]["bn"]}}
+                </button>
+            </a>
+        </div>
     </div>
 </div>
 <br />

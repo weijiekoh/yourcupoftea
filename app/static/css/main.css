@@ -115,14 +115,18 @@ body {
     padding-left:0px;
 }
 
+.desktop_push_down{
+    height:90px !important;
+}
+
 .take_survey{
-    font-size:20pt;
+    font-size:24pt;
     margin-bottom:30px !important;
     color:#fff;
 }
 
 .take_survey h1{
-    font-size:30pt;
+    font-size:36pt;
 }
 
 .take_survey h3{
@@ -157,12 +161,12 @@ body {
 }
 
 .take_survey button{
-    font-size:28pt;
+    font-size:22pt !important;
     border-radius:10px;
     min-width: 200px;
     max-width: 500px;
     width: 100%;
-    height: 80px;
+    min-height: 100px !important;
     color: #fff;
     background-color: #A32A37;
     border-bottom-color: darkred !important;
@@ -507,6 +511,11 @@ input[type="radio"], input[type="checkbox"] {
         min-width: 0px;
         max-width: 70%;
         height: 60px;;
+        margin-bottom:10px;
+    }
+
+    .desktop_push_down{
+        height:0px !important;
     }
 
     .navbar .navbar-header{
