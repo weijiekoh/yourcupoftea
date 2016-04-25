@@ -277,9 +277,10 @@ translations = \
             "en":"(1 = low, 5 = high)"
         },
         "pick_many":{
-            "bn":u"যতগুলো প্রযোজ্য নির্বাচন করুন",
+            "bn":u"আপনার কাছে সবচেয়ে গুরত্বপূর্ণ বিকল্প বাছাই করুন - ২ টি  পর্যন্ত",
             "hi":u"",
-            "en":"Pick as many options as you want",
+            "en":"Pick the options most important to you - up to 2"
+
         },
         "submit":{
             "bn":u"জমা দিন",
