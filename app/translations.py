@@ -47,7 +47,7 @@ translations = \
             "en":"Think Elections. Know Policies."
         },
         "which_party":{
-            "bn":u"কোন রাজনৈতিক দোল আপনার মত চিন্তা করে?",
+            "bn":u"কোন রাজনৈতিক দল আপনার মত চিন্তা করে?",
             "hi":u"",
             "en":"Which party thinks like you?",
         },
