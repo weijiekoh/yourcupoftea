@@ -54,8 +54,15 @@ def survey_en():
     # return render_template("survey.html", questions=shuffled_qns,
             # trans=translations, lang="en")
     return render_template("survey.html", questions=questions,
-            trans=translations, lang="en", fb_share_image=fb_share_image())
+            trans=translations, lang="en", fb_share_image=fb_share_image(),
+            test=False)
 
+
+@app.route("/survey_3_test")
+def survey_3_test():
+    return render_template("survey.html", questions=questions,
+            trans=translations, lang="en", fb_share_image=fb_share_image(),
+            test=True)
 
 @app.errorhandler(404)
 def error_404(e):

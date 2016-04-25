@@ -23,7 +23,11 @@ body{
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
 <script>
 $( document ).ready(function() {
-var limit = 2;
+        {% if test %}
+            var limit = 3;
+        {% else %}
+            var limit = 2;
+        {% endif %}
     $('input.q_checkbox').on('change', function(evt) {
         if($(this).siblings(':checked').length >= limit) {
             this.checked = false;
