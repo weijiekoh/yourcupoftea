@@ -43,7 +43,6 @@ def sort_responses(responses):
         elif response[0].startswith(CHECKBOX):
             qn_num = int(response[0][len(CHECKBOX):])
             choices = [int(x) for x in response[1]]
-            # map(lambda x:int(x), response[1])
 
             if qn_num in results:
                 results[qn_num]["checkbox"] = choices
