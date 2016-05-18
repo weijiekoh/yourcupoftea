@@ -1,0 +1,186 @@
+{% extends "layout.html" %}
+{% block title %}{{trans["results"]["your_results"][lang]}}{% endblock %}
+{% block head %}
+<!--FontAwesome-->
+<!--<link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css" />-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
+<style>
+body{
+    /*background-color: #aaaaaa !important; */
+    background-color: #adbcc3 !important;
+    background-image:none !important;
+}
+</style>
+<meta property="og:title" content="{{trans["results"]["fb_share_title"][lang]}}" />
+<meta property="og:url" content="{{request.base_url}}" />
+<meta property="og:image" content="{{fb_share_image}}" />
+<meta property="og:description" content="{{result_share_str}}" />
+
+{% endblock %}
+
+{% block content %}
+{% if demo_data %}
+<div class = "row">
+    <div class = "quiz_bg_box col-md-8 col-md-offset-2">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1 result_invite demo_box">
+                <option value="">{{trans["results"]["tell_us"][lang]}}:</option>
+                <form action="https://docs.google.com/forms/d/1letpiXhw03DParcsktbXKVCs9EFfdr5zijxeBvHQQbA/formResponse" 
+                    target="_self" method="POST" id="demog_form">
+                    <select name="entry.362550305">
+                        <option value="">{{trans["results"]["gender"][lang]}}:</option>
+                        <option value="Male">{{trans["results"]["male"][lang]}}</option>
+                        <option value="Female">{{trans["results"]["female"][lang]}}</option>
+                        <option value="Other">{{trans["results"]["other_gender"][lang]}}</option>
+                    </select>
+                    <select name="entry.925273060">
+                        <option value="">{{trans["results"]["age"][lang]}}:</option>
+                        <option value="18-25">18-25</option>
+                        <option value="26-35">26-35</option>
+                        <option value="36-45">36-45</option>
+                        <option value="46-55">46-55</option>
+                        <option value="56-65">56-65</option>
+                        <option value="66+">66+</option>                        
+                    </select>
+                    <select name="entry.138248999">
+                        <option value="">{{trans["results"]["district"][lang]}}:</option>
+                        <option value="Alipurduar">{{trans["results"]["Alipurduar"][lang]}}</option>
+                        <option value="Bankura">{{trans["results"]["Bankura"][lang]}}</option>
+                        <option value="Bardhaman">{{trans["results"]["Bardhaman"][lang]}}</option>
+                        <option value="Birbhum">{{trans["results"]["Birbhum"][lang]}}</option>
+                        <option value="Cooch Behar">{{trans["results"]["Cooch Behar"][lang]}}</option>
+                        <option value="Darjeeling">{{trans["results"]["Darjeeling"][lang]}}</option>
+                        <option value="East Midnapore">{{trans["results"]["East Midnapore"][lang]}}</option>
+                        <option value="Hooghly">{{trans["results"]["Hooghly"][lang]}}</option>
+                        <option value="Howrah">{{trans["results"]["Howrah"][lang]}}</option>
+                        <option value="Jalpaiguri">{{trans["results"]["Jalpaiguri"][lang]}}</option>
+                        <option value="Kolkata">{{trans["results"]["Kolkata"][lang]}}</option>
+                        <option value="Malda">{{trans["results"]["Malda"][lang]}}</option>
+                        <option value="Murshidabad">{{trans["results"]["Murshidabad"][lang]}}</option>
+                        <option value="Nadia">{{trans["results"]["Nadia"][lang]}}</option>
+                        <option value="North 24 Parganas">{{trans["results"]["North 24 Parganas"][lang]}}</option>
+                        <option value="North Dinajpur">{{trans["results"]["North Dinajpur"][lang]}}</option>
+                        <option value="Purulia">{{trans["results"]["Purulia"][lang]}}</option>
+                        <option value="South 24 Parganas">{{trans["results"]["South 24 Parganas"][lang]}}</option>
+                        <option value="South Dinajpur">{{trans["results"]["South Dinajpur"][lang]}}</option>
+                        <option value="West Midnapore">{{trans["results"]["West Midnapore"][lang]}}</option>
+                    </select>
+                    <br />
+                    <label>{{trans["results"]["own_support"][lang]}}</label>
+                    <select name="entry.343037411">
+                        {% for party_id in parties %}
+                        <option value="{{party_id}}">{{parties[party_id]["initials"]}}</option>
+                        {% endfor %}
+                        <option value="nota">{{trans["results"]["nota"][lang]}}</option>
+                    </select>
+
+                    <input type="hidden" name="entry.48210606" value="{{demo_data}}" />
+                    <input type="hidden" name="fvv" value="1">
+                    <input type="hidden" name="draftResponse" value="[,,&quot;-787165698193165061&quot;] ">
+                    <input type="hidden" name="pageHistory" value="0">
+                    <input type="hidden" name="fbzx" value="-787165698193165061">
+
+                    <input type="submit"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+{% endif %}
+{% macro fb_share() -%}
+<div class = "row share">
+    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-xs-10 col-xs-offset-1 share_text_and_button">
+        <span class="share_text">{{trans["results"]["show_friends"][lang]}}</span>
+
+        <div class="share_btns">
+            <div class="btn-group fb-share-button">
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{request.url}}" 
+                    onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{request.url}}','name','width=694,height=432')"
+                    target="popup" 
+                    class="btn btn-facebook"
+                    title="Share on Facebook" target="_blank">
+
+                    <i class="fa fa-facebook icon-white"></i> {{trans["results"]["facebook"][lang]}}
+                </a>
+            </div>
+
+            <div class="btn-group twitter-share-button">
+                <a href="https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw"
+                    onclick="window.open('https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw','name','width=694,height=432')"
+                    target="popup" 
+                    class="btn btn-twitter"
+                    title="Share on Twitter" target="_blank">
+
+                    <i class="fa fa-twitter icon-white"></i> {{trans["results"]["twitter"][lang]}}
+                </a>
+            </div>
+
+            <div class="btn-group whatsapp-share-button">
+                <a class="btn btn-whatsapp" 
+                    title="Share on Whatsapp" 
+                    href="whatsapp://send?text={{whatsapp_share_str|urlencode}}%0A%0A{{trans["results"]["try_it_at"][lang]}}: {{request.url_root ~ "?utm_medium=wa"|urlencode}}">
+
+                    <i class="fa fa-whatsapp icon-white"></i> {{trans["results"]["whatsapp"][lang]}}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{%- endmacro %}
+<div class = "row">
+    <div class = "quiz_bg_box col-md-8 col-md-offset-2">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1 result_invite">
+                <p>{{trans["results"]["here_my"][lang]}}</p>
+            </div>
+        </div>
+        <div class="row how_got">
+            <div class="col-md-10 col-md-offset-1">
+                <p><a href="/about">{{trans["results"]["how_got"][lang]}}</a></p>
+                <p><a href="/survey_en">{{trans["results"]["click_take_quiz"][lang]}}</a></p>
+            </div>
+        </div>
+        {{ fb_share()|safe }}
+        <br />
+        {% for party_id, score in results %}
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-xs-10 col-xs-offset-1 result_box">
+                <div class="col-xs-2">
+                    <img class="result_party_img" src="/static/img/parties/{{parties[party_id]['logo']}}" width="100" height="100" />
+                </div>
+                <div class="col-xs-6 col-xs-offset-1">
+                    <p class="result_party_name">{{parties[party_id]["name"][lang]}}</p>
+                </div>
+                <div class="col-xs-3">
+                    <p class="result_party_score">{{score|round(1)}}%</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="last_share">
+        {{fb_share()|safe}}
+        </div>
+        <br />
+    </div>
+</div>
+{% endblock %}
+{% block bottom %}
+<script type='text/javascript'>
+    $( document ).ready(function() {
+        $('#demog_form').on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                url: 'https://docs.google.com/forms/d/1letpiXhw03DParcsktbXKVCs9EFfdr5zijxeBvHQQbA/formResponse',
+                type:'post',
+                data:$('#demog_form').serialize(),
+                success:function(result){
+                }
+            });
+            $(".demo_box").html("Thank you.");
+        });
+    });
+</script>
+{% endblock %}
+{% block posthtml %}
+{% endblock %}

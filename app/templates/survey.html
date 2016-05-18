@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+{% block title %}{{trans["survey"]["find_out"][lang]}}{% endblock %}
+{% block head %}
+<meta property="og:image" content="{{fb_share_image}}" />
+<meta property="og:url" content="{{request.base_url}}" />
+<meta property="fb:app_id" content="227700440926159" />
+<meta property="og:description" content="{{trans["survey"]["find_out"][lang]}}"/>
+
+<!--Bootstrap slider-->
+<!--<link href="/static/css/bootstrap-slider.min.css" rel="stylesheet">-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.16/css/bootstrap-slider.min.css" />
+
+<!--Awesome bootstrap checkbox-->
+<!--<link href="/static/css/awesome-bootstrap-checkbox.css" rel="stylesheet">-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.5/awesome-bootstrap-checkbox.min.css" rel="stylesheet" />
+<style>
+body{
+    background-color: #adbcc3 !important;
+    background-image:none !important;
+}
+</style>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+<script>
+$( document ).ready(function() {
+        {% if test %}
+            var limit = 3;
+        {% else %}
+            var limit = 2;
+        {% endif %}
+    $('input.q_checkbox').on('change', function(evt) {
+        if($(this).siblings(':checked').length >= limit) {
+            this.checked = false;
+            var id= $(this).attr("data-q-id");
+            $("span.pick_many_reminder_" + id).css("font-weight", "bold");
+        }
+    });
+});
+
+</script>
+{% endblock %}
+{% block content %}
+<div class="font_preload" style="opacity: 0">
+    <span style="font-family:FontAwesome;"></span>
+</div>
+
+<div class="row">
+    <div class="quiz_bg_box col-md-8 col-md-offset-2 text-center">
+        <div class="row">
+            <h2 class="col-md-offset-2 col-md-8 find_out_text">
+                {{trans["survey"]["find_out"][lang]}}
+            </h2>
+        </div>
+        <div class="row">
+            <form method="POST" action="/results">
+                <div class="row question_box">
+                    {% for q_id, q in questions.iteritems() %}
+                    <div class="indiv_qn">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>{{ q["text"][lang] }} 
+                                {% if q.type == "pick_many" %}
+                                <span class="pick_many_reminder_{{q_id}}">({{trans["survey"]["pick_many"][lang]}})</span></h3>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row question_controls">
+                            <div class="col-md-5">
+                                <div class="slider-container">
+                                    <div class="slider slider-horizontal">
+                                        <span class="slider-val" id="slider_val_{{q_id}}">3</span>
+                                        <input id="slider_{{q_id}}" 
+                                        name="slider_{{q_id}}" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
+                                        data-slider-value="3" />
+                                    </div>
+                                </div>
+                                <div class="slider-explanation text-center">
+                                    <p>{{trans["survey"]["drag_dot"][lang]}}<br />
+                                    {{trans["survey"]["low_high"][lang]}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                {% if q.type == "pick_one" %}
+                                <div class="pick_one_option_container option-container radio radio-success">
+                                    {% for c in q.choices %}
+                                    {% set input_id = "radio_" ~ q_id ~ "_" ~ loop.revindex0 %}
+                                    {% set name = "radio_" ~ q_id %}
+                                    <input id="{{input_id}}" name="{{name}}" value="{{loop.revindex0}}" type="radio" />
+                                    <label for="{{input_id}}">{{c[lang]}}</label>
+                                    <br />
+                                    {% endfor %}
+                                </div>
+                                {% elif q.type == "pick_many" %}
+                                <div class="option-container checkbox checkbox-success">
+                                    <div class="pick_many_text">
+                                    </div>
+                                    {% for c in q.choices %}
+                                    {% set input_id = "checkbox" ~ q_id ~ "_" ~ loop.index0 %}
+                                    {% set name = "checkbox_" ~ q_id %}
+                                    <input id="{{input_id}}" name="{{name}}" type="checkbox" class="q_checkbox" value="{{loop.index0}}" data-q-id={{q_id}} class="styled">
+                                    <label for="{{input_id}}">{{c[lang]}}</label>
+                                    <br />
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+                </div>
+                <button id="submit" type="submit">{{trans["survey"]["submit"][lang]}}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block bottom %}
+    <!--Bootstrap Slider JS-->
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.16/bootstrap-slider.min.js"></script>
+    <!--<script type='text/javascript' src="/static/js/bootstrap-slider.min.js"></script>-->
+
+    <script type='text/javascript'>
+        var change_slider_val = function(id, val){
+            $("#slider_val_" + id).text(val);
+            var slider_vals = "";
+            for (i = 0; i < {{questions|length}}; i++) { 
+                slider_vals += $("#slider_val_" + i).text();
+            }
+            window.location.hash = slider_vals;
+        }
+
+        $(document).ready(function() {
+            var original_hash = window.location.hash;
+            {% for q_id, q in questions.iteritems() %}
+            $("#slider_{{q_id}}").slider({tooltip:"hide"});
+                $("#slider_{{q_id}}").on("slideStop", function(slideEvt) {
+                    change_slider_val({{q_id}}, slideEvt.value);
+                    });
+                $("#slider_{{q_id}}").on("slide", function(slideEvt) {
+                    change_slider_val({{q_id}}, slideEvt.value);
+            });
+            {% endfor %}
+
+            original_hash = original_hash.substring(1, original_hash.length);
+            var slider_vals = original_hash.split("");
+            for (i=0; i < slider_vals.length; i++){
+                $("#slider_val_" + i).text(slider_vals[i]);
+                var s = $("#slider_" + i).slider();
+                s.slider('setValue', parseInt(slider_vals[i]));
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block posthtml %}
+<!--FontAwesome-->
+<!--<link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css" />-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
+{% endblock %}
