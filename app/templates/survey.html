@@ -47,11 +47,6 @@ $( document ).ready(function() {
 <div class="row">
     <div class="quiz_bg_box col-md-8 col-md-offset-2 text-center">
         <div class="row">
-            <h2 class="col-md-offset-2 col-md-8 find_out_text">
-                {{trans["survey"]["find_out"][lang]}}
-            </h2>
-        </div>
-        <div class="row">
             <form method="POST" action="/results">
                 <div class="row question_box">
                     {% for q_id, q in questions.iteritems() %}

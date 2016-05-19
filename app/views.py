@@ -31,38 +31,12 @@ def about():
     return render_template("about.html", trans=translations, fb_share_image=fb_share_image())
 
 
-# Bengali survey
-@app.route("/survey_bn")
-def survey():
-    return render_template("survey.html", questions=questions,
-            trans=translations, lang="bn", fb_share_image=fb_share_image())
-
-
-# Hindi survey
-@app.route("/survey_hi")
-def survey_hi():
-    return render_template("survey.html", questions=questions,
-            trans=translations, lang="hi", fb_share_image=fb_share_image())
-
-
-# English survey
-@app.route("/survey_en")
+@app.route("/survey")
 def survey_en():
-    # import random
-    # shuffled_qns = sorted(questions.items(), key=lambda x: random.random())
-
-    # return render_template("survey.html", questions=shuffled_qns,
-            # trans=translations, lang="en")
     return render_template("survey.html", questions=questions,
             trans=translations, lang="en", fb_share_image=fb_share_image(),
             test=False)
 
-
-@app.route("/survey_3_test")
-def survey_3_test():
-    return render_template("survey.html", questions=questions,
-            trans=translations, lang="en", fb_share_image=fb_share_image(),
-            test=True)
 
 @app.errorhandler(404)
 def error_404(e):
@@ -102,17 +76,6 @@ def results_for_fb(base64_result):
             from app.translations import DEFAULT_LANG
             lang = DEFAULT_LANG
 
-            if "Referer" in request.headers:
-                referrer = request.headers["Referer"]
-                if referrer:
-                    path = urlparse.urlparse(referrer).path
-                    if path == "/survey_en":
-                        lang = "en"
-                    elif path == "/survey_hi":
-                        lang = "hi"
-                    elif path == "/survey_bn":
-                        lang = "bn"
-
             result_share_str = translations["results"]["share_str"][lang] + \
                     format_share_str(sorted_results)
 
@@ -133,9 +96,6 @@ def results_for_fb(base64_result):
                     trans=translations,
                     demo_data=demo_data,
                     results=sorted_results)
-
-            # else:
-                # return render_template("index.html")
 
         except (UnicodeDecodeError, AssertionError) as e:
             print e

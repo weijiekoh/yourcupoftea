@@ -80,12 +80,12 @@ body {
 
 .navigation{
     text-transform:uppercase !important;
+    text-align:center;
     background-color:#333333 !important;
     border-radius:0px !important;
     border:0px !important;
     position: relative;
     min-height: 50px;
-    margin-bottom: 20px;
     font-size:14pt;
     color:#dddddd !important;
 }
@@ -197,6 +197,7 @@ body {
     padding-top: 5px;
     border-radius: 25px;
     margin-left:15px;
+    margin-top:10px;
     margin-right:15px;
     margin-bottom: 20px;
     text-align:left;
