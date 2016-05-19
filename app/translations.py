@@ -28,7 +28,7 @@ translations = \
         "our_fb":{
             "en":"Like us on Facebook",
         },
-        "electionance":{
+        "quiz_title":{
             "en":"Quiz Title",
         },
         "tagline":{
@@ -52,7 +52,7 @@ translations = \
             "en":"Click here to learn how we got these results."
         },
         "your_results":{
-            "en":"Your Electionance Results",
+            "en":"Your Results",
         },
         "facebook":{
             "en":"Facebook",

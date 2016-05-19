@@ -52,6 +52,9 @@ def error_405(e):
 def error_500(e):
     return render_template('500.html', trans=translations), 500
 
+@app.route("/test", methods=["GET"])
+def test():
+    return render_template("test.html")
 
 @app.route("/results", methods=["POST"])
 def results():
