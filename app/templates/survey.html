@@ -50,13 +50,15 @@ $( document ).ready(function() {
             <form method="POST" action="/results">
                 <div class="row question_box">
                     {% for q_id, q in questions.iteritems() %}
-                    <div class="indiv_qn">
+                    <div class="indiv_qn qn_{{q_id}}">
                         <div class="row">
                             <div class="col-md-12">
                                 <h3>{{ q["text"][lang] }} 
+                                {#
                                 {% if q.type == "pick_many" %}
                                 <span class="pick_many_reminder_{{q_id}}">({{trans["survey"]["pick_many"][lang]}})</span></h3>
                                 {% endif %}
+                                #}
                             </div>
                         </div>
                         <div class="row question_controls">
@@ -98,8 +100,18 @@ $( document ).ready(function() {
                                     {% endfor %}
                                 </div>
                                 {% endif %}
+                                <button type="button" class="show_expln_btn" 
+                                    data-q-id="{{q_id}}">Next</button>
                             </div>
                         </div>
+                    </div>
+                    <div class="explanation expln_{{q_id}}">
+                        <p>
+                        The campaigns' positions will appear here.
+                        </p>
+                        {% if not loop.last %}
+                        <button class="next_qn_btn" type="button" data-q-id="{{q_id}}">OK</button>
+                        {% endif %}
                     </div>
 
                 {% endfor %}
@@ -129,7 +141,7 @@ $( document ).ready(function() {
         $(document).ready(function() {
             var original_hash = window.location.hash;
             {% for q_id, q in questions.iteritems() %}
-            $("#slider_{{q_id}}").slider({tooltip:"hide"});
+            $("#slider_{{q_id}}").slider({tooltip:"hide", "ticks":[1,2,3,4,5]});
                 $("#slider_{{q_id}}").on("slideStop", function(slideEvt) {
                     change_slider_val({{q_id}}, slideEvt.value);
                     });
@@ -145,6 +157,28 @@ $( document ).ready(function() {
                 var s = $("#slider_" + i).slider();
                 s.slider('setValue', parseInt(slider_vals[i]));
             }
+
+            // hide all expln divs at the start
+            $(".explanation").hide();
+            // show explanation action
+            $(".show_expln_btn").click(function(){
+                // get current qn_id
+                this_id = parseInt($(this).attr("data-q-id"));
+                var expln_div = ".expln_" + this_id;
+                $(expln_div).show();
+            });
+
+            // next button action
+
+            $(".next_qn_btn").click(function(){
+                // get current qn_id
+                next_id = parseInt($(this).attr("data-q-id")) + 1;
+                var expln_div = ".qn_" + next_id;
+
+                $('html, body').animate({
+                    scrollTop: $(expln_div).offset().top
+                }, 300);
+            });
         });
     </script>
 {% endblock %}

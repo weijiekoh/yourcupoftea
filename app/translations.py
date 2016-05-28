@@ -180,7 +180,7 @@ translations = \
             "en":"Drag the red dot to select how important this question is to you."
         },
         "low_high":{
-            "en":"(1 = low, 5 = high)"
+            "en":"(1 = not important, 5 = very important)"
         },
         "pick_many":{
             "en":"Pick the options most important to you - up to 2"

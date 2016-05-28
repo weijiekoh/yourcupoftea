@@ -189,6 +189,12 @@ body {
     padding-top:20px;
 }
 
+.explanation{
+    margin-top: 10px;
+    min-height:200px;
+    border:solid 1px;
+}
+
 .question_box{
     min-height: 250px;
     background-color: #EFFBFF !important;
@@ -304,7 +310,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .slider-tick{
-    background-image: linear-gradient(to bottom,#aaaaaa 0,#aaaaaa 100%) !important;
+    background-image: linear-gradient(to bottom,#bbbbbb 100%,#bbbbbb 100%) !important;
     opacity:1 !important; 
     width: 17px !important;
     height: 17px !important;
@@ -320,19 +326,14 @@ input[type="radio"], input[type="checkbox"] {
     height: 40px !important;
 }
 
-.slider-handle.round{
-    /*border:solid 2px;*/
-    /*border-color:#2D4255;*/
-}
-
 .slider-track-low, .slider-selection {
-    color: #2E040E !important;
-    background-color: #450614 !important;
+    color: #bbbbbb !important;
+    background-color: #bbbbbb !important;
     background-image: none !important;
 }
 
 .slider-track-high {
-    background-color: dimgrey !important;
+    background-color: #bbbbbb !important;
     background-image: none !important;
 }
 
