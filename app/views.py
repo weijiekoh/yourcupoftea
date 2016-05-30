@@ -31,11 +31,15 @@ def about():
     return render_template("about.html", trans=translations, fb_share_image=fb_share_image())
 
 
-@app.route("/survey")
-def survey_en():
-    return render_template("survey.html", questions=questions,
-            trans=translations, lang="en", fb_share_image=fb_share_image(),
-            test=False)
+@app.route("/quiz")
+def quiz():
+    return _quiz(0)
+
+@app.route("/quiz/<qn_id>")
+def _quiz(qn_id):
+    #TODO: assert code
+    return render_template("quiz.html", question=questions[qn_id], qn_id=qn_id,
+            trans=translations, lang="en", fb_share_image=fb_share_image())
 
 
 @app.errorhandler(404)

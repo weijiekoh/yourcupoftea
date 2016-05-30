@@ -1,10 +1,9 @@
 {% extends "layout.html" %}
-{% block title %}TITLE{% endblock %}
+{% block title %}{{trans["index"]["title"]["en"]}}{% endblock %}
 {% block head %}
-<!--<meta property="g:title" content="West Bengal: Find out which parties think like you!" />-->
 <meta property="og:image" content="{{fb_share_image}}" />
 <meta property="og:url" content="{{request.base_url}}" />
-<meta property="fb:app_id" content="227700440926159" />
+<meta property="fb:app_id" content="TODO: FB ID" />
 <meta property="og:description" content="TODO: DESC"/>
 <style>
 body{
@@ -13,23 +12,22 @@ body{
 {% endblock %}
 
 {% block content %}
-<div class="row take_survey">
-    <div class="take_survey text-center col-md-8 col-md-offset-2">
-        <div class="desktop_push_down row"></div>
-        
-        <div class="quiz_title col-md-4 col-md-offset-4">
-            <h1>{{trans["index"]["quiz_title"]["en"]}}</h1>
-        </div>
-        <h3>
-            {{trans["index"]["tagline"]["en"]}}
-        </h3>
-        <br />
-        <div class="col-md-4 col-md-offset-4">
-            <a href="/survey">
-                <button>{{trans["index"]["take_quiz"]["en"]}}
-                </button>
-            </a>
-        </div>
+<div class="row take_quiz text-center">
+    <div class="col-md-6 col-md-offset-3 index_title">
+        <h1>{{trans["index"]["quiz_title"]["en"]}}</h1>
+
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        <a href="/quiz">
+            <img src="/static/img/index.png" class="index_image" alt="What's your cup of tea?"/>
+        </a>
+    </div>
+    <div class="col-md-4 col-md-offset-4">
+        <a href="/quiz">
+            <button class="fancy_btn take_quiz_btn">{{trans["index"]["take_quiz"]["en"]}}
+            </button>
+            <h2>to find out where you stand on the EU Referendum.</h2>
+        </a>
     </div>
 </div>
 {% endblock %}

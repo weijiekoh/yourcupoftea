@@ -18,7 +18,7 @@ translations = \
             "en":"Click here."
             },
         "not_found":{
-            "en":"Page not found. Were you looking for the survey?",
+            "en":"Page not found. Were you looking for the quiz?",
             },
     },
 
@@ -28,17 +28,17 @@ translations = \
         "our_fb":{
             "en":"Like us on Facebook",
         },
+        "title":{
+            "en":"Remain or Leave?"
+        },
         "quiz_title":{
-            "en":"Quiz Title",
+            "en":"Remain or Leave?"
         },
         "tagline":{
             "en":"Tagline",
         },
-        "which_party":{
-            "en":"Which party thinks like you?",
-        },
         "take_quiz":{
-            "en":"Take the quiz!"
+            "en":"Take the quiz"
         },
         "about_quiz":{
             "en":"About",
@@ -79,10 +79,10 @@ translations = \
             "en":"Share your results:",
         },
         "share_str":{
-            "en": "My top 3 party matches in the 2016 West Bengal Vidhan Sabha Elections: "
+            "en": "The three remain/leave campaigns I most align with: "
         },
         "fb_share_title":{
-            "en": "Find out which party thinks like you!",
+            "en": "Remain or Leave - what's your cup of tea?",
         },
         "own_support":{
             "en":"Do you currently support a political party? If so, which one?"
@@ -171,10 +171,10 @@ translations = \
     },
 
     #####################
-    # Survey page
-    "survey": {
-        "find_out":{
-            "en": "Find out which party thinks like you!",
+    # Quiz page
+    "quiz": {
+        "title":{
+            "en": "What's your cup of tea?",
         },
         "drag_dot":{
             "en":"Drag the red dot to select how important this question is to you."

@@ -1,15 +1,18 @@
 {% extends "layout.html" %}
-{% block title %}{{trans["survey"]["find_out"][lang]}}{% endblock %}
+
+{% block title %}{{trans["quiz"]["title"][lang]}}{% endblock %}
+
 {% block head %}
 <meta property="og:image" content="{{fb_share_image}}" />
 <meta property="og:url" content="{{request.base_url}}" />
 <meta property="fb:app_id" content="227700440926159" />
-<meta property="og:description" content="{{trans["survey"]["find_out"][lang]}}"/>
+<meta property="og:description" content="{{trans["quiz"]["title"][lang]}}"/>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.16/css/bootstrap-slider.min.css" />
+
 <style>
 body{
     background-color: #adbcc3 !important;
@@ -17,25 +20,9 @@ body{
 }
 </style>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-{#
-<script>
-$( document ).ready(function() {
-        {% if test %}
-            var limit = 3;
-        {% else %}
-            var limit = 2;
-        {% endif %}
-    $('input.q_checkbox').on('change', function(evt) {
-        if($(this).siblings(':checked').length >= limit) {
-            this.checked = false;
-            var id= $(this).attr("data-q-id");
-            $("span.pick_many_reminder_" + id).css("font-weight", "bold");
-        }
-    });
-});
-
-#}
+<script type="text/javascript" 
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js">
+</script>
 
 </script>
 {% endblock %}
@@ -49,74 +36,67 @@ $( document ).ready(function() {
         <div class="row">
             <form method="POST" action="/results">
                 <div class="row question_box">
-                    {% for q_id, q in questions.iteritems() %}
-                    <div class="indiv_qn qn_{{q_id}}">
+                    <div class="indiv_qn qn_{{qn_id}}">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>{{ q["text"][lang] }} 
-                                {#
-                                {% if q.type == "pick_many" %}
-                                <span class="pick_many_reminder_{{q_id}}">({{trans["survey"]["pick_many"][lang]}})</span></h3>
-                                {% endif %}
-                                #}
+                                <h3>{{ question["text"][lang] }} 
                             </div>
                         </div>
                         <div class="row question_controls">
                             <div class="col-md-5">
                                 <div class="slider-container">
                                     <div class="slider slider-horizontal">
-                                        <span class="slider-val" id="slider_val_{{q_id}}">3</span>
-                                        <input id="slider_{{q_id}}" 
-                                        name="slider_{{q_id}}" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
+                                        <span class="slider-val" id="slider_val_{{qn_id}}">3</span>
+                                        <input id="slider_{{qn_id}}" 
+                                        name="slider_{{qn_id}}" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
                                         data-slider-value="3" />
                                     </div>
                                 </div>
                                 <div class="slider-explanation text-center">
-                                    <p>{{trans["survey"]["drag_dot"][lang]}}<br />
-                                    {{trans["survey"]["low_high"][lang]}}</p>
+                                    <p>{{trans["quiz"]["drag_dot"][lang]}}<br />
+                                    {{trans["quiz"]["low_high"][lang]}}</p>
                                 </div>
                             </div>
                             <div class="col-md-7">
-                                {% if q.type == "pick_one" %}
+                                {% if question.type == "pick_one" %}
                                 <div class="pick_one_option_container option-container radio radio-success">
-                                    {% for c in q.choices %}
-                                    {% set input_id = "radio_" ~ q_id ~ "_" ~ loop.revindex0 %}
-                                    {% set name = "radio_" ~ q_id %}
+                                    {% for c in question.choices %}
+                                    {% set input_id = "radio_" ~ qn_id ~ "_" ~ loop.revindex0 %}
+                                    {% set name = "radio_" ~ qn_id %}
                                     <input id="{{input_id}}" name="{{name}}" value="{{loop.revindex0}}" type="radio" />
                                     <label for="{{input_id}}">{{c[lang]}}</label>
                                     <br />
                                     {% endfor %}
                                 </div>
-                                {% elif q.type == "pick_many" %}
+                                {% elif question.type == "pick_many" %}
                                 <div class="option-container checkbox checkbox-success">
                                     <div class="pick_many_text">
                                     </div>
-                                    {% for c in q.choices %}
-                                    {% set input_id = "checkbox" ~ q_id ~ "_" ~ loop.index0 %}
-                                    {% set name = "checkbox_" ~ q_id %}
-                                    <input id="{{input_id}}" name="{{name}}" type="checkbox" class="q_checkbox" value="{{loop.index0}}" data-q-id={{q_id}} class="styled">
+                                    {% for c in question.choices %}
+                                    {% set input_id = "checkbox" ~ qn_id ~ "_" ~ loop.index0 %}
+                                    {% set name = "checkbox_" ~ qn_id %}
+                                    <input id="{{input_id}}" name="{{name}}" type="checkbox" class="q_checkbox" value="{{loop.index0}}" data-q-id={{qn_id}} class="styled">
                                     <label for="{{input_id}}">{{c[lang]}}</label>
                                     <br />
                                     {% endfor %}
                                 </div>
                                 {% endif %}
                                 <button type="button" class="show_expln_btn" 
-                                    data-q-id="{{q_id}}">Next</button>
+                                    data-q-id="{{qn_id}}">Next</button>
                             </div>
                         </div>
                     </div>
-                    <div class="explanation expln_{{q_id}}">
+                    <div class="explanation expln_{{qn_id}}">
                         <p>
                         The campaigns' positions will appear here.
                         </p>
                         {% if not loop.last %}
-                        <button class="next_qn_btn" type="button" data-q-id="{{q_id}}">OK</button>
+                        <button class="next_qn_btn" type="button" data-q-id="{{qn_id}}">OK</button>
                         {% endif %}
                     </div>
 
-                {% endfor %}
                 </div>
-                <button id="submit" type="submit">{{trans["survey"]["submit"][lang]}}</button>
+                <button id="submit" type="submit">{{trans["quiz"]["submit"][lang]}}</button>
             </form>
         </div>
     </div>
@@ -129,37 +109,24 @@ $( document ).ready(function() {
     <!--<script type='text/javascript' src="/static/js/bootstrap-slider.min.js"></script>-->
 
     <script type='text/javascript'>
-        var change_slider_val = function(id, val){
-            $("#slider_val_" + id).text(val);
-            var slider_vals = "";
-            for (i = 0; i < {{questions|length}}; i++) { 
-                slider_vals += $("#slider_val_" + i).text();
-            }
-            window.location.hash = slider_vals;
-        }
-
         $(document).ready(function() {
-            var original_hash = window.location.hash;
-            {% for q_id, q in questions.iteritems() %}
-            $("#slider_{{q_id}}").slider({tooltip:"hide", "ticks":[1,2,3,4,5]});
-                $("#slider_{{q_id}}").on("slideStop", function(slideEvt) {
-                    change_slider_val({{q_id}}, slideEvt.value);
-                    });
-                $("#slider_{{q_id}}").on("slide", function(slideEvt) {
-                    change_slider_val({{q_id}}, slideEvt.value);
-            });
-            {% endfor %}
-
-            original_hash = original_hash.substring(1, original_hash.length);
-            var slider_vals = original_hash.split("");
-            for (i=0; i < slider_vals.length; i++){
-                $("#slider_val_" + i).text(slider_vals[i]);
-                var s = $("#slider_" + i).slider();
-                s.slider('setValue', parseInt(slider_vals[i]));
+            // Slider functions
+            var s = $("#slider_{{qn_id}}");
+            var set_slider_val = function(id, val){
+                $("#slider_val_" + id).text(val);
             }
+
+            $("#slider_{{qn_id}}").slider({tooltip:"hide", "ticks":[1,2,3,4,5]});
+                $("#slider_{{qn_id}}").on("slideStop", function(slideEvt) {
+                    set_slider_val({{qn_id}}, slideEvt.value);
+                    });
+                $("#slider_{{qn_id}}").on("slide", function(slideEvt) {
+                    set_slider_val({{qn_id}}, slideEvt.value);
+            });
 
             // hide all expln divs at the start
             $(".explanation").hide();
+
             // show explanation action
             $(".show_expln_btn").click(function(){
                 // get current qn_id
