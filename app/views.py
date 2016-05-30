@@ -13,11 +13,11 @@ if "FLASK_SECRET_KEY" in os.environ:
     app.secret_key = os.environ["FLASK_SECRET_KEY"].decode("string_escape")
 else:
     # for development only
-    app.secret_key = "\xd7\xa7\xae\xa0\xe5\xb4\x12+b&oN1m\x8b\x86j\xd8\xdc\xf59\xb3\xcab"
+    app.secret_key = "\x18\x1c\xc2\x18\x95\xfb$\xac\xff\x05\xe6\x91\x04\xd9\x96*\xe3j\xb0_\xb5\x03\xc0\xdd"
 
 def fb_share_image():
     u = urlparse.urlparse(request.url)
-    domain = '{uri.scheme}://{uri.netloc}/'.format(uri=u)
+    domain = "{uri.scheme}://{uri.netloc}/".format(uri=u)
     return domain + "static/img/fb_share_logo.png"
     # return domain + "static/img/fb_share_pic_bg.png"
 
@@ -40,17 +40,17 @@ def survey_en():
 
 @app.errorhandler(404)
 def error_404(e):
-    return render_template('404.html', trans=translations), 404
+    return render_template("404.html", trans=translations), 404
 
 
 @app.errorhandler(405)
 def error_405(e):
-    return render_template('404.html', trans=translations), 405
+    return render_template("404.html", trans=translations), 405
 
 
 @app.errorhandler(500)
 def error_500(e):
-    return render_template('500.html', trans=translations), 500
+    return render_template("500.html", trans=translations), 500
 
 @app.route("/test", methods=["GET"])
 def test():
