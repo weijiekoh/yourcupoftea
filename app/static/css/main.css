@@ -127,7 +127,7 @@ h2{
 	font-family:SquareFont !important;
 }
 
-.index_image{
+.queen_image{
 	max-width:100%;
 	margin-top:10px;
 }
@@ -169,11 +169,11 @@ h2{
 }
 
 .qn_count{
-	/*font-family:SquareFont !important;*/
+	margin-bottom:10px !important;
 	text-transform:uppercase;
 	font-weight:bold;
 	color:#939393;
-	font-size:20pt;
+	font-size:16pt;
 	margin-top:15px;
 	margin-bottom:0px;
 }
@@ -195,23 +195,22 @@ h2{
 .explanation{
 	margin-top: 10px;
 	min-height:200px;
-	border:solid 1px;
 	padding:10px;
 }
 
-.option-card{
+.option_card{
 	min-height:70px !important;
 	padding:0px !important;
 }
 
-.option-container {
+.option_container {
 	width:100%;
 	min-height:250px !important;
 	padding-left: 35px !important;
 	border-left: 15px solid #939393;
 }
 
-.option-container label{
+.option_container label{
 	width:100% !important;
 	height:100% !important;
 	margin-top:20px;
@@ -221,6 +220,14 @@ h2{
 	font-size:12pt !important;
 	padding-bottom:20px;
 	padding-right:40px;
+}
+
+.show_expln_btn{
+	margin-top:20px;
+	margin-bottom:30px !important;
+	font-size:18pt !important;
+	height:60px;
+	width:300px;
 }
 
 .pick_many_text{
@@ -265,7 +272,7 @@ h2{
 }
 
 .slider-handle {
-	background-color: #b2653f !important;
+	background-color: #EF5350 !important;
 	background-image: none !important;
 	margin-top: -15px !important;
 	margin-left: -20px !important;
@@ -300,40 +307,20 @@ h2{
 	font-weight:normal !important;
 }
 
-.how_got{
-	font-size:16pt;
-}
-.result_box{
-	background-color: #EFFBFF !important;
-	padding: 30px;
-	padding-bottom:10px;
-	padding-top: 5px;
-	border-radius: 25px;
-	margin-bottom: 10px;
+.result_card{
+	color:#fff;
+	margin-top:20px !important;
+	margin-bottom:20px !important;
+	padding-top:10px;
+	padding-bottom:20px;
 }
 
-.result_party_name, .result_party_score{
-	font-size:16pt;
-	margin-top:35px;
+.result_card h1{
+	margin:0px;
 }
 
-.result_party_score{
-	font-weight:bold;
-}
-
-.result_party_img{
-	margin-top:5px;
-}
-
-.result_invite{
-	margin-top:20px;
-	margin-bottom:10px;
-	font-size:18pt;
-	font-weight:bold;
-}
-
-.result_invite a{
-	text-decoration:underline;
+.result_card h2{
+	margin:0px;
 }
 
 .share{
@@ -417,6 +404,11 @@ h2{
 		width:90%;
 		font-size:25pt;
 	}
+	
+	.result_card{
+		margin-bottom:0px;
+	}
+
 }
 
 @media (max-width:992px) { 
@@ -444,50 +436,50 @@ h2{
 	.find_out_text{
 		font-size:14pt !important;
 	}
-	.option-container {
+
+	.qn_count{
+		margin-bottom:5px;
+		font-size:14pt !important;
+	}
+
+	.qn_text{
+		font-size:18pt;
+		text-align:left;
+	}
+
+	.option_container {
 		border-left:none;
 		padding-top:15px;
+		padding-left:0px !important;
 	}
-	.option-container label {
-		font-size:16pt;
+	
+	.option_card{
+		margin-left:0px;
+		margin-top:0px;
+		margin-bottom:0px;
+		border:0px !important;
+		box-shadow:none;
 	}
 
 	.slider.slider-horizontal{
 		width:190px !important;
 	}
+
+	.result_card{
+	}
+
+	.result_card h1{
+		font-size:16pt !important;
+	}
+
+	.result_card h2{
+		font-size:12pt !important;
+	}
+
 	.demo_box form{
 		font-size:12pt;
 	}
 
-	.result_box{
-		border-radius:5px;
-	}
-	.result_box p{
-		font-size:12pt !important;
-	}
-
-	.result_box img{
-		width:50px;
-		height:50px;
-	}
-
-	.result_party_img{
-		margin-top:10px;
-	}
-
-	.result_party_name, .result_party_score{
-		font-size:14pt;
-		margin-top:15px;
-	}
-
-	.result_invite{
-		font-size:14pt;
-		margin-bottom:0px;
-	}
-
-	.result_invite a{
-		width:100%;
-	}
 	.btn-whatsapp,
 	.btn-facebook,
 	.btn-twitter {

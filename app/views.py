@@ -15,11 +15,12 @@ else:
     # for development only
     app.secret_key = "\x18\x1c\xc2\x18\x95\xfb$\xac\xff\x05\xe6\x91\x04\xd9\x96*\xe3j\xb0_\xb5\x03\xc0\xdd"
 
+
 def fb_share_image():
     u = urlparse.urlparse(request.url)
     domain = "{uri.scheme}://{uri.netloc}/".format(uri=u)
     return domain + "static/img/fb_share_logo.png"
-    # return domain + "static/img/fb_share_pic_bg.png"
+
 
 @app.route("/")
 def index():
@@ -31,13 +32,23 @@ def about():
     return render_template("about.html", trans=translations, fb_share_image=fb_share_image())
 
 
-@app.route("/quiz")
-def quiz():
-    return _quiz(0)
-
-@app.route("/quiz/<qn_id>")
-def _quiz(qn_id):
+@app.route("/quiz/<int:qn_id>", methods=["POST"])
+def quiz_n(qn_id):
     #TODO: assert code
+
+    this_response = request.form.lists()
+
+    if not "culm_responses" in session:
+        session["culm_responses"] = []
+
+    session["culm_responses"] += this_response
+
+    print "------------------------"
+    print "Question", qn_id
+    print "This response", this_response
+    print "All responses so far:", session["culm_responses"]
+    print "------------------------\n"
+
     return render_template("quiz.html", 
                            question=questions[qn_id], 
                            qn_id=qn_id,
@@ -46,29 +57,32 @@ def _quiz(qn_id):
                            fb_share_image=fb_share_image())
 
 
-@app.errorhandler(404)
-def error_404(e):
-    return render_template("404.html", trans=translations), 404
+@app.route("/quiz")
+def quiz():
+    return quiz_n(0)
 
-
-@app.errorhandler(405)
-def error_405(e):
-    return render_template("404.html", trans=translations), 405
-
-
-@app.errorhandler(500)
-def error_500(e):
-    return render_template("500.html", trans=translations), 500
-
-@app.route("/test", methods=["GET"])
-def test():
-    return render_template("test.html")
 
 @app.route("/results", methods=["POST"])
 def results():
     import app.ranking
     data_str = str(request.form.lists())
     session["demo_data"] = data_str
+
+    if "culm_responses" not in session:
+        return render_template("500.html", trans=translations), 500
+
+
+    this_response = request.form.lists()
+    all_responses = session["culm_responses"] + this_response
+    session.pop("culm_responses", None)
+            
+
+    print "------------------------"
+    print "Results"
+    print "This response", this_response
+    print "All responses so far:", all_responses
+    print "------------------------\n"
+
     rankings = app.ranking.calculate(request.form.lists(), parties, party_positions, questions)
     return redirect(url_for("results") + "/" + smart_share_code(rankings))
 
@@ -97,7 +111,7 @@ def results_for_fb(base64_result):
             if "demo_data" in session:
                 demo_data = session["demo_data"]
             session.pop("demo_data", None)
-                    
+
             return render_template("results.html", 
                     fb_share_image=fb_share_image(),
                     result_share_str=result_share_str,
@@ -126,11 +140,6 @@ def smart_share_decode_and_sort(raw_result_str):
     # matches something like 0:74.3,1:70.0,2:88.0,3:67.7, depending on the no.
     # of parties in parties.py
     found = re.findall(veri_regex, raw_result_str)
-    print "=============="
-    # print veri_regex
-    print raw_result_str
-    print found
-    print "=============="
 
     # throw an exeception if the url is invalid to prevent abuse
     assert len(found) > 0, "Invalid sharer url: no parties given in string"
@@ -150,6 +159,21 @@ def smart_share_decode_and_sort(raw_result_str):
     score_sorted_results = sorted(score_sorted_results, key=lambda x: x[1],
             reverse=True)
     return score_sorted_results
+
+
+@app.errorhandler(404)
+def error_404(e):
+    return render_template("404.html", trans=translations), 404
+
+
+@app.errorhandler(405)
+def error_405(e):
+    return render_template("404.html", trans=translations), 405
+
+
+@app.errorhandler(500)
+def error_500(e):
+    return render_template("500.html", trans=translations), 500
 
 
 class InvalidShareString: pass

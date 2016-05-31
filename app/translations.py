@@ -48,12 +48,6 @@ translations = \
     #####################
     # Index page
     "results": {
-        "how_got":{
-            "en":"Click here to learn how we got these results."
-        },
-        "your_results":{
-            "en":"Your Results",
-        },
         "facebook":{
             "en":"Facebook",
         },
@@ -69,14 +63,8 @@ translations = \
         "tell_us":{
             "en":"Please tell us about yourself",
         },
-        "here_my":{
-            "en":"Here are my results!",
-        },
-        "click_take_quiz":{
-            "en":"Click here to take the quiz again.",
-        },
         "show_friends":{
-            "en":"Share your results:",
+            "en":"Share your results",
         },
         "share_str":{
             "en": "The three remain/leave campaigns I most align with: "

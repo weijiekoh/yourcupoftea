@@ -8,15 +8,12 @@
 <meta property="fb:app_id" content="227700440926159" />
 <meta property="og:description" content="{{trans["quiz"]["title"][lang]}}"/>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.16/css/bootstrap-slider.min.css" />
 
 <script type="text/javascript" 
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js">
-</script>
-
 </script>
 {% endblock %}
 
@@ -35,9 +32,17 @@
     </div>
 </div>
 
-<form method="POST" action="/quiz/{{qn_id}}">
-    <!-- Controls -->
-    <div class="row">
+{# Submit to /results if it's the last qn, else submit 
+   to /quiz/n+1 #}
+
+{% if qn_id == num_qns - 1 %}
+<form method="POST" action="/results">
+{% else %}
+<form method="POST" action="/quiz/{{qn_id + 1}}">
+{% endif %}
+
+    {# Controls #}
+    <div class="row" id="quiz_controls">
         <!-- Slider -->
         <div class="col-md-3 col-md-offset-2">
             <div class="slider-container">
@@ -55,35 +60,48 @@
         </div>
 
         <br />
+
         <!-- Selects -->
         <div class="col-md-7">
-            <div class="pick_one_option_container option-container">
+            <div class="pick_one_option_container option_container">
                 {% for c in question.choices %}
-                    {% set input_id = "radio_" ~ q_id ~ "_" ~ loop.revindex0 %}
-                    {% set name = "radio_" ~ q_id %}
+                    {% set input_id = "radio_" ~ qn_id ~ "_" ~ loop.index0 %}
+                    {% set name = "radio_" ~ qn_id %}
                     <div class="row">
-                        <div class="col-md-7 option-card card-panel blue">
+                        <div class="col-md-7 option_card card-panel blue">
                             <input id="{{input_id}}" name="{{name}}" 
                             class="with-gap"
-                            value="{{loop.revindex0}}" 
+                            value="{{loop.index0}}" 
                             type="radio" />
-
                             <label for="{{input_id}}">{{c[lang]}}</label>
                         </div>
-                </div>
+                    </div>
                 {% endfor %}
             </div>
         </div>
-
+        <div class="row text-center">
+            <div class="col-md-offset-4 col-md-2">
+                <button type="button" class="btn red lighten-1 show_expln_btn">OK</button>
+            </div>
+        </div>
     </div>
 
-    <!-- Expln -->
-    <div class="row">
-        <div class="col-md-offset-2 col-md-8 explanation">
+    {# Expln #}
+    <div class="row explanation">
+        <div class="col-md-offset-2 col-md-8">
             <p>
             The campaigns' positions will appear here.
             </p>
-            <button class="next_qn_btn" type="button" data-q-id="{{qn_id}}">OK</button>
+            <div class="col-md-offset-4 col-md-2">
+                <button type="submit" 
+                        class="btn red lighten-1 show_expln_btn">
+                    {% if qn_id == num_qns - 1 %}
+                        View my results
+                    {% else %}
+                        Next Question
+                    {% endif %}
+                </button>
+            </div>
         </div>
     </div>
 </form>
@@ -115,6 +133,7 @@
 
             // show explanation action
             $(".show_expln_btn").click(function(){
+                $("#quiz_controls").hide();
                 $(".explanation").show();
             });
 
@@ -125,5 +144,5 @@
 {% block posthtml %}
 <!--FontAwesome-->
 <!--<link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css" />-->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
+<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />-->
 {% endblock %}
