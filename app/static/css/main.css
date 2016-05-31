@@ -333,9 +333,6 @@ h2{
 
 .share .share_text{
 	font-size:16pt;
-	float:left;
-	margin-right:15px;
-	margin-top:7px;
 }
 
 .share_btns{
@@ -350,16 +347,11 @@ h2{
 	color: #fff
 }
 
-.share .whatsapp-share-button .btn{
-	background-color:#57bb63;
-}
-
 .btn-whatsapp:link, .btn-whatsapp:visited {
 	color: #fff
 }
 
 .btn-whatsapp:active, .btn-whatsapp:hover {
-	background: #61d26a !important;
 	color: #fff
 }
 
@@ -408,7 +400,6 @@ h2{
 	.result_card{
 		margin-bottom:0px;
 	}
-
 }
 
 @media (max-width:992px) { 
@@ -419,9 +410,6 @@ h2{
 
 	.share .share_text{
 		font-size:12pt;
-		font-weight:bold;
-		float:left;
-		margin-top:0px;
 	}
 
 	.navbar .navbar-header{
