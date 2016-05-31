@@ -16,19 +16,34 @@ questions = collections.OrderedDict({
     0: {
         "type":"pick_one",
         "text":{
-            "en":u"Civil rights, such as democracy and secularism, must be protected.",
+            "en":u"Leaving the EU would significantly decrease foreign direct investment into the UK.",
             },
 
-        "choices":[ {
-            "en":u"Yes",
-            },
+        "choices":[ 
             {
-                "en":u"Neutral",
+                "en":u"Yes",
                 },
             {
-                "en":u"No"
-                }, ]
-            },
+                "en":u"Yes, because the EU accounts for almost half of foreign investment into the UK.",
+                },
+            {
+                "en":u"Yes, because it will produce a period of uncertainty."
+                }, 
+            {
+                "en":u"Neutral/Not sure."
+                }, 
+            {
+                "en":u"No, because the single market is not the only reason why firms invest in Britain."
+                }, 
+            {
+                "en":u"No, because Britain will remain an attractive place for investment anyway."
+                },
+            {
+                "en":u"No."
+                }, 
+
+            ]
+        },
 
     1: {
         "type":"pick_many",

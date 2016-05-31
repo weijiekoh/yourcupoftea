@@ -13,94 +13,80 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.16/css/bootstrap-slider.min.css" />
 
-<style>
-body{
-    background-color: #adbcc3 !important;
-    background-image:none !important;
-}
-</style>
-
 <script type="text/javascript" 
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js">
 </script>
 
 </script>
 {% endblock %}
+
 {% block content %}
 <div class="font_preload" style="opacity: 0">
     <span style="font-family:FontAwesome;"></span>
 </div>
 
-<div class="row">
-    <div class="quiz_bg_box col-md-8 col-md-offset-2 text-center">
-        <div class="row">
-            <form method="POST" action="/results">
-                <div class="row question_box">
-                    <div class="indiv_qn qn_{{qn_id}}">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h3>{{ question["text"][lang] }} 
-                            </div>
-                        </div>
-                        <div class="row question_controls">
-                            <div class="col-md-5">
-                                <div class="slider-container">
-                                    <div class="slider slider-horizontal">
-                                        <span class="slider-val" id="slider_val_{{qn_id}}">3</span>
-                                        <input id="slider_{{qn_id}}" 
-                                        name="slider_{{qn_id}}" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1"
-                                        data-slider-value="3" />
-                                    </div>
-                                </div>
-                                <div class="slider-explanation text-center">
-                                    <p>{{trans["quiz"]["drag_dot"][lang]}}<br />
-                                    {{trans["quiz"]["low_high"][lang]}}</p>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                {% if question.type == "pick_one" %}
-                                <div class="pick_one_option_container option-container radio radio-success">
-                                    {% for c in question.choices %}
-                                    {% set input_id = "radio_" ~ qn_id ~ "_" ~ loop.revindex0 %}
-                                    {% set name = "radio_" ~ qn_id %}
-                                    <input id="{{input_id}}" name="{{name}}" value="{{loop.revindex0}}" type="radio" />
-                                    <label for="{{input_id}}">{{c[lang]}}</label>
-                                    <br />
-                                    {% endfor %}
-                                </div>
-                                {% elif question.type == "pick_many" %}
-                                <div class="option-container checkbox checkbox-success">
-                                    <div class="pick_many_text">
-                                    </div>
-                                    {% for c in question.choices %}
-                                    {% set input_id = "checkbox" ~ qn_id ~ "_" ~ loop.index0 %}
-                                    {% set name = "checkbox_" ~ qn_id %}
-                                    <input id="{{input_id}}" name="{{name}}" type="checkbox" class="q_checkbox" value="{{loop.index0}}" data-q-id={{qn_id}} class="styled">
-                                    <label for="{{input_id}}">{{c[lang]}}</label>
-                                    <br />
-                                    {% endfor %}
-                                </div>
-                                {% endif %}
-                                <button type="button" class="show_expln_btn" 
-                                    data-q-id="{{qn_id}}">Next</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="explanation expln_{{qn_id}}">
-                        <p>
-                        The campaigns' positions will appear here.
-                        </p>
-                        {% if not loop.last %}
-                        <button class="next_qn_btn" type="button" data-q-id="{{qn_id}}">OK</button>
-                        {% endif %}
-                    </div>
+<div class="row text-center">
+    <h2 class="qn_count">Question {{qn_id + 1}} of {{num_qns}}</h2>
+</div>
 
-                </div>
-                <button id="submit" type="submit">{{trans["quiz"]["submit"][lang]}}</button>
-            </form>
-        </div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 text-center">
+        <h1 class="qn_text">{{question["text"][lang]}}</h1>
     </div>
 </div>
+
+<form method="POST" action="/quiz/{{qn_id}}">
+    <!-- Controls -->
+    <div class="row">
+        <!-- Slider -->
+        <div class="col-md-3 col-md-offset-2">
+            <div class="slider-container">
+                <div class="slider slider-horizontal">
+                    <span class="slider-val" id="slider_val_{{qn_id}}">3</span>
+                    <input id="slider_{{qn_id}}" name="slider_{{qn_id}}" type="text" 
+                           data-slider-min="1" data-slider-max="5" 
+                           data-slider-step="1" data-slider-value="3" />
+                </div>
+            </div>
+            <div class="slider_explanation text-center">
+                <p>{{trans["quiz"]["drag_dot"][lang]}}<br />
+                {{trans["quiz"]["low_high"][lang]}}</p>
+            </div>
+        </div>
+
+        <br />
+        <!-- Selects -->
+        <div class="col-md-7">
+            <div class="pick_one_option_container option-container">
+                {% for c in question.choices %}
+                    {% set input_id = "radio_" ~ q_id ~ "_" ~ loop.revindex0 %}
+                    {% set name = "radio_" ~ q_id %}
+                    <div class="row">
+                        <div class="col-md-7 option-card card-panel blue">
+                            <input id="{{input_id}}" name="{{name}}" 
+                            class="with-gap"
+                            value="{{loop.revindex0}}" 
+                            type="radio" />
+
+                            <label for="{{input_id}}">{{c[lang]}}</label>
+                        </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Expln -->
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 explanation">
+            <p>
+            The campaigns' positions will appear here.
+            </p>
+            <button class="next_qn_btn" type="button" data-q-id="{{qn_id}}">OK</button>
+        </div>
+    </div>
+</form>
 {% endblock %}
 
 {% block bottom %}
@@ -129,23 +115,9 @@ body{
 
             // show explanation action
             $(".show_expln_btn").click(function(){
-                // get current qn_id
-                this_id = parseInt($(this).attr("data-q-id"));
-                var expln_div = ".expln_" + this_id;
-                $(expln_div).show();
+                $(".explanation").show();
             });
 
-            // next button action
-
-            $(".next_qn_btn").click(function(){
-                // get current qn_id
-                next_id = parseInt($(this).attr("data-q-id")) + 1;
-                var expln_div = ".qn_" + next_id;
-
-                $('html, body').animate({
-                    scrollTop: $(expln_div).offset().top
-                }, 300);
-            });
         });
     </script>
 {% endblock %}

@@ -38,8 +38,12 @@ def quiz():
 @app.route("/quiz/<qn_id>")
 def _quiz(qn_id):
     #TODO: assert code
-    return render_template("quiz.html", question=questions[qn_id], qn_id=qn_id,
-            trans=translations, lang="en", fb_share_image=fb_share_image())
+    return render_template("quiz.html", 
+                           question=questions[qn_id], 
+                           qn_id=qn_id,
+                           num_qns=len(questions), 
+                           trans=translations, lang="en", 
+                           fb_share_image=fb_share_image())
 
 
 @app.errorhandler(404)
