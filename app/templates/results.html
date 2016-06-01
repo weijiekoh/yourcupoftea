@@ -2,6 +2,8 @@
 {% block title %}Your Results{% endblock %}
 {% block head %}
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"/>-->
+<link href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" rel="stylesheet" />
+
 
 <meta property="og:title" content="{{trans["results"]["fb_share_title"][lang]}}" />
 <meta property="og:url" content="{{request.base_url}}" />
@@ -77,13 +79,13 @@
 </div>
 
 <div class = "row">
-    <div class = "quiz_bg_box col-md-8 col-md-offset-2">
+    <div class = "col-md-8 col-md-offset-2">
         {{ fb_share()|safe }}
     </div>
 </div>
 
 <div class="row text-center">
-    <div class = "quiz_bg_box col-md-8 col-md-offset-2">
+    <div class = "col-md-8 col-md-offset-2">
         <h2>Where you stand with each campaign</h2>
     </div>
 </div>

@@ -147,6 +147,11 @@ h2{
 	font-size:36pt;
 }
 
+.index_btn_and_prompt h2{
+	margin-top:0px;
+
+}
+
 .btn:hover, .btn:focus, .btn.focus{
 	color:#eee !important;
 }
@@ -259,6 +264,7 @@ h2{
 .slider_explanation p{
 	font-size:12pt;
 	line-height:normal;
+	text-align:center !important;
 }
 
 .slider-val {
@@ -409,6 +415,11 @@ h2{
 		padding-top:0px;
 	}
 
+	.standard_btn{
+		width:90%;
+		font-size:25pt;
+	}
+
 	.take_quiz_btn{
 		width:90%;
 		font-size:25pt;
@@ -420,6 +431,11 @@ h2{
 }
 
 @media (max-width:992px) { 
+	.container-fluid{
+		padding:0px;
+		width:100%;
+	}
+
 	.share{
 		margin-bottom:0px;
 		margin-top:0px;
@@ -435,7 +451,11 @@ h2{
 	}
 
 	.index_title{
+		width:100%;
 		margin-top:0px;
+		margin-left:0px;
+		margin-right:0px;
+		padding:0px !important;
 	}
 
 	.find_out_text{
@@ -456,14 +476,21 @@ h2{
 		border-left:none;
 		padding-top:15px;
 		padding-left:0px !important;
+		margin-right:0px !important;
+	}
+
+	.option_container label{
+		margin-left:0px;
 	}
 	
 	.option_card{
 		margin-left:0px;
+		margin-right:0px;
 		margin-top:0px;
 		margin-bottom:0px;
 		border:0px !important;
 		box-shadow:none;
+		border-radius:0px !important;
 	}
 
 	.slider.slider-horizontal{
