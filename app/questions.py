@@ -11,57 +11,17 @@ Radio options:
 """
 
 import collections
+import msgpack
+import os
 
-questions = collections.OrderedDict({
-    0: {
-        "type":"pick_one",
-        "text":{
-            "en":u"Leaving the EU would significantly decrease foreign direct investment into the UK.",
-            },
+relpath = os.path.dirname(__file__)
+msgpack_file = os.path.join(relpath, "question_data/data.msgpack")
 
-        "choices":[ 
-            {
-                "en":u"Yes",
-                },
-            {
-                "en":u"Yes, because the EU accounts for almost half of foreign investment into the UK.",
-                },
-            {
-                "en":u"Yes, because it will produce a period of uncertainty."
-                }, 
-            {
-                "en":u"Neutral/Not sure."
-                }, 
-            {
-                "en":u"No, because the single market is not the only reason why firms invest in Britain."
-                }, 
-            {
-                "en":u"No, because Britain will remain an attractive place for investment anyway."
-                },
-            {
-                "en":u"No."
-                }, 
+f = open(msgpack_file, "rb")
+unsorted = msgpack.unpackb(f.read())
+f.close()
 
-            ]
-        },
+questions = collections.OrderedDict()
 
-    1: {
-        "type":"pick_many",
-        "text":{
-            "en":"Inclusive development in Bengal should encompass the following:",
-            },
-        "choices":[ 
-            {
-                "en":u"Empower small industries, medium, small and micro industries",
-                },
-            {
-                "en":u"Promote rural arts, crafts and artisans with rural welfare as a focal agenda",
-                },
-            {
-                "en":u"Focus on developmental projects such as housing, water, sanitation, and power",
-                },
-            {
-                "en":u"Enact a universal public-goods distribution system to tackle fundamental issues such as starvation",
-                },]
-            },
-    })
+for qn_num in sorted(unsorted.keys()):
+    questions[qn_num - 1] = unsorted[qn_num]

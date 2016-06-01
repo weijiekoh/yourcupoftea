@@ -48,7 +48,7 @@ def quiz_n(qn_id):
     print "This response", this_response
     print "All responses so far:", session["culm_responses"]
     print "------------------------\n"
-
+    
     return render_template("quiz.html", 
                            question=questions[qn_id], 
                            qn_id=qn_id,

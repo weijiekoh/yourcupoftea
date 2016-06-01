@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Your Results{% endblock %}
 {% block head %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"/>
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"/>-->
 
 <meta property="og:title" content="{{trans["results"]["fb_share_title"][lang]}}" />
 <meta property="og:url" content="{{request.base_url}}" />
@@ -84,7 +84,79 @@
 
 <div class="row text-center">
     <div class = "quiz_bg_box col-md-8 col-md-offset-2">
-        <h2>Results breakdown</h2>
+        <h2>Where you stand with each campaign</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class = "col-md-4 col-md-offset-2 campaign">
+        <div class="collection">
+            <div class="col-md-4">
+                <img src="/static/img/logos/bsie.png" 
+                     alt="Britain Stronger in Europe" />
+            </div>
+            <div class="col-md-8">
+                <span class="title">Britain Stronger in Europe</span>
+                <p>40%</p>
+            </div>
+        </div>
+
+        <div class="collection">
+            <div class="col-md-4">
+                <img src="/static/img/logos/if.png" 
+                     alt="In Facts" />
+            </div>
+            <div class="col-md-8">
+                <span class="title">In Facts</span>
+                <p>40%</p>
+            </div>
+        </div>
+
+        <div class="collection">
+            <div class="col-md-4">
+                <img src="/static/img/logos/bi.png" 
+                     alt="British Influence" />
+            </div>
+            <div class="col-md-8">
+                <span class="title">British Influence</span>
+                <p>40%</p>
+            </div>
+        </div>
+    </div>
+
+    <div class = "col-md-4 campaign">
+        <div class="collection">
+            <div class="col-md-4">
+                <img src="/static/img/logos/vl.png" 
+                     alt="Vote Leave" />
+            </div>
+            <div class="col-md-8">
+                <span class="title">Vote Leave</span>
+                <p>40%</p>
+            </div>
+        </div>
+
+        <div class="collection">
+            <div class="col-md-4">
+                <img src="/static/img/logos/boo.png" 
+                     alt="Better Off Out" />
+            </div>
+            <div class="col-md-8">
+                <span class="title">Better Off Out</span>
+                <p>40%</p>
+            </div>
+        </div>
+
+        <div class="collection">
+            <div class="col-md-4">
+                <img src="/static/img/logos/leu.png" 
+                     alt="Leave.EU" />
+            </div>
+            <div class="col-md-8">
+                <span class="title">Leave.EU</span>
+                <p>40%</p>
+            </div>
+        </div>
     </div>
 </div>
 
