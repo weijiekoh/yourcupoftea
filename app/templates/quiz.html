@@ -15,6 +15,7 @@
 <script type="text/javascript" 
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js">
 </script>
+<script type="text/javascript" src="/static/js/jquery.hotkeys.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -38,8 +39,9 @@
 {% if qn_id == num_qns - 1 %}
 <form method="POST" action="/results">
 {% else %}
-<form method="POST" action="/quiz/{{qn_id + 1}}">
+<form method="POST" action="/quiz/" id="quiz_form">
 {% endif %}
+    <input type="hidden" name="qn_id" value="{{qn_id}}" />
 
     {# Controls #}
     <div class="row" id="quiz_controls">
@@ -114,7 +116,15 @@
     <!--<script type='text/javascript' src="/static/js/bootstrap-slider.min.js"></script>-->
 
     <script type='text/javascript'>
+        var submit_form = function(){
+            $("#quiz_form").submit();
+        }
+
         $(document).ready(function() {
+            // shortcuts keys
+
+            $(document).bind('keydown', 'z', submit_form);
+            
             // Slider functions
             var s = $("#slider_{{qn_id}}");
             var set_slider_val = function(id, val){

@@ -1,9 +1,7 @@
 from app import app
 from flask import render_template, request, redirect, url_for, session
-from app.qns_parties_positions import questions
+from app.qns_parties_positions import questions, campaigns, experts
 from app.translations import translations
-from app.parties import parties
-from app.qns_parties_positions import party_positions
 import urlparse
 import os
 
@@ -32,34 +30,74 @@ def about():
     return render_template("about.html", trans=translations, fb_share_image=fb_share_image())
 
 
-@app.route("/quiz/<int:qn_id>", methods=["POST"])
-def quiz_n(qn_id):
+def get_quiz_responses():
+    if "culm_responses" in session:
+        return session["culm_responses"]
+    else:
+        return []
+
+
+def set_quiz_responses(data):
+    session["culm_responses"] = data
+
+
+def update_stored_responses(data):
+    r = [x for x in data if x[0] != "qn_id"]
+    if "culm_responses" in session:
+        session["culm_responses"] += r
+    else:
+        session["culm_responses"] = r
+
+
+def get_latest_qn_num(responses):
+    if len(responses) == 0:
+        return 0
+    else:
+        return 1
+
+
+def clear_response_data():
+    session.pop("culm_responses", None)
+
+
+@app.route("/quiz/", methods=["GET", "POST"])
+def quiz():
     #TODO: assert code
 
-    this_response = request.form.lists()
+    qn_id = None
+    this_response = None
 
-    if not "culm_responses" in session:
-        session["culm_responses"] = []
+    # check the session var for responses to the prev qns
+    responses_so_far = get_quiz_responses()
 
-    session["culm_responses"] += this_response
+    if request.method == "GET":
+        clear_response_data()
+        qn_id = 0
+    elif request.method == "POST":
+        this_response = request.form.lists()
+
+        # TODO: check if the previous responses are in the right order
+
+        for x in this_response:
+            if x[0] == "qn_id":
+                qn_id = int(x[1][0]) + 1
+
+        # store this response to the session var
+        update_stored_responses(this_response)
+
 
     print "------------------------"
-    print "Question", qn_id
-    print "This response", this_response
-    print "All responses so far:", session["culm_responses"]
+    print "Prev question", qn_id
+    print "Response", this_response
+    print "All responses so far:", get_quiz_responses()
     print "------------------------\n"
     
     return render_template("quiz.html", 
-                           question=questions[qn_id], 
+                           question=questions[qn_id],
                            qn_id=qn_id,
                            num_qns=len(questions), 
                            trans=translations, lang="en", 
                            fb_share_image=fb_share_image())
-
-
-@app.route("/quiz")
-def quiz():
-    return quiz_n(0)
 
 
 @app.route("/results", methods=["POST"])
