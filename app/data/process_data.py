@@ -9,6 +9,13 @@ import re
 
 pretty_print = pprint.pprint
 
+    
+def gen_org_entry(c, c_type):
+    # Converts "Institute for Fiscal Studies" to "ifs" (not "iffs")
+    initials = "".join([x[0].lower() for x in c.split() if x[0].isupper()])
+    return {"type":c_type,
+            "name":c,
+            "initials":initials }
 
 
 def write_msgpack(data, output_file):
@@ -23,6 +30,30 @@ def extract_campaign_names(row, start, end):
             names.append(c.strip())
 
     return names
+
+
+def get_campaign_id_by_name(campaigns, name):
+    for key, val in campaigns.iteritems():
+        if val["name"] == name:
+            return key
+
+
+def get_expert_id_by_name(expert_names, name):
+    for key, val in expert_names.iteritems():
+        if val["name"] == name:
+            return key
+
+
+def extract_pos_score(c):
+    # from a string like "Yes (10)", return 10
+    # from a string like "Against (-10)", return -10
+    # for invalid strings, return 0
+    c = c.strip()
+    found = re.findall("\((-{0,1}\d+)\)$", c)
+    if len(found) == 1:
+        return int(found[0])
+    else:
+        return 0
 
 
 if __name__ == "__main__":
@@ -50,8 +81,7 @@ if __name__ == "__main__":
         for row in reader:
             csv_data.append(row)
 
-    # extract questions and options
-
+    # Extract questions and options
     print "Extracting questions..."
     data_to_write = {"questions":{},
                      "campaigns": {},
@@ -60,16 +90,18 @@ if __name__ == "__main__":
     questions = {}
     current_qn_num = None
     for row in csv_data[2:]:
-        # question text are on the same rows as the qn nums
+        # Question text are on the same rows as the qn nums
         if re.match("\d{1,2}", row[0]):
             current_qn_num =  int(row[0])
             questions[current_qn_num] = {"text":row[1], "options":[]}
-        else:
-            option = row[2]
-            questions[current_qn_num]["options"].append({"text":option, "supporter_ids":[]})
+
+        option = row[2]
+        questions[current_qn_num]["options"].append({"text":option, 
+            "campaign_support": [],
+            "expert_views": []})
 
 
-    # extract campaign names
+    # Extract campaign names
     print "Extracting campaigns..."
 
     first_stay = None
@@ -94,35 +126,113 @@ if __name__ == "__main__":
     leave_campaigns = extract_campaign_names(row_with_names, first_leave, first_experts)
     experts = extract_campaign_names(row_with_names, first_experts, len(row_with_names))
 
-    print stay_campaigns
-    print leave_campaigns
-    print experts
-
-    
-    def gen_campaign_entry(c, c_type):
-        initials = "".join([x[0].lower() for x in c.split()])
-        return {"type":c_type,
-                "name":c,
-                "initials":initials
-                }
-
-
     campaigns = {}
+    expert_names = {}
+
     i = 0
     for c in stay_campaigns:
-        campaigns[i] = gen_campaign_entry(c, "stay")
+        campaigns[i] = gen_org_entry(c, "stay")
         i += 1
 
     i = len(stay_campaigns) 
     for c in leave_campaigns:
-        campaigns[i] = gen_campaign_entry(c, "leave")
+        campaigns[i] = gen_org_entry(c, "leave")
         i += 1
 
-    experts = {}
+    i = len(leave_campaigns) + len(stay_campaigns) 
+    for c in experts:
+        expert_names[i] = gen_org_entry(c, "expert")
+        i += 1
+
+    # Extract party positions
+    print "Extracting party positions"
+
+    current_qn_num = None
+    current_option_index = None
+    current_campaign_id = None
+    org_names_row = csv_data[1]
+
+    for row in csv_data[2:]: # loop through rows
+        # Question text are on the same rows as the qn nums
+        if re.match("\d{1,2}", row[0]):
+            current_qn_num =  int(row[0])
+            current_option_index = 0
+
+        option_text = row[2]
+
+        position_score = None
+        i = 3
+        for c in row[3:]: # loop through each column
+            if csv_data[0][i] == "Experts": 
+                break
+
+            if i % 2 == 1: # odd cols are position scores
+                current_campaign_id = get_campaign_id_by_name(campaigns, org_names_row[i])
+                position_score = extract_pos_score(c)
+            else:
+                importance = None
+                if len(c) == 0:
+                    importance = 1
+                else:
+                    importance = int(c)
+                questions[current_qn_num]\
+                         ["options"]\
+                         [current_option_index] \
+                         ["campaign_support"].append({
+                             "id": current_campaign_id,
+                             "position": position_score,
+                             "importance": importance
+                             })
+
+            i += 1
+        
+        current_option_index += 1
+
+
+    # Extract expert views
+
+    print "Extracting expert views"
+
+    i = 0
+    for c in csv_data[0]: # loop through each column
+        if c == "Experts":
+            expert_start_col = i
+        i += 1 
+
+    
+    i = 0
+    current_qn_num = None
+    current_option_index = 0
+    current_expert_id = None
+    for row in csv_data[2:]:
+        j = 0
+        for c in row[expert_start_col:]:
+            if re.match("\d{1,2}", row[0]):
+                current_qn_num =  int(row[0])
+                current_option_index = 0
+                
+            current_expert_id = get_expert_id_by_name(expert_names, org_names_row[j])
+
+            questions[current_qn_num]\
+                     ["options"]\
+                     [current_option_index] \
+                     ["expert_views"].append({
+                         "id": current_expert_id,
+                         "view": c
+                         })
+            j += 1
+
+        current_option_index += 1
+        i += 1
+
+
+
+    # Write to output file
 
     print "Writing file..."
     data_to_write["questions"] = questions
     data_to_write["campaigns"] = campaigns
+    data_to_write["experts"] = expert_names
     write_msgpack(data_to_write, output_file)
 
     print "Done."

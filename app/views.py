@@ -1,9 +1,9 @@
 from app import app
 from flask import render_template, request, redirect, url_for, session
-from app.questions import questions
+from app.qns_parties_positions import questions
 from app.translations import translations
 from app.parties import parties
-from app.party_positions import party_positions
+from app.qns_parties_positions import party_positions
 import urlparse
 import os
 

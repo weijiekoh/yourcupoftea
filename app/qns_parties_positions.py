@@ -15,13 +15,17 @@ import msgpack
 import os
 
 relpath = os.path.dirname(__file__)
-msgpack_file = os.path.join(relpath, "question_data/data.msgpack")
+msgpack_file = os.path.join(relpath, "data/data.msgpack")
 
 f = open(msgpack_file, "rb")
-unsorted = msgpack.unpackb(f.read())
+data = msgpack.unpackb(f.read())
 f.close()
 
 questions = collections.OrderedDict()
 
-for qn_num in sorted(unsorted.keys()):
-    questions[qn_num - 1] = unsorted[qn_num]
+q = data["questions"]
+for qn_num in sorted(q.keys()):
+    questions[qn_num - 1] = q[qn_num]
+
+campaigns = data["campaigns"]
+experts = data["experts"]

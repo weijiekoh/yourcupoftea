@@ -4,9 +4,9 @@ import csv
 import ast
 import argparse
 
-from questions import questions
+from qns_parties_positions import questions
 from parties import parties
-from party_positions import party_positions
+from qns_parties_positions import party_positions
 import ranking
 
 parser = argparse.ArgumentParser(description="Convert Electionance data")

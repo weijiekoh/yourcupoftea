@@ -1,7 +1,7 @@
 import random
 import pprint
 import math
-from questions import questions
+from qns_parties_positions import questions
 
 def nCr(n,r):
     f = math.factorial
