@@ -10,7 +10,6 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.16/css/bootstrap-slider.min.css" />
 
 <script type="text/javascript" 
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js">
@@ -44,41 +43,40 @@
     <input type="hidden" name="qn_id" value="{{qn_id}}" />
 
     {# Controls #}
-    <div class="row" id="quiz_controls">
-        <!-- Slider -->
-        <div class="col-md-3 col-md-offset-2">
-            <div class="slider-container">
-                <div class="slider slider-horizontal">
-                    <span class="slider-val" id="slider_val_{{qn_id}}">3</span>
-                    <input id="slider_{{qn_id}}" name="slider_{{qn_id}}" type="text" 
-                           data-slider-min="1" data-slider-max="5" 
-                           data-slider-step="1" data-slider-value="3" />
+    <div id="quiz_controls">
+        <div class="row">
+        <!-- Importance checkbox -->
+            <div class="col-md-3 col-md-offset-6 importance_parent">
+                <div class="importance card 
+                            option_card option_container 
+                            blue-grey lighten-2">
+                    <input type="checkbox" 
+                           class="with-gap filled-in" 
+                           id="filled-in-box" 
+                           name="importance_{{qn_id}}" />
+                    <label for="filled-in-box">This issue is especially important to me.</label>
                 </div>
-            </div>
-            <div class="slider_explanation text-center">
-                <p>{{trans["quiz"]["drag_dot"][lang]}}<br />
-                {{trans["quiz"]["low_high"][lang]}}</p>
             </div>
         </div>
 
-        <br />
-
+        <div class="row">
         <!-- Selects -->
-        <div class="col-md-7">
-            <div class="pick_one_option_container option_container">
-                {% for c in question.options %}
-                    {% set input_id = "radio_" ~ qn_id ~ "_" ~ loop.index0 %}
-                    {% set name = "radio_" ~ qn_id %}
-                    <div class="row">
-                        <div class="col-md-7 option_card card-panel blue">
-                            <input id="{{input_id}}" name="{{name}}" 
-                            class="with-gap"
-                            value="{{loop.index0}}" 
-                            type="radio" />
-                            <label for="{{input_id}}">{{c.text}}</label>
+            <div class="col-md-6 col-md-offset-3">
+                <div class="pick_one_option_container option_container">
+                    {% for c in question.options %}
+                        {% set input_id = "radio_" ~ qn_id ~ "_" ~ loop.index0 %}
+                        {% set name = "radio_" ~ qn_id %}
+                        <div class="row">
+                            <div class=" option_card card-panel blue">
+                                <input id="{{input_id}}" name="{{name}}" 
+                                class="with-gap"
+                                value="{{loop.index0}}" 
+                                type="radio" />
+                                <label for="{{input_id}}">{{c.text}}</label>
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
@@ -111,10 +109,6 @@
 {% endblock %}
 
 {% block bottom %}
-    <!--Bootstrap Slider JS-->
-    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/6.0.16/bootstrap-slider.min.js"></script>
-    <!--<script type='text/javascript' src="/static/js/bootstrap-slider.min.js"></script>-->
-
     <script type='text/javascript'>
         var submit_form = function(){
             $("#quiz_form").submit();
@@ -124,20 +118,6 @@
             // shortcuts keys
 
             $(document).bind('keydown', 'z', submit_form);
-            
-            // Slider functions
-            var s = $("#slider_{{qn_id}}");
-            var set_slider_val = function(id, val){
-                $("#slider_val_" + id).text(val);
-            }
-
-            $("#slider_{{qn_id}}").slider({tooltip:"hide", "ticks":[1,2,3,4,5]});
-                $("#slider_{{qn_id}}").on("slideStop", function(slideEvt) {
-                    set_slider_val({{qn_id}}, slideEvt.value);
-                    });
-                $("#slider_{{qn_id}}").on("slide", function(slideEvt) {
-                    set_slider_val({{qn_id}}, slideEvt.value);
-            });
 
             // hide all expln divs at the start
             $(".explanation").hide();

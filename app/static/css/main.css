@@ -211,23 +211,40 @@ h2{
 	padding:10px;
 }
 
+.importance{
+	margin-top:30px;
+	margin-bottom:30px;
+}
+
+.importance label{
+	color:#fff !important;
+	font-weight:bold;
+	margin-left:-10px !important;
+}
+
+.importance label:after{
+	border-color:#fff !important;
+	margin-top:5px !important;
+}
+
+.importance label:before{
+	margin-top:7px !important;
+}
+
 .option_card{
-	min-height:70px !important;
 	padding:0px !important;
 }
 
 .option_container {
 	width:100%;
-	min-height:250px !important;
 	padding-left: 35px !important;
-	border-left: 15px solid #939393;
 }
 
 .option_container label{
 	width:100% !important;
 	height:100% !important;
 	margin-top:20px;
-	margin-left:10px;
+	margin-left:20px;
 	margin-bottom:0px;
 	color:#fff;
 	font-size:12pt !important;
@@ -250,60 +267,6 @@ h2{
 	font-size:14pt;
 }
 
-.slider-container {
-	font-size: 20px;
-	width:100%;
-	float: left;
-	text-align: center;
-	min-height:120px;
-	display: block;
-	margin-bottom:20px;
-	margin-top:10px;
-}
-
-.slider_explanation p{
-	font-size:12pt;
-	line-height:normal;
-	text-align:center !important;
-}
-
-.slider-val {
-	font-size: 30pt;
-}
-
-.slider.slider-horizontal .slider-track {
-	margin-top: 0px !important;
-	margin-bottom: 20px !important;
-	height: 7px !important;
-}
-
-.slider-tick{
-	background-image: linear-gradient(to bottom,#bbbbbb 100%,#bbbbbb 100%) !important;
-	opacity:1 !important; 
-	width: 17px !important;
-	height: 17px !important;
-	margin-top:-5px !important;
-}
-
-.slider-handle {
-	background-color: #EF5350 !important;
-	background-image: none !important;
-	margin-top: -15px !important;
-	margin-left: -20px !important;
-	width: 40px !important;
-	height: 40px !important;
-}
-
-.slider-track-low, .slider-selection {
-	color: #bbbbbb !important;
-	background-color: #bbbbbb !important;
-	background-image: none !important;
-}
-
-.slider-track-high {
-	background-color: #bbbbbb !important;
-	background-image: none !important;
-}
 
 .demo_box{
 	background-color: #EFFBFF !important;
@@ -472,6 +435,14 @@ h2{
 		text-align:left;
 	}
 
+	.importance label{
+		margin-left:10px !important;
+	}
+
+	.importance_parent{
+		padding:0px !important;
+	}
+
 	.option_container {
 		border-left:none;
 		padding-top:15px;
@@ -480,24 +451,15 @@ h2{
 	}
 
 	.option_container label{
-		margin-left:0px;
+		margin-left:5px;
 	}
 	
 	.option_card{
-		margin-left:0px;
-		margin-right:0px;
-		margin-top:0px;
+		margin-top:10px;
 		margin-bottom:0px;
 		border:0px !important;
 		box-shadow:none;
 		border-radius:0px !important;
-	}
-
-	.slider.slider-horizontal{
-		width:190px !important;
-	}
-
-	.result_card{
 	}
 
 	.result_card h1{
