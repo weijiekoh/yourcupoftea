@@ -42,7 +42,8 @@ def set_quiz_responses(data):
 
 
 def update_stored_responses(data):
-    r = [x for x in data if x[0] != "qn_id"]
+    # r = [x for x in data if x[0] != "qn_id"]
+    r = data
     if "culm_responses" in session:
         session["culm_responses"] += r
     else:
@@ -76,11 +77,14 @@ def quiz():
     elif request.method == "POST":
         this_response = request.form.lists()
 
-        # TODO: check if the previous responses are in the right order
-
+        found_qn_id = False
         for x in this_response:
             if x[0] == "qn_id":
+                found_qn_id = True
                 qn_id = int(x[1][0]) + 1
+
+        if not found_qn_id:
+            return template_500()
 
         # store this response to the session var
         update_stored_responses(this_response)
@@ -102,26 +106,27 @@ def quiz():
 
 @app.route("/results", methods=["POST"])
 def results():
-    import app.ranking
-    data_str = str(request.form.lists())
-    session["demo_data"] = data_str
+    this_response = request.form.lists()
+    all_responses = get_quiz_responses() + this_response
 
     if "culm_responses" not in session:
-        return render_template("500.html", trans=translations), 500
-
-
-    this_response = request.form.lists()
-    all_responses = session["culm_responses"] + this_response
-    session.pop("culm_responses", None)
-            
+        return template_500()
+    else:
+        clear_response_data()
 
     print "------------------------"
     print "Results"
-    print "This response", this_response
-    print "All responses so far:", all_responses
+    print "This response", this_response 
+    print "All Responses", all_responses
     print "------------------------\n"
 
-    rankings = app.ranking.calculate(request.form.lists(), parties, party_positions, questions)
+    # check if all qn_ids are in the response
+    qn_ids = sorted([int(x[1][0]) for x in all_responses if x[0] == "qn_id"])
+    correct_qn_ids = questions.keys()
+    if correct_qn_ids != qn_ids:
+        return template_500()
+
+    rankings = app.ranking.calculate(all_responses)
     return redirect(url_for("results") + "/" + smart_share_code(rankings))
 
 
@@ -148,7 +153,7 @@ def results_for_fb(base64_result):
             demo_data = None
             if "demo_data" in session:
                 demo_data = session["demo_data"]
-            session.pop("demo_data", None)
+            clear_response_data()
 
             return render_template("results.html", 
                     fb_share_image=fb_share_image(),
@@ -209,9 +214,12 @@ def error_405(e):
     return render_template("404.html", trans=translations), 405
 
 
+def template_500():
+    return render_template("500.html", trans=translations), 500
+
 @app.errorhandler(500)
 def error_500(e):
-    return render_template("500.html", trans=translations), 500
+    return template_500()
 
 
 class InvalidShareString: pass

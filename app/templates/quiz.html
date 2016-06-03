@@ -36,7 +36,7 @@
    to /quiz/n+1 #}
 
 {% if qn_id == num_qns - 1 %}
-<form method="POST" action="/results">
+<form method="POST" action="/results" id="quiz_form">
 {% else %}
 <form method="POST" action="/quiz/" id="quiz_form">
 {% endif %}
@@ -49,7 +49,7 @@
             <div class="col-md-3 col-md-offset-6 importance_parent">
                 <div class="importance card 
                             option_card option_container 
-                            red lighten-2">
+                            red lighten-1">
                     <input type="checkbox" 
                            class="with-gap filled-in" 
                            id="filled-in-box" 
