@@ -160,14 +160,15 @@ def results_for_fb(result_str):
     else:
         image = "remain"
 
-    whatsapp_share_string = "My EU referendum quiz results: " +\
+    r = "My EU referendum quiz results: " +\
                             str(average_remain_score) + "% remain, " +\
                             str(average_leave_score) + "% leave."
+
     return render_template("results.html", 
                            average_remain_score=average_remain_score,
                            average_leave_score=average_leave_score,
                            remain_scores=remain, 
-                           whatsapp_share_string=whatsapp_share_string,
+                           result_share_str=r,
                            leave_scores=leave, 
                            campaigns=campaigns,
                            image=image,
