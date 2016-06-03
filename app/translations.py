@@ -28,9 +28,6 @@ translations = \
         "our_fb":{
             "en":"Like us on Facebook",
         },
-        "title":{
-            "en":"Remain or Leave?"
-        },
         "quiz_title":{
             "en":"Remain or Leave?"
         },
@@ -48,18 +45,6 @@ translations = \
     #####################
     # Index page
     "results": {
-        "facebook":{
-            "en":"Facebook",
-        },
-        "twitter":{
-            "en":"Twitter",
-        },
-        "whatsapp":{
-            "en":"WhatsApp",
-        },
-        "try_it_at":{
-            "en":"Try it at",
-        },
         "tell_us":{
             "en":"Please tell us about yourself",
         },

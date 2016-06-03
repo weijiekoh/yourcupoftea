@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, request, redirect, url_for, session
 from app.qns_parties_positions import questions, campaigns, experts
 from app.translations import translations
+from app import ranking
 import urlparse
 import os
 
@@ -14,20 +15,20 @@ else:
     app.secret_key = "\x18\x1c\xc2\x18\x95\xfb$\xac\xff\x05\xe6\x91\x04\xd9\x96*\xe3j\xb0_\xb5\x03\xc0\xdd"
 
 
-def fb_share_image():
+def fb_share_image(image):
     u = urlparse.urlparse(request.url)
     domain = "{uri.scheme}://{uri.netloc}/".format(uri=u)
-    return domain + "static/img/fb_share_logo.png"
+    return domain + "static/img/fb/" + image + ".png"
 
 
 @app.route("/")
 def index():
-    return render_template("index.html", trans=translations, fb_share_image=fb_share_image())
+    return render_template("index.html", trans=translations, fb_share_image=fb_share_image("neutral"))
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html", trans=translations, fb_share_image=fb_share_image())
+    return render_template("about.html", trans=translations, fb_share_image=fb_share_image("neutral"))
 
 
 def get_quiz_responses():
@@ -84,24 +85,24 @@ def quiz():
                 qn_id = int(x[1][0]) + 1
 
         if not found_qn_id:
+            print "qn_id not found"
             return template_500()
 
         # store this response to the session var
         update_stored_responses(this_response)
 
-
-    print "------------------------"
-    print "Prev question", qn_id
-    print "Response", this_response
-    print "All responses so far:", get_quiz_responses()
-    print "------------------------\n"
+    # print "------------------------"
+    # print "Prev question", qn_id
+    # print "Response", this_response
+    # print "All responses so far:", get_quiz_responses()
+    # print "------------------------\n"
     
     return render_template("quiz.html", 
                            question=questions[qn_id],
                            qn_id=qn_id,
                            num_qns=len(questions), 
                            trans=translations, lang="en", 
-                           fb_share_image=fb_share_image())
+                           fb_share_image=fb_share_image("neutral"))
 
 
 @app.route("/results", methods=["POST"])
@@ -110,98 +111,69 @@ def results():
     all_responses = get_quiz_responses() + this_response
 
     if "culm_responses" not in session:
+        print "culm_responses not found"
         return template_500()
     else:
         clear_response_data()
-
-    print "------------------------"
-    print "Results"
-    print "This response", this_response 
-    print "All Responses", all_responses
-    print "------------------------\n"
 
     # check if all qn_ids are in the response
     qn_ids = sorted([int(x[1][0]) for x in all_responses if x[0] == "qn_id"])
     correct_qn_ids = questions.keys()
     if correct_qn_ids != qn_ids:
+        print "Not all qn_ids present"
+        print qn_ids
         return template_500()
 
-    rankings = app.ranking.calculate(all_responses)
-    return redirect(url_for("results") + "/" + smart_share_code(rankings))
+    code = ranking.encode(ranking.calculate(all_responses))
+    return redirect(url_for("results") + "/" + code)
 
 
-@app.route("/results/<base64_result>", methods=["GET", "POST"])
-def results_for_fb(base64_result):
-    import re
-    base64_regex = \
-            "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
-    if re.findall(base64_regex, base64_result):
-        import base64
-        try:
-            raw_result_str = base64.decodestring(base64_result)
-            sorted_results = smart_share_decode_and_sort(raw_result_str)
+@app.route("/results/<result_str>", methods=["GET", "POST"])
+def results_for_fb(result_str):
+    rankings = ranking.decode(result_str)
+    remain = []
+    leave = []
+    
+    total_remain_score = 0
+    total_leave_score = 0
 
-            from app.translations import DEFAULT_LANG
-            lang = DEFAULT_LANG
+    for campaign_id, campaign_info in campaigns.iteritems():
+        if campaign_info["type"] == "remain":
+            remain.append((campaign_id, rankings[campaign_id]))
+            total_remain_score += rankings[campaign_id]
+        if campaign_info["type"] == "leave":
+            leave.append((campaign_id, rankings[campaign_id]))
+            total_leave_score += rankings[campaign_id]
 
-            result_share_str = translations["results"]["share_str"][lang] + \
-                    format_share_str(sorted_results)
+    # sort remain and leave
+    remain = sorted(remain, key=lambda x: x[1], reverse=True)
+    leave = sorted(leave, key=lambda x: x[1], reverse=True)
 
-            whatsapp_share_str = translations["results"]["share_str"][lang] + "\n\n" + \
-                    format_share_str(sorted_results, whatsapp=True)
-            
-            demo_data = None
-            if "demo_data" in session:
-                demo_data = session["demo_data"]
-            clear_response_data()
+    average_remain_score = total_remain_score / len(remain)
+    average_leave_score = total_leave_score / len(leave)
 
-            return render_template("results.html", 
-                    fb_share_image=fb_share_image(),
-                    result_share_str=result_share_str,
-                    whatsapp_share_str=whatsapp_share_str,
-                    parties=parties,
-                    lang=lang, 
-                    trans=translations,
-                    demo_data=demo_data,
-                    results=sorted_results)
-
-        except (UnicodeDecodeError, AssertionError) as e:
-            print e
-            return render_template("index.html", trans=translations)
+    image = None
+    if abs((average_remain_score - average_leave_score)) <= 10:
+        image = "neutral"
+    elif average_remain_score < average_leave_score:
+        image = "leave"
     else:
-        return render_template("index.html")
+        image = "remain"
 
+    whatsapp_share_string = "My EU referendum quiz results: " +\
+                            str(average_remain_score) + "% remain, " +\
+                            str(average_leave_score) + "% leave."
+    return render_template("results.html", 
+                           average_remain_score=average_remain_score,
+                           average_leave_score=average_leave_score,
+                           remain_scores=remain, 
+                           whatsapp_share_string=whatsapp_share_string,
+                           leave_scores=leave, 
+                           campaigns=campaigns,
+                           image=image,
+                           fb_share_image=fb_share_image(image),
+                           trans=translations)
 
-def smart_share_decode_and_sort(raw_result_str):
-    """
-    Converts a result string like "p:xx.x;q:yy.y..." to a dict
-    """
-    import re
-    # data verification
-    veri_regex = "(?:\d:[\d\.]{2,4},|\d:100.0,){" + str(len(parties)-1) + \
-            "}\d:[\d\.]{2,4}|\d:100.0"
-    # matches something like 0:74.3,1:70.0,2:88.0,3:67.7, depending on the no.
-    # of parties in parties.py
-    found = re.findall(veri_regex, raw_result_str)
-
-    # throw an exeception if the url is invalid to prevent abuse
-    assert len(found) > 0, "Invalid sharer url: no parties given in string"
-
-    sorted_parties = sorted([int(x.split(":")[0]) for x in \
-        sorted(found[0].split(","))])
-
-    # make sure the input includes all the parties we have and only these
-    # parties
-    assert sorted_parties == sorted(parties.keys()), "Invalid sharer url: wrong number of parties"
-
-    # sort by score, not party ID:
-    score_sorted_results = []
-    for r in found[0].split(","):
-        s = r.split(":")
-        score_sorted_results.append((int(s[0]), float(s[1])))
-    score_sorted_results = sorted(score_sorted_results, key=lambda x: x[1],
-            reverse=True)
-    return score_sorted_results
 
 
 @app.errorhandler(404)
@@ -220,32 +192,3 @@ def template_500():
 @app.errorhandler(500)
 def error_500(e):
     return template_500()
-
-
-class InvalidShareString: pass
-
-
-def format_share_str(sorted_results, whatsapp=False):
-    """
-    Formats a dict of party_id:score etc to "ABC: xx.x%, ..."
-    """
-    display = ""
-    for s in sorted_results[:3]:
-        party_id = int(s[0])
-        party_score = s[1]
-        if whatsapp:
-            display += "%s: %s%% \n" % (parties[party_id]["initials"], party_score)
-        else:
-            display += "%s: %s%%, " % (parties[party_id]["initials"], party_score)
-
-    return display[:len(display)-2]
-
-
-def smart_share_code(results):
-    import base64
-    url = ""
-    for party_id, result in results.iteritems():
-        url += "%d:%.1f," % (party_id, round(result, 1))
-
-    encoded = base64.encodestring(url[:len(url)-1])
-    return encoded[:len(encoded)-1]

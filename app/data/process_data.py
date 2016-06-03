@@ -131,7 +131,7 @@ if __name__ == "__main__":
 
     i = 0
     for c in stay_campaigns:
-        campaigns[i] = gen_org_entry(c, "stay")
+        campaigns[i] = gen_org_entry(c, "remain")
         i += 1
 
     i = len(stay_campaigns) 
