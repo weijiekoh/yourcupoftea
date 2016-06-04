@@ -72,7 +72,7 @@
                                 class="with-gap"
                                 value="{{loop.index0}}" 
                                 type="radio" />
-                                <label for="{{input_id}}">{{c.text}}</label>
+                                <label for="{{input_id}}" class="r_label">{{c.text}}</label>
                             </div>
                         </div>
                     {% endfor %}
@@ -81,11 +81,13 @@
         </div>
     </div>
 
+    {#
     <div class="row text-center" id="ok_btn">
         <div class="col-md-offset-4 col-md-4">
             <button type="button" class="btn red lighten-1 standard_btn show_expln_btn">OK</button>
         </div>
     </div>
+    #}
 
     {# Expln #}
     <div class="row explanation text-center">
@@ -115,19 +117,33 @@
         }
 
         $(document).ready(function() {
-            // shortcuts keys
+            // hide radio buttons
+            document.styleSheets[0].addRule(".option_card label:before", "display:none");
+
+            // click anyware on option_card to select radio and show the expln
+            $(".option_card").click(function(){
+                var input = $(this).find("input")[0];
+                var checked = $(input).is(":checked");
+                $(input).prop("checked", !checked);
+                $("#quiz_controls").hide();
+                $("#ok_btn").hide();
+                $(".explanation").show();
+            });
+            // shortcut keys
 
             $(document).bind('keydown', 'z', submit_form);
 
             // hide all expln divs at the start
             $(".explanation").hide();
 
+            /*
             // show explanation action
             $(".show_expln_btn").click(function(){
                 $("#quiz_controls").hide();
                 $("#ok_btn").hide();
                 $(".explanation").show();
             });
+            */
 
         });
     </script>

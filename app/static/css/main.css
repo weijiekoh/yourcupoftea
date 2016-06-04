@@ -229,6 +229,7 @@ h2{
 
 .option_card{
 	padding:0px !important;
+	cursor:pointer !important;
 }
 
 .option_container {
@@ -237,7 +238,7 @@ h2{
 }
 
 .option_container label{
-	width:100% !important;
+	/*width:100% !important;*/
 	height:100% !important;
 	margin-top:20px;
 	margin-left:20px;
@@ -280,13 +281,14 @@ h2{
 	font-weight:normal !important;
 }
 
-.campaign .collection div{
-	margin-top:10px;
-	margin-bottom:10px !important;
-}
-
 .campaign img{
 	height:50px;
+}
+
+.campaign h3{
+	font-size:14pt;
+	text-align:center;
+	font-weight:bold;
 }
 
 .result_card{ 
@@ -315,10 +317,6 @@ h2{
 
 .share .share_text{
 	font-size:16pt;
-}
-
-.share_btns{
-	float:left;
 }
 
 .btn-whatsapp,
@@ -392,6 +390,10 @@ h2{
 	.result_card{
 		margin-bottom:0px;
 	}
+
+	.share_btns .share_site{
+		display:none;
+	}
 }
 
 @media (max-width:992px) { 
@@ -463,6 +465,12 @@ h2{
 		border-radius:0px !important;
 	}
 
+	.where_stand{
+		font-size:14pt !important;
+		margin-top:20px;
+		margin-bottom:0px;
+	}
+
 	.result_card h1{
 		font-size:16pt !important;
 	}
@@ -471,8 +479,16 @@ h2{
 		font-size:12pt !important;
 	}
 
-	.demo_box form{
-		font-size:12pt;
+	.campaign .collection {
+		margin-bottom:5px !important;
+		border:0px;
+		padding-bottom:5px;
+		border-bottom: 1px solid #e0e0e0;
+
+	}
+
+	.no_bottom_border{
+		border-bottom:0px !important;
 	}
 
 	.btn-whatsapp,
@@ -482,7 +498,4 @@ h2{
 		margin-top:5px;
 	}
 
-	.share_btns{
-		min-width:100%;
-	}
 }

@@ -14,48 +14,6 @@
 {% endblock %}
 
 {% block content %}
-{% macro fb_share() -%}
-<div class="row text-center">
-    <h2 class="share_text">{{trans["results"]["show_friends"][lang]}}</h1>
-</div>
-
-<div class="row text-center">
-    <div class="col-sm-4">
-        <div class="btn-group fb-share-button">
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{request.url}}" 
-               onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{request.url}}','name','width=694,height=432')"
-               target="popup" 
-               class="btn btn-facebook"
-               title="Share on Facebook" target="_blank">
-
-                <i class="fa fa-facebook icon-white"></i> Facebook
-            </a>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="btn-group twitter-share-button">
-            <a href="https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw"
-               onclick="window.open('https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw','name','width=694,height=432')"
-               target="popup" 
-               class="btn btn-twitter"
-               title="Share on Twitter" target="_blank">
-
-                <i class="fa fa-twitter icon-white"></i> Twitter
-            </a>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="btn-group whatsapp-share-button">
-            <a class="btn btn-whatsapp" 
-               title="Share on Whatsapp" 
-               href="whatsapp://send?text={{result_share_str|urlencode}}%0A%0ATry it at {{request.url_root ~ "?utm_medium=wa"|urlencode}}">
-
-                <i class="fa fa-whatsapp icon-white"></i> WhatsApp
-            </a>
-        </div>
-    </div>
-</div>
-{%- endmacro %}
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -78,27 +36,65 @@
     </div>
 </div>
 
-<div class = "row">
-    <div class = "col-md-8 col-md-offset-2">
-        {{ fb_share()|safe }}
+<div class="row share_btns">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="col-sm-4">
+            <div class="btn-group fb-share-button">
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{request.url}}" 
+                   onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{request.url}}','name','width=694,height=432')"
+                   target="popup" 
+                   class="btn btn-facebook"
+                   title="Share on Facebook" target="_blank">
+
+                    <i class="fa fa-facebook icon-white"></i> <span class="share_site">Facebook</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="btn-group twitter-share-button">
+                <a href="https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw"
+                   onclick="window.open('https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw','name','width=694,height=432')"
+                   target="popup" 
+                   class="btn btn-twitter"
+                   title="Share on Twitter" target="_blank">
+
+                    <i class="fa fa-twitter icon-white"></i> <span class="share_site">Twitter</span>
+
+                </a>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="btn-group whatsapp-share-button">
+                <a class="btn btn-whatsapp" 
+                   title="Share on Whatsapp" 
+                   href="whatsapp://send?text={{result_share_str|urlencode}}%0A%0ATry it at {{request.url_root ~ "?utm_medium=wa"|urlencode}}">
+
+                    <i class="fa fa-whatsapp icon-white"></i> <span class="share_site">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+
     </div>
 </div>
 
 <div class="row text-center">
     <div class = "col-md-8 col-md-offset-2">
-        <h2>Where you stand with each campaign:</h2>
+        <h2 class="where_stand">Where you stand with each campaign:</h2>
     </div>
 </div>
 
 <div class="row">
     <div class = "col-md-4 col-md-offset-2 campaign">
+        <h3>Remain</h3>
         {% for campaign_id, score in remain_scores %}
         <div class="collection">
-            <div class="col-md-4">
+            <div class="col-sm-5">
                 <img src="/static/img/logos/{{campaigns[campaign_id].initials}}.png" 
                      alt="{{campaigns[campaign_id].name}}" />
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-7">
                 <span class="title">{{campaigns[campaign_id].name}}</span>
                 <p>{{score}}%</p>
             </div>
@@ -107,13 +103,14 @@
     </div>
 
     <div class = "col-md-4 campaign">
+        <h3>Leave</h3>
         {% for campaign_id, score in leave_scores %}
-        <div class="collection">
-            <div class="col-md-4">
+        <div class="collection {% if loop.last %}no_bottom_border{% endif%}">
+            <div class="col-sm-5">
                 <img src="/static/img/logos/{{campaigns[campaign_id].initials}}.png" 
                      alt="{{campaigns[campaign_id].name}}" />
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-7">
                 <span class="title">{{campaigns[campaign_id].name}}</span>
                 <p>{{score}}%</p>
             </div>
@@ -122,23 +119,6 @@
     </div>
 </div>
 
-{% endblock %}
-{% block bottom %}
-<script type='text/javascript'>
-    $( document ).ready(function() {
-        $('#demog_form').on('submit', function(e){
-            e.preventDefault();
-            $.ajax({
-                url: 'https://docs.google.com/forms/d/1letpiXhw03DParcsktbXKVCs9EFfdr5zijxeBvHQQbA/formResponse',
-                type:'post',
-                data:$('#demog_form').serialize(),
-                success:function(result){
-                }
-            });
-            $(".demo_box").html("Thank you.");
-        });
-    });
-</script>
 {% endblock %}
 {% block posthtml %}
 {% endblock %}
