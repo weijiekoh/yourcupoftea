@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, label, input, button{
 }
 
 h2{
-	font-size:30px !important;
+	font-size:20pt !important;
 }
 
 .card h2{
@@ -85,7 +85,7 @@ h2{
 	border-radius:0px !important;
 	border:0px !important;
 	position: relative;
-	min-height: 50px;
+	min-height: 30px;
 	font-size:14pt;
 	color:#dddddd !important;
 }
@@ -136,6 +136,11 @@ h2{
 	margin-top:10px;
 }
 
+.matter_most{
+	font-size:14pt;
+	font-weight:bold;
+}
+
 .take_quiz_btn{
 	margin-top:0px;
 	color:#fff;
@@ -170,6 +175,16 @@ h2{
 
 .find_out_text{
 	margin-top:10px !important;
+}
+
+.type_card label{
+	color:#000 !important;
+}
+
+.impt_types{
+	text-align:left;
+	padding-left:70px !important;
+	margin-top:10px;
 }
 
 .qn_text{
@@ -220,6 +235,9 @@ h2{
 
 .importance label:after{
 	border-color:#fff !important;
+}
+
+.importance label:after{
 	margin-top:5px !important;
 }
 
@@ -229,23 +247,27 @@ h2{
 
 .option_card{
 	padding:0px !important;
-	cursor:pointer !important;
 }
 
 .option_container {
 	width:100%;
-	padding-left: 35px !important;
+	cursor:pointer !important;
 }
 
 .option_container label{
-	/*width:100% !important;*/
+	width:100% !important;
 	height:100% !important;
 	margin-top:20px;
-	margin-left:20px;
+	margin-left:20px !important;
 	margin-bottom:0px;
 	color:#fff;
-	font-size:12pt !important;
+	font-size:14pt !important;
+	font-weight:normal;
 	padding-bottom:20px;
+}
+
+.r_label{
+	padding-left:10px !important;
 	padding-right:40px;
 }
 
@@ -438,8 +460,19 @@ h2{
 		text-align:left;
 	}
 
+	.importance{
+		margin-top:20px !important;
+		margin-bottom:5px !important;
+	}
+
+	.impt_types{
+		padding-left:0px !important;
+	}
+
 	.importance label{
 		margin-left:10px !important;
+		margin-top:0px;
+		padding-right:10px !important;
 	}
 
 	.importance_parent{

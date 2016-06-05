@@ -9,6 +9,10 @@ import re
 
 pretty_print = pprint.pprint
 
+
+def process_types(types):
+    return [x.strip() for x in types.split(",")]
+
     
 def gen_org_entry(c, c_type):
     # Converts "Institute for Fiscal Studies" to "ifs" (not "iffs")
@@ -83,6 +87,14 @@ if __name__ == "__main__":
 
     # Extract questions and options
     print "Extracting questions..."
+    options_col = None
+    i = 0
+    for c in csv_data[1]:
+        if c == "Choices":
+            options_col = i 
+        i += 1
+
+
     data_to_write = {"questions":{},
                      "campaigns": {},
                      "experts": {},
@@ -93,9 +105,12 @@ if __name__ == "__main__":
         # Question text are on the same rows as the qn nums
         if re.match("\d{1,2}", row[0]):
             current_qn_num =  int(row[0])
-            questions[current_qn_num] = {"text":row[1], "options":[]}
+            questions[current_qn_num] = {
+                    "text":row[1], 
+                    "types":process_types(row[2]), 
+                    "options":[]}
 
-        option = row[2]
+        option = row[options_col]
         questions[current_qn_num]["options"].append({"text":option, 
             "campaign_support": [],
             "expert_views": []})
@@ -158,15 +173,13 @@ if __name__ == "__main__":
             current_qn_num =  int(row[0])
             current_option_index = 0
 
-        option_text = row[2]
-
         position_score = None
-        i = 3
-        for c in row[3:]: # loop through each column
+        i = first_stay
+        for c in row[first_stay:]: # loop through each column
             if csv_data[0][i] == "Experts": 
                 break
 
-            if i % 2 == 1: # odd cols are position scores
+            if i % 2 == 0: # even cols are position scores
                 current_campaign_id = get_campaign_id_by_name(campaigns, org_names_row[i])
                 position_score = extract_pos_score(c)
             else:

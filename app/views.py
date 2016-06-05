@@ -23,12 +23,29 @@ def fb_share_image(image):
 
 @app.route("/")
 def index():
-    return render_template("index.html", trans=translations, fb_share_image=fb_share_image("neutral"))
+    qn_types = set()
+    for qn_id, q in questions.iteritems():
+        for t in q["types"]:
+            qn_types.add(t)
+
+    qn_types = sorted(list(qn_types))
+
+    half_pt = len(qn_types) / 2 + 1
+    qn_types_first_half = qn_types[:half_pt]
+    qn_types_second_half = qn_types[half_pt:] + ["All of the above"]
+
+    return render_template("index.html", 
+            qn_types_first_half = qn_types_first_half,
+            qn_types_second_half = qn_types_second_half,
+            trans = translations, 
+            fb_share_image = fb_share_image("neutral"))
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html", trans=translations, fb_share_image=fb_share_image("neutral"))
+    return render_template("about.html", 
+            trans = translations, 
+            fb_share_image = fb_share_image("neutral"))
 
 
 def get_quiz_responses():
@@ -58,25 +75,43 @@ def get_latest_qn_num(responses):
         return 1
 
 
-def clear_response_data():
+def clear_response_session_data():
     session.pop("culm_responses", None)
 
 
-@app.route("/quiz/", methods=["GET", "POST"])
+@app.route("/quiz/", methods=["POST"])
 def quiz():
-    #TODO: assert code
-
     qn_id = None
-    this_response = None
+    this_response = request.form.lists()
 
-    # check the session var for responses to the prev qns
-    responses_so_far = get_quiz_responses()
+    # check if request came from front page
+    is_first_qn = False
+    for r in this_response:
+        if r[0] == "front_page":
+            is_first_qn = True
 
-    if request.method == "GET":
-        clear_response_data()
+    if is_first_qn:
         qn_id = 0
-    elif request.method == "POST":
-        this_response = request.form.lists()
+        clear_response_session_data()
+
+        # set the importance response var for all qns
+        impt_types = []
+        for r in this_response:
+            if r[0] == "type":
+                impt_types = r[1]
+                break
+
+        importance = []
+        for qn_num, q in questions.iteritems():
+            for t in q["types"]:
+                if t in impt_types:
+                    importance.append(("importance_" + str(qn_num), [u"on"]))
+
+        update_stored_responses(importance)
+
+    else:
+        # check the session var for responses to the prev qns
+        responses_so_far = get_quiz_responses()
 
         found_qn_id = False
         for x in this_response:
@@ -96,7 +131,7 @@ def quiz():
     # print "Response", this_response
     # print "All responses so far:", get_quiz_responses()
     # print "------------------------\n"
-    
+
     return render_template("quiz.html", 
                            question=questions[qn_id],
                            qn_id=qn_id,
@@ -114,14 +149,13 @@ def results():
         print "culm_responses not found"
         return template_500()
     else:
-        clear_response_data()
+        clear_response_session_data()
 
     # check if all qn_ids are in the response
     qn_ids = sorted([int(x[1][0]) for x in all_responses if x[0] == "qn_id"])
     correct_qn_ids = questions.keys()
     if correct_qn_ids != qn_ids:
-        print "Not all qn_ids present"
-        print qn_ids
+        print "Not all qn_ids present:", qn_ids
         return template_500()
 
     code = ranking.encode(ranking.calculate(all_responses))

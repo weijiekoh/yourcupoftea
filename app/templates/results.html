@@ -1,10 +1,6 @@
 {% extends "layout.html" %}
 {% block title %}Your Results{% endblock %}
 {% block head %}
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"/>-->
-<link href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" rel="stylesheet" />
-
-
 <meta property="og:title" content="What's your cup of tea?" />
 <meta property="og:url" content="{{request.base_url}}" />
 <meta property="og:image" content="{{fb_share_image}}" />
@@ -89,7 +85,7 @@
     <div class = "col-md-4 col-md-offset-2 campaign">
         <h3>Remain</h3>
         {% for campaign_id, score in remain_scores %}
-        <div class="collection">
+        <div class="collection {% if loop.last %}no_bottom_border{% endif%}">
             <div class="col-sm-5">
                 <img src="/static/img/logos/{{campaigns[campaign_id].initials}}.png" 
                      alt="{{campaigns[campaign_id].name}}" />

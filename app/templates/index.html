@@ -20,18 +20,70 @@ body{
     </div>
     #}
     <div class="col-md-6 col-md-offset-3 queen_image_parent">
-        <a href="/quiz/">
-            <img src="/static/img/index.png" class="queen_image" alt="What's your cup of tea?"/>
-        </a>
-    </div>
-    <div class="col-md-8 col-md-offset-2 index_btn_and_prompt">
-        <a href="/quiz">
-            <h2>Find out where you stand on the EU Referendum.</h2>
-            <button class="btn blue lighten-1 standard_btn"
-                type="button">
-                {{trans["index"]["take_quiz"]["en"]}}
-            </button>
-        </a>
+		<img src="/static/img/index.png" class="queen_image" alt="What's your cup of tea?"/>
+		<h2>Find out where you stand on the EU Referendum.</h2>
     </div>
 </div>
+
+<div class="row text-center">
+    <div class="col-md-8 col-md-offset-2">
+        <span class="matter_most">Which issues matter most to you?</span>
+    </div>
+</div>
+
+<form method="POST" action="/quiz/">
+	<input type="hidden" name="front_page" value="" />
+    <div class="row take_quiz text-center">
+        <div class="col-sm-5 col-sm-offset-1 col-md-3 col-md-offset-3 impt_types">
+            {% for type in qn_types_first_half %}
+            <div class="type_item">
+                <input type="checkbox" class="type_checkbox filled-in" 
+                                       name="type" value="{{type}}"
+                                       id="type_{{loop.index0}}" />
+                <label for="type_{{loop.index0}}">{{type}}</label>
+            </div>
+            {% endfor %}
+        </div>
+            
+        <div class="col-sm-5 col-md-3 impt_types">
+            {% for type in qn_types_second_half %}
+            <div class="type_item">
+                <input 
+                 {% if type == "All of the above" %}
+                 class="filled-in type_all_above"
+                 {% else %}
+                 class="filled-in type_checkbox"
+				 {% endif %}
+				 type="checkbox"
+				 name="type" value="{{type}}"
+			     id="type_{{loop.index0 + qn_types_second_half|length}}" />
+                <label for="type_{{loop.index0 + qn_types_second_half|length}}">{{type}}</label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row take_quiz text-center">
+        <div class="col-md-8 col-md-offset-2 index_btn_and_prompt">
+            <a href="/quiz">
+                <button class="btn blue lighten-1 standard_btn"
+                        type="submit">
+                    {{trans["index"]["take_quiz"]["en"]}}
+                </button>
+            </a>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+{% block bottom %}
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            $(".type_all_above").click(function(){
+                var a_checked = $(this).is(":checked");
+                $(".type_checkbox").prop('checked', a_checked);
+            });
+        });
+
+    </script>
 {% endblock %}

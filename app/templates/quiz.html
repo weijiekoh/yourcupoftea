@@ -14,7 +14,7 @@
 <script type="text/javascript" 
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js">
 </script>
-<script type="text/javascript" src="/static/js/jquery.hotkeys.js"></script>
+{#<script type="text/javascript" src="/static/js/jquery.hotkeys.js"></script>#}
 {% endblock %}
 
 {% block content %}
@@ -44,12 +44,11 @@
 
     {# Controls #}
     <div id="quiz_controls">
+        {#
         <div class="row">
         <!-- Importance checkbox -->
             <div class="col-md-3 col-md-offset-6 importance_parent">
-                <div class="importance card 
-                            option_card option_container 
-                            red lighten-1">
+                <div class="importance card option_container red lighten-1">
                     <input type="checkbox" 
                            class="with-gap filled-in" 
                            id="filled-in-box" 
@@ -58,18 +57,19 @@
                 </div>
             </div>
         </div>
-
+        #}
         <div class="row">
-        <!-- Selects -->
+            {# Selects #}
             <div class="col-md-6 col-md-offset-3">
                 <div class="pick_one_option_container option_container">
                     {% for c in question.options %}
                         {% set input_id = "radio_" ~ qn_id ~ "_" ~ loop.index0 %}
                         {% set name = "radio_" ~ qn_id %}
                         <div class="row">
-                            <div class=" option_card card-panel blue">
-                                <input id="{{input_id}}" name="{{name}}" 
+                            <div class="option_radio option_card card-panel blue">
+                                <input id="{{input_id}}" 
                                 class="with-gap"
+                                name="{{name}}" 
                                 value="{{loop.index0}}" 
                                 type="radio" />
                                 <label for="{{input_id}}" class="r_label">{{c.text}}</label>
@@ -121,30 +121,17 @@
             document.styleSheets[0].addRule(".option_card label:before", "display:none");
 
             // click anyware on option_card to select radio and show the expln
-            $(".option_card").click(function(){
+            $(".option_radio").click(function(){
                 var input = $(this).find("input")[0];
-                var checked = $(input).is(":checked");
-                $(input).prop("checked", !checked);
+                $(input).prop("checked", true);
                 $("#quiz_controls").hide();
                 $("#ok_btn").hide();
                 $(".explanation").show();
             });
             // shortcut keys
 
-            $(document).bind('keydown', 'z', submit_form);
-
             // hide all expln divs at the start
             $(".explanation").hide();
-
-            /*
-            // show explanation action
-            $(".show_expln_btn").click(function(){
-                $("#quiz_controls").hide();
-                $("#ok_btn").hide();
-                $(".explanation").show();
-            });
-            */
-
         });
     </script>
 {% endblock %}
