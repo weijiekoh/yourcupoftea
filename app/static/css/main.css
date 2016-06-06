@@ -244,6 +244,10 @@ h2{
 	padding:0px !important;
 }
 
+.option_card label:before{
+	display:none;
+}
+
 .option_container {
 	width:100%;
 	cursor:pointer !important;
@@ -381,6 +385,10 @@ h2{
 		padding-bottom:0px;
 		margin-top:5px;
 		margin-bottom:0px;
+	}
+
+	.type_item{
+		margin-top:5px;
 	}
 
 	.like_link{

@@ -23,6 +23,7 @@ def fb_share_image(image):
 
 @app.route("/")
 def index():
+    clear_response_session_data()
     qn_types = set()
     for qn_id, q in questions.iteritems():
         for t in q["types"]:
@@ -55,13 +56,13 @@ def get_quiz_responses():
         return []
 
 
-def update_stored_responses(data):
+def update_stored_responses(data, replacement=[]):
     # r = [x for x in data if x[0] != "qn_id"]
     r = data
     if "culm_responses" in session:
-        session["culm_responses"] += r
+        session["culm_responses"] += replacement + r
     else:
-        session["culm_responses"] = r
+        session["culm_responses"] = replacement + r
 
 
 def clear_response_session_data():
@@ -80,9 +81,6 @@ def get_campaign_agreement(campaign_id, qn_id):
 
     max_score = max(possible_scores)
 
-    if campaign_id == 4:
-        print max_score
-
     if max_score == 0:
         return 0
 
@@ -94,9 +92,15 @@ def get_campaign_agreement(campaign_id, qn_id):
             elif option["text"].startswith("No"):
                 return 1
 
-@app.route("/quiz/", methods=["POST"])
+
+@app.route("/quiz/", methods=["GET", "POST"])
 def quiz():
+    if request.method == "GET":
+        return redirect("/")
+
     qn_id = None
+    responses_so_far = None
+
     this_response = request.form.lists()
 
     # check if request came from front page
@@ -106,7 +110,6 @@ def quiz():
             is_first_qn = True
 
     if is_first_qn:
-        print "First qn"
         clear_response_session_data()
 
         # set the importance response var for all qns
@@ -129,6 +132,7 @@ def quiz():
         # check the session var for responses to the prev qns
         responses_so_far = get_quiz_responses()
 
+        # determine the current qn_id
         found_qn_id = False
         for x in this_response:
             if x[0] == "qn_id":
@@ -142,11 +146,11 @@ def quiz():
         # store this response to the session var
         update_stored_responses(this_response)
 
-    # print "------------------------"
-    # print "Prev question", qn_id
-    # print "Response", this_response
-    # print "All responses so far:", get_quiz_responses()
-    # print "------------------------\n"
+    print "------------------------"
+    print "Prev question", qn_id
+    print "Response", this_response
+    print "All responses so far:", responses_so_far
+    print "------------------------\n"
 
     return render_template("quiz.html", 
                            question=questions[qn_id],
@@ -187,7 +191,6 @@ def agreement():
         s = {"campaign_name": campaigns[campaign_id]["name"],
              "agreement": get_campaign_agreement(campaign_id, qn_id)
              }
-        print s
         leave_agreement.append(s)
 
     all_agreement = {"remain_agreement":remain_agreement,
@@ -199,11 +202,6 @@ def agreement():
 def results():
     this_response = request.form.lists()
     all_responses = get_quiz_responses() + this_response
-    
-    print "---------------"
-    print "All responses", all_responses
-    print "---------------"
-
 
     if "culm_responses" not in session:
         print "culm_responses not found"
@@ -214,11 +212,20 @@ def results():
     # check if all qn_ids are in the response
     qn_ids = sorted([int(x[1][0]) for x in all_responses if x[0] == "qn_id"])
     correct_qn_ids = questions.keys()
-    if correct_qn_ids != qn_ids:
-        print "Not all qn_ids present:", qn_ids
+
+    if len(correct_qn_ids) > len(qn_ids):
+        print "not all qns answered:", qn_ids
         clear_response_session_data()
         return template_500()
+    elif len(correct_qn_ids) < len(qn_ids):
+        all_responses = remove_duplicates(all_responses)
 
+    print "---------------"
+    print "Results"
+    print "All responses", all_responses
+    print "---------------"
+
+ 
     code = ranking.encode(ranking.calculate(all_responses))
     return redirect(url_for("results") + "/" + code)
 
@@ -288,3 +295,23 @@ def template_500():
 @app.errorhandler(500)
 def error_500(e):
     return template_500()
+
+
+def remove_duplicates(all_responses):
+    fixed = []
+    r = "radio_"
+    for qn_id in reversed(questions.keys()):
+        for n, v in reversed(all_responses):
+            if n == "qn_id" and int(v[0]) == qn_id:
+                fixed.append((n,v))
+                break
+
+    for qn_id in reversed(questions.keys()):
+        for n, v in reversed(all_responses):
+            if n.startswith(r):
+                if int(n[len(r):]) == qn_id:
+                    fixed.append((n,v))
+                    break
+
+    fixed.reverse()
+    return fixed
