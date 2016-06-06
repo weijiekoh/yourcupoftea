@@ -117,7 +117,6 @@ def quiz():
         qn_id = 0
 
     else:
-        print "Not first qn"
         # check the session var for responses to the prev qns
         responses_so_far = get_quiz_responses()
 
