@@ -159,6 +159,7 @@ if __name__ == "__main__":
         expert_names[i] = gen_org_entry(c, "expert")
         i += 1
 
+
     # Extract party positions
     print "Extracting party positions"
 
@@ -211,15 +212,16 @@ if __name__ == "__main__":
         if c == "Experts":
             expert_start_col = i
         i += 1 
-    
-    i = 0
+
 
     current_qn_num = None
     current_option_index = 0
     current_expert_id = None
-    for row in csv_data[2:]:
-        j = 0
-        for c in row[expert_start_col:]:
+
+    i = 0
+    for row in csv_data[2:]: #loop through all rows
+        j = expert_start_col 
+        for c in row[expert_start_col:]: #loop through each expert col
             if re.match("\d{1,2}", row[0]):
                 current_qn_num =  int(row[0])
                 current_option_index = 0

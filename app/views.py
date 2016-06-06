@@ -68,22 +68,31 @@ def clear_response_session_data():
     session.pop("culm_responses", None)
 
 
-def get_campaign_stance(campaign_id, qn_id, option_id):
-    # returns 2 for strong support, 1 for partial/implied support, 
-    # 0 for no mention/NA
-    e = None
-    for x in questions[qn_id]["options"][option_id]["campaign_support"]:
-        if x["id"] == campaign_id:
-            e = x["position"]
-            break
-    
-    if e == 20:
-        return 2
-    elif e > 0 and e < 20:
-        return 1
-    else:
+def get_campaign_agreement(campaign_id, qn_id):
+    # returns:
+    # 2 for agree
+    # 1 for disagree
+    # 0 for no mention
+
+    possible_scores = []
+    for option in questions[qn_id]["options"]:
+        possible_scores.append(option["campaign_support"][campaign_id]["position"])
+
+    max_score = max(possible_scores)
+
+    if campaign_id == 4:
+        print max_score
+
+    if max_score == 0:
         return 0
 
+    e = None
+    for option in questions[qn_id]["options"]:
+        if option["campaign_support"][campaign_id]["position"] == max_score:
+            if option["text"].startswith("Yes"):
+                return 2
+            elif option["text"].startswith("No"):
+                return 1
 
 @app.route("/quiz/", methods=["POST"])
 def quiz():
@@ -147,10 +156,10 @@ def quiz():
                            fb_share_image=fb_share_image("neutral"))
 
 
-# @app.route("/stance/<int:qn_id>/<int:option_num>", methods=["POST"])
-@app.route("/_stance/")
-def stance():
-    # data for campaign stance explanations
+# @app.route("/agreement/<int:qn_id>/<int:option_num>", methods=["POST"])
+@app.route("/_agreement/")
+def agreement():
+    # data for campaign agreement explanations
     # make 2 lists: stay/leave -> [{campaign name, full/none/halfway}]
 
     qn_id = request.args.get("qn_id", -1, type=int)
@@ -165,25 +174,26 @@ def stance():
         elif c["type"] == "leave":
             leave.append(campaign_id)
     
-    remain_stances = []
-    leave_stances = []
+    remain_agreement = []
+    leave_agreement = []
 
     for campaign_id in remain:
         s = {"campaign_name": campaigns[campaign_id]["name"],
-             "stance": get_campaign_stance(campaign_id, qn_id, option_num)
+             "agreement": get_campaign_agreement(campaign_id, qn_id)
              }
-        remain_stances.append(s)
+        remain_agreement.append(s)
 
     for campaign_id in leave:
         s = {"campaign_name": campaigns[campaign_id]["name"],
-             "stance": get_campaign_stance(campaign_id, qn_id, option_num)
+             "agreement": get_campaign_agreement(campaign_id, qn_id)
              }
-        leave_stances.append(s)
+        print s
+        leave_agreement.append(s)
 
-    all_stances = {"remain_stances":remain_stances,
-                   "leave_stances":leave_stances}
+    all_agreement = {"remain_agreement":remain_agreement,
+                   "leave_agreement":leave_agreement}
 
-    return jsonify(all_stances)
+    return jsonify(all_agreement)
 
 @app.route("/results", methods=["POST"])
 def results():
