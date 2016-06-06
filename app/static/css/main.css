@@ -216,6 +216,9 @@ h2{
 	background-color:#fff;
 }
 
+.progress{
+	height:5px !important;
+}
 
 .explanation{
 	margin-top: 10px;
