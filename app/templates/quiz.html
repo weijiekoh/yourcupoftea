@@ -40,24 +40,50 @@
 {% else %}
 <form method="POST" action="/quiz/" id="quiz_form">
 {% endif %}
+    {# Expln #}
+    <div class="row explanation text-center">
+        <div class="col-md-4 col-md-offset-2 expln_remain">
+            <div class="col-md-12 text-right expln_side">
+                <h2>Remain</h2>
+                <ul id="remain_ul" class="collection text-left">
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4 expln_leave">
+            <div class="col-md-12 text-left expln_side">
+                <h2>Leave</h2>
+                <ul id="leave_ul" class="collection text-">
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-offset-0 col-md-12 legend">
+            <p>
+                <i class="fa fa-star"></i> Explicit support &nbsp;&nbsp;&nbsp; 
+                <i class="fa fa-star-half-o"></i> Implied &nbsp;&nbsp;&nbsp; 
+                <i class="fa fa-minus"></i> No mention &nbsp;&nbsp;&nbsp; 
+            </p>
+        </div>
+
+        <div class="col-md-offset-2 col-md-8">
+            <div class="col-md-offset-4 col-md-4">
+                <button type="submit" 
+                        class="btn red lighten-1 standard_btn show_expln_btn">
+                    {% if qn_id == num_qns - 1 %}
+                        View my results
+                    {% else %}
+                        Next Question
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+    </div>
+
     <input type="hidden" name="qn_id" value="{{qn_id}}" />
 
     {# Controls #}
     <div id="quiz_controls">
-        {#
-        <div class="row">
-        <!-- Importance checkbox -->
-            <div class="col-md-3 col-md-offset-6 importance_parent">
-                <div class="importance card option_container red lighten-1">
-                    <input type="checkbox" 
-                           class="with-gap filled-in" 
-                           id="filled-in-box" 
-                           name="importance_{{qn_id}}" />
-                    <label for="filled-in-box">This issue is especially important to me.</label>
-                </div>
-            </div>
-        </div>
-        #}
         <div class="row">
             {# Selects #}
             <div class="col-md-6 col-md-offset-3">
@@ -80,33 +106,6 @@
             </div>
         </div>
     </div>
-
-    {#
-    <div class="row text-center" id="ok_btn">
-        <div class="col-md-offset-4 col-md-4">
-            <button type="button" class="btn red lighten-1 standard_btn show_expln_btn">OK</button>
-        </div>
-    </div>
-    #}
-
-    {# Expln #}
-    <div class="row explanation text-center">
-        <div class="col-md-offset-2 col-md-8">
-            <p>
-            The campaigns' positions will appear here.
-            </p>
-            <div class="col-md-offset-4 col-md-4">
-                <button type="submit" 
-                        class="btn red lighten-1 standard_btn show_expln_btn">
-                    {% if qn_id == num_qns - 1 %}
-                        View my results
-                    {% else %}
-                        Next Question
-                    {% endif %}
-                </button>
-            </div>
-        </div>
-    </div>
 </form>
 {% endblock %}
 
@@ -116,22 +115,79 @@
             $("#quiz_form").submit();
         }
 
+        var add_stance = function(type, name, stance){
+            var str = '<li class="collection-item"> ' + name + '<span class="stance">';
+
+            if (stance == "2"){
+                str += '<i class="fa fa-star" aria-hidden="true"></i>';
+            }
+            else if (stance == "1"){
+                str += '<i class="fa fa-star-half-o" aria-hidden="true"></i>';
+            }
+            else {
+                str += '<i class="fa fa-minus" aria-hidden="true"></i>';
+            }
+            str += '</span></li>';
+
+            if (type == "remain"){
+                $("#remain_ul").append(str);
+            }
+            else if (type == "leave"){
+                $("#leave_ul").append(str);
+            }
+        }
+
         $(document).ready(function() {
+            // hide all expln divs at the start
+            $(".explanation").hide();
+
             // hide radio buttons
-            document.styleSheets[0].addRule(".option_card label:before", "display:none");
+            document.styleSheets[0].addRule(".option_card label:before",
+                                            "display:none");
+            var has_selected = false;
 
             // click anyware on option_card to select radio and show the expln
             $(".option_radio").click(function(){
-                var input = $(this).find("input")[0];
-                $(input).prop("checked", true);
                 $("#quiz_controls").hide();
-                $("#ok_btn").hide();
                 $(".explanation").show();
-            });
-            // shortcut keys
+                $("#ok_btn").hide();
 
-            // hide all expln divs at the start
-            $(".explanation").hide();
+                //if ($("#remain_ul").children().length == 0){
+                if (!has_selected){
+                    has_selected = true;
+                    if (! $(input).prop("checked")){
+                        var input = $(this).find("input")[0];
+                        $(input).prop("checked", true);
+                        var option_num = $(input).attr("id").split("_")[2];
+                        var qn_id = $(input).attr("name").split("_")[1];
+
+
+                        // retrieve stances
+                        $.getJSON("/_stance", {
+                            qn_id:qn_id,
+                            option_num: option_num }, 
+                            function(data){
+                                var remain = data["remain_stances"];
+                                for (r in remain){
+                                    var d = remain[r];
+                                    var name = d["campaign_name"];
+                                    var stance = d["stance"];
+                                    add_stance("remain", name, stance);
+                                }
+
+                                var leave = data["leave_stances"];
+                                for (r in leave){
+                                    var d = leave[r];
+                                    var name = d["campaign_name"];
+                                    var stance = d["stance"];
+                                    add_stance("leave", name, stance);
+                                }
+                            }
+                        );
+
+                    }
+                }
+            });
         });
     </script>
 {% endblock %}

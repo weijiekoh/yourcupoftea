@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, jsonify
 from app.qns_parties_positions import questions, campaigns, experts
 from app.translations import translations
 from app import ranking
@@ -55,10 +55,6 @@ def get_quiz_responses():
         return []
 
 
-def set_quiz_responses(data):
-    session["culm_responses"] = data
-
-
 def update_stored_responses(data):
     # r = [x for x in data if x[0] != "qn_id"]
     r = data
@@ -68,15 +64,25 @@ def update_stored_responses(data):
         session["culm_responses"] = r
 
 
-def get_latest_qn_num(responses):
-    if len(responses) == 0:
-        return 0
-    else:
-        return 1
-
-
 def clear_response_session_data():
     session.pop("culm_responses", None)
+
+
+def get_campaign_stance(campaign_id, qn_id, option_id):
+    # returns 2 for strong support, 1 for partial/implied support, 
+    # 0 for no mention/NA
+    e = None
+    for x in questions[qn_id]["options"][option_id]["campaign_support"]:
+        if x["id"] == campaign_id:
+            e = x["position"]
+            break
+    
+    if e == 20:
+        return 2
+    elif e > 0 and e < 20:
+        return 1
+    else:
+        return 0
 
 
 @app.route("/quiz/", methods=["POST"])
@@ -91,7 +97,7 @@ def quiz():
             is_first_qn = True
 
     if is_first_qn:
-        qn_id = 0
+        print "First qn"
         clear_response_session_data()
 
         # set the importance response var for all qns
@@ -102,14 +108,16 @@ def quiz():
                 break
 
         importance = []
-        for qn_num, q in questions.iteritems():
+        for qn_id, q in questions.iteritems():
             for t in q["types"]:
                 if t in impt_types:
-                    importance.append(("importance_" + str(qn_num), [u"on"]))
+                    importance.append(("importance_" + str(qn_id), [u"on"]))
 
         update_stored_responses(importance)
+        qn_id = 0
 
     else:
+        print "Not first qn"
         # check the session var for responses to the prev qns
         responses_so_far = get_quiz_responses()
 
@@ -126,11 +134,12 @@ def quiz():
         # store this response to the session var
         update_stored_responses(this_response)
 
-    # print "------------------------"
-    # print "Prev question", qn_id
-    # print "Response", this_response
-    # print "All responses so far:", get_quiz_responses()
-    # print "------------------------\n"
+    print "------------------------"
+    print "Prev question", qn_id
+    print "Response", this_response
+    print "All responses so far:", get_quiz_responses()
+    print "------------------------\n"
+    
 
     return render_template("quiz.html", 
                            question=questions[qn_id],
@@ -139,6 +148,44 @@ def quiz():
                            trans=translations, lang="en", 
                            fb_share_image=fb_share_image("neutral"))
 
+
+# @app.route("/stance/<int:qn_id>/<int:option_num>", methods=["POST"])
+@app.route("/_stance/")
+def stance():
+    # data for campaign stance explanations
+    # make 2 lists: stay/leave -> [{campaign name, full/none/halfway}]
+
+    qn_id = request.args.get("qn_id", -1, type=int)
+    option_num = request.args.get("option_num", -1, type=int)
+
+    remain = []
+    leave = []
+
+    for campaign_id, c in campaigns.iteritems():
+        if c["type"] == "remain":
+            remain.append(campaign_id)
+        elif c["type"] == "leave":
+            leave.append(campaign_id)
+    
+    remain_stances = []
+    leave_stances = []
+
+    for campaign_id in remain:
+        s = {"campaign_name": campaigns[campaign_id]["name"],
+             "stance": get_campaign_stance(campaign_id, qn_id, option_num)
+             }
+        remain_stances.append(s)
+
+    for campaign_id in leave:
+        s = {"campaign_name": campaigns[campaign_id]["name"],
+             "stance": get_campaign_stance(campaign_id, qn_id, option_num)
+             }
+        leave_stances.append(s)
+
+    all_stances = {"remain_stances":remain_stances,
+                   "leave_stances":leave_stances}
+
+    return jsonify(all_stances)
 
 @app.route("/results", methods=["POST"])
 def results():
@@ -156,6 +203,7 @@ def results():
     correct_qn_ids = questions.keys()
     if correct_qn_ids != qn_ids:
         print "Not all qn_ids present:", qn_ids
+        clear_response_session_data()
         return template_500()
 
     code = ranking.encode(ranking.calculate(all_responses))

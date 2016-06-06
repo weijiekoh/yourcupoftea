@@ -24,6 +24,11 @@ def decode(s):
 
 
 def _calculate_campaign_score(campaign_id, responses):
+    """
+    Calculates the score for this particular campaign based on the 
+    responses given
+    """
+
     # sum deviation for all questions
     total_max_dev = 0
     total_user_dev = 0
@@ -58,6 +63,7 @@ def _calculate_campaign_score(campaign_id, responses):
 
     # Final percentage = 100 - (total deviation / max possible total deviation)
     return int(round(100 - (total_user_dev / total_max_dev * 100)))
+
 
 def calculate(raw_responses):
     # sort into dict:

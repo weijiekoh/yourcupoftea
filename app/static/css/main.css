@@ -188,8 +188,9 @@ h2{
 }
 
 .qn_text{
-	font-size:30pt;
+	font-size:28pt;
 	margin:0px;
+	margin-bottom:10px;
 }
 
 .qn_count{
@@ -222,27 +223,21 @@ h2{
 	padding:10px;
 }
 
-.importance{
-	margin-top:30px;
-	margin-bottom:30px;
+.expln_remain{
+	border-right:solid 5px;
+	border-color:#999999;
 }
 
-.importance label{
-	color:#fff !important;
-	font-weight:bold;
-	margin-left:-10px !important;
+.stance{
+	float:right;
 }
 
-.importance label:after{
-	border-color:#fff !important;
+.legend {
+	margin-top:10px;
 }
 
-.importance label:after{
-	margin-top:5px !important;
-}
-
-.importance label:before{
-	margin-top:7px !important;
+.legend p{
+	text-align:center !important;
 }
 
 .option_card{
@@ -399,6 +394,11 @@ h2{
 		padding-right:0px !important;
 	}
 
+	.queen_image_parent h2{
+		padding-left:5px;
+		padding-right:5px;
+	}
+
 	.standard_btn{
 		width:90%;
 		font-size:25pt;
@@ -458,6 +458,19 @@ h2{
 	.qn_text{
 		font-size:18pt;
 		text-align:left;
+		margin-bottom:5px;
+	}
+
+	.expln_remain h2{
+		text-align:left !important;
+	}
+
+	.expln_remain {
+		border:0px;
+	}
+
+	.expln_leave{
+
 	}
 
 	.importance{
@@ -517,18 +530,14 @@ h2{
 		border:0px;
 		padding-bottom:5px;
 		border-bottom: 1px solid #e0e0e0;
-
 	}
 
 	.no_bottom_border{
 		border-bottom:0px !important;
 	}
 
-	.btn-whatsapp,
-	.btn-facebook,
-	.btn-twitter {
+	.btn-whatsapp, .btn-facebook, .btn-twitter {
 		font-size:9pt !important;
 		margin-top:5px;
 	}
-
 }
