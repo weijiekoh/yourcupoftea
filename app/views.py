@@ -134,12 +134,11 @@ def quiz():
         # store this response to the session var
         update_stored_responses(this_response)
 
-    print "------------------------"
-    print "Prev question", qn_id
-    print "Response", this_response
-    print "All responses so far:", get_quiz_responses()
-    print "------------------------\n"
-    
+    # print "------------------------"
+    # print "Prev question", qn_id
+    # print "Response", this_response
+    # print "All responses so far:", get_quiz_responses()
+    # print "------------------------\n"
 
     return render_template("quiz.html", 
                            question=questions[qn_id],
@@ -191,6 +190,11 @@ def stance():
 def results():
     this_response = request.form.lists()
     all_responses = get_quiz_responses() + this_response
+    
+    print "---------------"
+    print "All responses", all_responses
+    print "---------------"
+
 
     if "culm_responses" not in session:
         print "culm_responses not found"

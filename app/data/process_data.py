@@ -211,9 +211,9 @@ if __name__ == "__main__":
         if c == "Experts":
             expert_start_col = i
         i += 1 
-
     
     i = 0
+
     current_qn_num = None
     current_option_index = 0
     current_expert_id = None
