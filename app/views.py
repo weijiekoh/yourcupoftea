@@ -226,7 +226,9 @@ def results():
     print "---------------"
 
  
-    code = ranking.encode(ranking.calculate(all_responses))
+    c = ranking.calculate(all_responses)
+    print c
+    code = ranking.encode(c)
     return redirect(url_for("results") + "/" + code)
 
 
@@ -236,39 +238,34 @@ def results_for_fb(result_str):
     remain = []
     leave = []
     
-    total_remain_score = 0
-    total_leave_score = 0
-
     for campaign_id, campaign_info in campaigns.iteritems():
         if campaign_info["type"] == "remain":
             remain.append((campaign_id, rankings[campaign_id]))
-            total_remain_score += rankings[campaign_id]
         if campaign_info["type"] == "leave":
             leave.append((campaign_id, rankings[campaign_id]))
-            total_leave_score += rankings[campaign_id]
 
     # sort remain and leave
     remain = sorted(remain, key=lambda x: x[1], reverse=True)
     leave = sorted(leave, key=lambda x: x[1], reverse=True)
 
-    average_remain_score = total_remain_score / len(remain)
-    average_leave_score = total_leave_score / len(leave)
+    remain_big_score = rankings["rb"]
+    leave_big_score = rankings["lb"]
 
     image = None
-    if abs((average_remain_score - average_leave_score)) <= 10:
+    if abs((remain_big_score - leave_big_score)) <= 10:
         image = "neutral"
-    elif average_remain_score < average_leave_score:
+    elif remain_big_score < leave_big_score:
         image = "leave"
     else:
         image = "remain"
 
     r = "My EU referendum quiz results: " +\
-                            str(average_remain_score) + "% remain, " +\
-                            str(average_leave_score) + "% leave."
+                            str(remain_big_score) + "% remain, " +\
+                            str(leave_big_score) + "% leave."
 
     return render_template("results.html", 
-                           average_remain_score=average_remain_score,
-                           average_leave_score=average_leave_score,
+                           remain_big_score=remain_big_score,
+                           leave_big_score=leave_big_score,
                            remain_scores=remain, 
                            result_share_str=r,
                            leave_scores=leave, 

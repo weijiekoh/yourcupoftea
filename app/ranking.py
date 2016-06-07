@@ -58,6 +58,49 @@ def _calculate_campaign_score(campaign_id, responses):
     return int(round(100.0 - 100.0 * (total_user_dev / float(total_max_dev))))
 
 
+def _which_side(qn_id, option_num):
+    # return 2 for remain, 1 for leave
+    num_remain_support = 0
+    num_leave_support = 0
+    for campaign_id, c in campaigns.iteritems():
+        if c["type"] == "remain":
+            position = questions[qn_id]["options"][option_num]\
+                    ["campaign_support"][campaign_id]["position"]
+
+            if position > 0:
+                num_remain_support += 1
+
+        elif c["type"] == "leave":
+            position = questions[qn_id]["options"][option_num]\
+                    ["campaign_support"][campaign_id]["position"]
+
+            if position > 0:
+                num_leave_support += 1
+
+    if num_remain_support > num_leave_support:
+        return 2
+    elif num_leave_support > num_remain_support:
+        return 1
+
+
+def _calculate_big_scores(responses):
+    num_remain_answers = 0
+    num_leave_answers = 0
+    num_neutral_answers = 0
+
+    for qn_id, v in responses.iteritems():
+        side = _which_side(qn_id, int(v["answer"]))
+        if side == 2:
+            num_remain_answers += 1
+        elif side == 1:
+            num_leave_answers += 1
+
+    remain_big_score = int(round(100.0 * (float(num_remain_answers) / float((len(questions))))))
+    leave_big_score = int(round(100.0 * (float(num_leave_answers) / float((len(questions))))))
+
+    return remain_big_score, leave_big_score
+
+
 def calculate(raw_responses):
     # sort into dict:
     # {qn_id: {"answer", "importance"}}
@@ -103,31 +146,19 @@ def calculate(raw_responses):
         campaign_scores[campaign_id] = \
                 _calculate_campaign_score(campaign_id, responses)
 
-    # return dict: {campaign_id: score}
+    # return dict: {campaign_id: score, rb, lb}
+    # rb /lb = remain/leave big score. plain count.
+
+    rb, lb = _calculate_big_scores(responses)
+    campaign_scores["rb"] = rb
+    campaign_scores["lb"] = lb
     return campaign_scores
 
 
 if __name__ == "__main__":
-    sample_data = [('importance_0', [u'on']), ('importance_1', [u'on']), ('importance_2', [u'on']),
-            ('importance_3', [u'on']), ('importance_3', [u'on']), ('importance_4', [u'on']),
-            ('importance_5', [u'on']), ('importance_6', [u'on']), ('importance_7', [u'on']),
-            ('importance_8', [u'on']), ('importance_9', [u'on']), ('importance_10', [u'on']),
-            ('importance_11', [u'on']), ('importance_12', [u'on']), ('importance_13', [u'on']),
-            ('qn_id', [u'0']), ('radio_0', [u'1']),
-            ('qn_id', [u'1']), ('radio_1', [u'2']),
-            ('radio_2', [u'3']), ('qn_id', [u'2']),
-            ('radio_3', [u'3']), ('qn_id', [u'3']),
-            ('qn_id', [u'4']), ('radio_4', [u'3']),
-            ('qn_id', [u'5']), ('radio_5', [u'2']),
-            ('qn_id', [u'6']), ('radio_6', [u'1']),
-            ('qn_id', [u'7']), ('radio_7', [u'1']),
-            ('qn_id', [u'8']), ('radio_8', [u'1']),
-            ('qn_id', [u'9']), ('radio_9', [u'1']),
-            ('qn_id', [u'10']), ('radio_10', [u'3']),
-            ('qn_id', [u'11']), ('radio_11', [u'1']),
-            ('qn_id', [u'12']), ('radio_12', [u'5']),
-            ('qn_id', [u'13']), ('radio_13', [u'1'])]
-
+    sample_data = [('qn_id', [u'0']), ('radio_0', [u'2']), 
+                   ('qn_id', [u'1']), ('radio_1', [u'2']), 
+                   ('radio_2', [u'2']), ('qn_id', [u'2'])]
 
     result = calculate(sample_data)
     print result
