@@ -1,41 +1,23 @@
 {% extends "layout.html" %}
 {% block head %}
-<style>
-select{
-	display: inline;
-}
-</style>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-	$('select').material_select();
-	$(".chosen-select").chosen();
-
-});
-</script>
-
+	<script type="text/javascript" src="/static/js/constituencies.js"></script>
+	<script type="text/javascript" src="/static/js/materialize_autocomplete.js"></script>
+	<link rel="stylesheet" href="/static/css/materialize_autocomplete.css">
 {% endblock %}
 
 {% block content %}
-<select data-placeholder="Your Favorite Football Team" style="width:350px;" 
-	class="chosen-select input-field browser-default " tabindex="5">
-	<option value=""></option>
-	<optgroup label="NFC EAST">
-		<option>Dallas Cowboys</option>
-		<option>New York Giants</option>
-		<option>Philadelphia Eagles</option>
-		<option>Washington Redskins</option>
-	</optgroup>
-	<optgroup label="NFC NORTH">
-		<option>Chicago Bears</option>
-		<option>Detroit Lions</option>
-		<option>Green Bay Packers</option>
-		<option>Minnesota Vikings</option>
-	</optgroup>
-</select>
+	<div class="row">
+		<div class="input-field col-md-4">
+			<label class="active">State</label>
+			<input type="text" id="autocompleteState" class="autocomplete inputFields">
+
+		</div>
+	</div>
 
 
+	<script>
+
+$('#autocompleteState').data('array', get_constituencies());
+	</script>
 {% endblock %}

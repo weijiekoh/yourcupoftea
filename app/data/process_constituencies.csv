@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+import argparse
+import csv
+import pprint
+
+if __name__ == "__main__":
+    input_file = "constituencies.csv"
+
+    constituencies = []
+
+    with open(input_file, "rb") as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            constituencies.append(row[0])
+
+    pprint.pprint(constituencies)

@@ -236,10 +236,6 @@ h2{
 	margin-top:10px;
 }
 
-.legend p{
-	text-align:center !important;
-}
-
 .show_expln_btn_parent{
 	padding-left:0px !important;
 }
@@ -417,6 +413,10 @@ h2{
 	.take_quiz_btn{
 		width:90%;
 		font-size:25pt;
+	}
+
+	.legend p br{
+		display:inline;
 	}
 	
 	.result_card{
