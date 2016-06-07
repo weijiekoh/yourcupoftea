@@ -9,6 +9,7 @@ html {
 	color: #222;
 	font-size: 1em;
 	line-height: 1.4;
+	overflow-y: scroll;
 }
 
 ::-moz-selection {
@@ -223,7 +224,7 @@ h2{
 .explanation{
 	margin-top: 10px;
 	min-height:200px;
-	padding:10px;
+	padding:0px;
 }
 
 .expln_remain{
@@ -252,20 +253,18 @@ h2{
 }
 
 .option_container {
-	width:100%;
 	cursor:pointer !important;
 }
 
 .option_container label{
-	width:100% !important;
 	height:100% !important;
 	margin-top:20px;
 	margin-left:20px !important;
 	margin-bottom:0px;
+	padding-bottom:20px;
 	color:#fff;
 	font-size:14pt !important;
 	font-weight:normal;
-	padding-bottom:20px;
 }
 
 .r_label{
