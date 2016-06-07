@@ -10,11 +10,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.min.css" />
-
-<script type="text/javascript" 
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js">
 </script>
-{#<script type="text/javascript" src="/static/js/jquery.hotkeys.js"></script>#}
 {% endblock %}
 
 {% block content %}
@@ -31,10 +27,7 @@
         <h1 class="qn_text">{{question["text"]}}</h1>
     </div>
 </div>
-
-{# Submit to /results if it's the last qn, else submit 
-   to /quiz/n+1 #}
-
+{# Submit to /results if it's the last qn, else submit to /quiz/n+1 #}
 {% if qn_id == num_qns - 1 %}
 <form method="POST" action="/results" id="quiz_form">
 {% else %}
@@ -78,8 +71,8 @@
         </div>
         #}
 
-        <div class="col-md-offset-2 col-md-8">
-            <div class="col-md-offset-4 col-md-4 show_expln_btn_parent">
+        <div class="col-md-offset-0 col-md-12 text-center">
+            <div class="col-md-offset-0 col-md-12 show_expln_btn_parent">
                 <button type="submit" 
                         class="btn red lighten-1 standard_btn show_expln_btn">
                     {% if qn_id == num_qns - 1 %}
@@ -203,10 +196,4 @@
             });
         });
     </script>
-{% endblock %}
-
-{% block posthtml %}
-<!--FontAwesome-->
-<!--<link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css" />-->
-<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />-->
 {% endblock %}
