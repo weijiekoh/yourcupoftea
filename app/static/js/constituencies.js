@@ -591,7 +591,6 @@ var get_constituencies = function(){
  'Vale of Glamorgan 5',
  'Vauxhall',
  'Wakefield',
- 'WALES 7',
  'Wallasey',
  'Walsall North',
  'Walsall South',
@@ -647,7 +646,7 @@ var get_constituencies = function(){
  'Wyre Forest',
  'Wythenshawe and Sale East',
  'Yeovil',
- 'Ynys M\xc3\xb4n',
+ 'Ynys Môn',
  'York Central',
  'York Outer']
 }

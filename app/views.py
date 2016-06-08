@@ -20,7 +20,7 @@ def fb_share_image(image):
     domain = "{uri.scheme}://{uri.netloc}/".format(uri=u)
     return domain + "static/img/fb/" + image + ".png"
 
-@app.route("/demo_form")
+@app.route("/demo_form_349574")
 def demo():
     return render_template("demo_form.html", 
             fb_share_image = fb_share_image("neutral"))

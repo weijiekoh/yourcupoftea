@@ -268,6 +268,13 @@ h2{
 	padding-right:40px;
 }
 
+.demo_submit_btn{
+	font-size:18pt !important;
+	width:100%;
+	height:49px;
+	margin-top:0px;
+}
+
 .standard_btn{
 	margin-top:20px;
 	margin-bottom:30px !important;
@@ -283,23 +290,6 @@ h2{
 	font-size:14pt;
 }
 
-
-.demo_box{
-	background-color: #EFFBFF !important;
-	padding: 30px;
-	padding-top: 30px;
-	padding-bottom:30px;
-	border-radius: 25px;
-}
-
-.demo_box form{
-	font-size:12pt;
-}
-
-.demo_box select{
-	font-weight:normal !important;
-}
-
 .campaign img{
 	height:50px;
 }
@@ -308,6 +298,18 @@ h2{
 	font-size:14pt;
 	text-align:center;
 	font-weight:bold;
+}
+
+.demo_form .caret{
+	border:none;
+}
+
+#consti_filler{
+	display:none;
+}
+
+.before_taking .select-wrapper ul li{
+	font-size:10pt !important;	
 }
 
 .result_card{ 
@@ -421,6 +423,11 @@ h2{
 	
 	.result_card{
 		margin-bottom:0px;
+	}
+
+	#consti_filler{
+		height:800px;
+		z-index:-1;
 	}
 
 	.share_btns .share_site{

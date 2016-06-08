@@ -7,17 +7,72 @@
 {% endblock %}
 
 {% block content %}
-	<div class="row">
-		<div class="input-field col-md-4">
-			<label class="active">State</label>
-			<input type="text" id="autocompleteState" class="autocomplete inputFields">
-
-		</div>
+<div class="row demo_form">
+	<div class="input-field col-md-3">
+		<select>
+			<option value="NA">Select your age</option>
+			<option value="18-25">18-25</option>
+			<option value="26-35">26-35</option>
+			<option value="36-45">36-45</option>
+			<option value="46-55">46-55</option>
+			<option value="56-65">56-65</option>
+			<option value="66+">66+</option>                        
+		</select>
+		</select>
 	</div>
 
+	<div class="input-field col-md-3">
+		<select>
+			<option value="NA">Select your gender</option>
+			<option value="M">Male</option>
+			<option value="F">Female</option>
+			<option value="NB">Genderqueer / non-binary</option>
+			<option value="RNS">Rather not say</option>
+		</select>
+	</div>
 
-	<script>
+</div>
+<div class="row demo_form">
+	<div class="input-field col-md-3">
+		<input type="text" id="autocompleteState" 
+					 value="Type in your constituency" 
+					 class="autocomplete inputFields" />
+		<div class="col-sm-12" id="consti_filler"></div>
+	</div>
 
+	<div class="input-field col-md-3">
+		<p>Before taking this quiz, how did you intend to vote?</p>
+		<select>
+			<option value="NA"></option>
+			<option value="R">Remain</option>
+			<option value="L">Leave</option>
+			<option value="U">Undecided</option>
+		</select>
+	</div>
+</div>
+<script>
+var type_in = "Type in your constituency";
+$('select').material_select();
 $('#autocompleteState').data('array', get_constituencies());
-	</script>
+$('#autocompleteState').click(function(){
+	if ($(this).val() == type_in){
+		$(this).val("");
+	}
+	$("#consti_filler").show();
+	$('html, body').animate({
+		scrollTop: $(this).offset().top
+	}, 0);
+});
+
+$('#autocompleteState').change(function(){
+	$("#consti_filler").hide();
+});
+
+$('#autocompleteState').focusout(function(){
+	if ($(this).val() == ""){
+		$(this).val(type_in);
+	}
+});
+
+</script>
 {% endblock %}
