@@ -5,6 +5,8 @@ from app.translations import translations
 from app import ranking
 import urlparse
 import os
+import base64
+import zlib
 
 
 if "FLASK_SECRET_KEY" in os.environ:
@@ -156,23 +158,17 @@ def quiz():
     print "All responses so far:", responses_so_far
     print "------------------------\n"
 
+
     return render_template("quiz.html", 
                            question=questions[qn_id],
+                           agreement=agreement(qn_id),
                            qn_id=qn_id,
                            num_qns=len(questions), 
                            trans=translations, lang="en", 
                            fb_share_image=fb_share_image("neutral"))
 
 
-# @app.route("/agreement/<int:qn_id>/<int:option_num>", methods=["POST"])
-@app.route("/_agreement/")
-def agreement():
-    # data for campaign agreement explanations
-    # make 2 lists: stay/leave -> [{campaign name, full/none/halfway}]
-
-    qn_id = request.args.get("qn_id", -1, type=int)
-    option_num = request.args.get("option_num", -1, type=int)
-
+def agreement(qn_id):
     remain = []
     leave = []
 
@@ -197,12 +193,13 @@ def agreement():
              }
         leave_agreement.append(s)
 
-    all_agreement = {"remain_agreement":remain_agreement,
-                   "leave_agreement":leave_agreement}
+    all_agreement = {"remain":remain_agreement,
+                   "leave":leave_agreement}
 
-    return jsonify(all_agreement)
+    return all_agreement
 
-@app.route("/results", methods=["POST"])
+
+app.route("/results", methods=["POST"])
 def results():
     this_response = request.form.lists()
     all_responses = get_quiz_responses() + this_response
@@ -229,7 +226,7 @@ def results():
     print "All responses", all_responses
     print "---------------"
 
-    session["demo_quiz_data"] = all_responses
+    session["demo_quiz_data"] = base64.b64encode(zlib.compress(all_responses))
  
     c = ranking.calculate(all_responses)
     code = ranking.encode(c)
