@@ -78,6 +78,7 @@
     </div>
 </div>
 
+{% if demo_quiz_data %}
 <div class="row text-center tell_us">
     <div class = "col-md-8 col-md-offset-2">
         <h2 class="where_stand">Tell us a little about yourself:</h2>
@@ -85,7 +86,6 @@
     </div>
 </div>
 
-{% if demo_quiz_data %}
 <form method="POST" target="_self" id="demog_form"
       action="https://docs.google.com/forms/d/1sCAbHugyenEva7HXDCNPn3aNvl1steoeyJYxzjo4meI/formResponse">
 <div class="row text-center" id="thank_you">
