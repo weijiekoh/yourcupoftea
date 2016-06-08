@@ -78,16 +78,23 @@
     </div>
 </div>
 
-<div class="row text-center">
+<div class="row text-center tell_us">
     <div class = "col-md-8 col-md-offset-2">
         <h2 class="where_stand">Tell us a little about yourself:</h2>
         <p>(You will remain anonymous)</p>
     </div>
 </div>
 
+<form method="POST" target="_self" id="demog_form"
+      action="https://docs.google.com/forms/d/1xvJ5LJEinZNKTQL58GjwbH1_c_CGCGCYeEUNAeR255Q/formResponse">
+<div class="row text-center" id="thank_you">
+	<div class="col-md-6 col-md-offset-3 ">
+		<p>Thank you.</p>
+	</div>
+</div>
 <div class="row demo_form">
 	<div class="input-field col-md-3 col-md-offset-3">
-		<select>
+		<select name="entry.1416015739">
 			<option value="NA">Select your age</option>
 			<option value="18-25">18-25</option>
 			<option value="26-35">26-35</option>
@@ -100,7 +107,7 @@
 	</div>
 
 	<div class="input-field col-md-3">
-		<select>
+		<select name="entry.1669661850">
 			<option value="NA">Select your gender</option>
 			<option value="M">Male</option>
 			<option value="F">Female</option>
@@ -113,7 +120,7 @@
 <div class="row demo_form">
 	<div class="input-field col-md-6 col-md-offset-3">
 		<!--<p>Before taking this quiz, how did you intend to vote?</p>-->
-		<select>
+		<select name="entry.61910449">
             <option value="NA">Before taking this quiz, how did you intend to vote?</option>
 			<!--<option value="NA"></option>-->
 			<option value="R">Remain</option>
@@ -126,6 +133,7 @@
 <div class="row demo_form">
 	<div class="input-field col-md-4 col-md-offset-3">
 		<input type="text" id="autocompleteState" 
+                     name="entry.1314160903"
 					 value="Type in your constituency" 
 					 class="autocomplete inputFields" />
 		<div class="col-sm-12" id="consti_filler"></div>
@@ -135,6 +143,12 @@
         <button type="submit" class="btn red lighten-1 demo_submit_btn">OK</button>
 	</div>
 </div>
+<input type="hidden" name="entry.205677483" value="{{quiz_data}}" /> 
+<input type="hidden" name="fvv" value="1" /> 
+<input type="hidden" name="draftResponse" value="[,,&quot;-3719685825301847102&quot;]" />
+<input type="hidden" name="pageHistory" value="0">
+<input type="hidden" name="fbzx" value="-3719685825301847102">
+</form>
 
 <div class="row text-center">
     <div class = "col-md-8 col-md-offset-2">
@@ -202,5 +216,26 @@ $('#autocompleteState').focusout(function(){
 
 </script>
 {% endblock %}
+
+{% block bottom %}
+<script type='text/javascript'>
+$(document).ready(function(){
+	$('#demog_form').on('submit', function(e){
+		e.preventDefault();
+		$.ajax({
+			url: "https://docs.google.com/forms/d/1xvJ5LJEinZNKTQL58GjwbH1_c_CGCGCYeEUNAeR255Q/formResponse",
+			type:'post',
+			data:$('#demog_form').serialize(),
+			success:function(result){
+			}
+		});
+		$(".demo_form").fadeOut();
+		$(".tell_us").fadeOut();
+		$("#thank_you").fadeIn();
+	});
+});
+</script>
+{% endblock %}
+
 {% block posthtml %}
 {% endblock %}

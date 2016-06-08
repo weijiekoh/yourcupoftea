@@ -229,9 +229,9 @@ def results():
     print "All responses", all_responses
     print "---------------"
 
+    session["demo_quiz_data"] = all_responses
  
     c = ranking.calculate(all_responses)
-    print c
     code = ranking.encode(c)
     return redirect(url_for("results") + "/" + code)
 
@@ -267,7 +267,13 @@ def results_for_fb(result_str):
                             str(remain_big_score) + "% remain, " +\
                             str(leave_big_score) + "% leave."
 
+    demo_quiz_data = None
+    if "demo_quiz_data" in session:
+        demo_quiz_data = session["demo_quiz_data"]
+    session.pop("demo_quiz_data", None)
+
     return render_template("results.html", 
+                           demo_quiz_data=demo_quiz_data,
                            remain_big_score=remain_big_score,
                            leave_big_score=leave_big_score,
                            remain_scores=remain, 
