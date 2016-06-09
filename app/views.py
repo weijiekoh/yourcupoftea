@@ -45,6 +45,7 @@ def index():
     return render_template("index.html", 
             qn_types_first_half = qn_types_first_half,
             qn_types_second_half = qn_types_second_half,
+            fb_share_image=fb_share_image("index"),
             trans = translations)
 
 
