@@ -30,6 +30,15 @@ for qn_num in sorted(q.keys()):
 campaigns = data["campaigns"]
 experts = data["experts"]
 
+# URLs
+
+campaigns[0]["url"] = "http://www.strongerin.co.uk/"
+campaigns[1]["url"] = "http://infacts.org/"
+campaigns[2]["url"] = "http://www.britishinfluence.org/"
+campaigns[3]["url"] = "http://www.voteleavetakecontrol.org/"
+campaigns[4]["url"] = "http://leave.eu/"
+campaigns[5]["url"] = "http://www.betteroffout.net/"
+
 
 if __name__ == "__main__":
     pass

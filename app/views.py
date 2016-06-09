@@ -284,10 +284,10 @@ def results():
     elif len(correct_qn_ids) < len(qn_ids):
         all_responses = remove_duplicates(all_responses)
 
-    print "---------------"
-    print "Results"
-    print "All responses", all_responses
-    print "---------------"
+    # print "---------------"
+    # print "Results"
+    # print "All responses", all_responses
+    # print "---------------"
 
     session["demo_quiz_data"] = base64.b64encode(zlib.compress(str(all_responses)))
  
