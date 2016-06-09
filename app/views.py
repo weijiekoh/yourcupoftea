@@ -213,11 +213,11 @@ def quiz():
         # store this response to the session var
         update_stored_responses(this_response)
 
-    print "------------------------"
-    print "Prev question", qn_id
-    print "Response", this_response
-    print "All responses so far:", responses_so_far
-    print "------------------------\n"
+    # print "------------------------"
+    # print "Prev question", qn_id
+    # print "Response", this_response
+    # print "All responses so far:", responses_so_far
+    # print "------------------------\n"
     
 
     return render_template("quiz.html", 
