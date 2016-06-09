@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}What's your cup of tea?{% endblock %}
 {% block head %}
-<meta property="og:image" content="/static/img/fb/index.png" />
+<meta property="og:image" content="{{request.base_url}}static/img/fb/index.png" />
 <meta property="og:url" content="{{request.base_url}}" />
 <meta property="og:description" content="Remain or Leave? Find out where you stand on the EU Referendum."/>
 <style>
