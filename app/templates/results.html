@@ -101,8 +101,8 @@
 </div>
 <div class="row demo_form">
 	<div class="input-field col-md-3 col-md-offset-3">
-		<select name="entry.1937324405">
-			<option value="NA">Select your age</option>
+		<select id="age_select" name="entry.1937324405">
+			<option value="NA">Select your age:</option>
 			<option value="18-25">18-25</option>
 			<option value="26-35">26-35</option>
 			<option value="36-45">36-45</option>
@@ -114,8 +114,8 @@
 	</div>
 
 	<div class="input-field col-md-3">
-		<select name="entry.55368127">
-			<option value="NA">Select your gender</option>
+		<select id="gender_select" name="entry.55368127">
+			<option value="NA">Select your gender:</option>
 			<option value="M">Male</option>
 			<option value="F">Female</option>
 			<option value="NB">Genderqueer / non-binary</option>
@@ -127,7 +127,7 @@
 <div class="row demo_form">
 	<div class="input-field col-md-6 col-md-offset-3">
 		<!--<p>Before taking this quiz, how did you intend to vote?</p>-->
-		<select name="entry.749557166">
+		<select id="intention_select" name="entry.749557166">
             <option value="NA">Before taking this quiz, how did you intend to vote?</option>
 			<!--<option value="NA"></option>-->
 			<option value="R">Remain</option>
@@ -140,8 +140,9 @@
 <div class="row demo_form">
 	<div class="input-field col-md-4 col-md-offset-3">
 		<input type="text" id="autocompleteState" 
+					 autocomplete="off",
                      name="entry.2109781634"
-					 value="Type in your constituency" 
+					 value="Type in the first few letters of your constituency and select it:" 
 					 class="autocomplete inputFields" />
 		<div class="col-sm-12" id="consti_filler"></div>
 	</div>
@@ -150,6 +151,7 @@
         <button type="submit" class="btn red lighten-1 demo_submit_btn">OK</button>
 	</div>
 </div>
+
 <input type="hidden" name="entry.466144958" value="{{demo_quiz_data}}" /> 
 <input type="hidden" name="entry.1444317409" value="{{times_taken}}" /> 
 <input type="hidden" name="fvv" value="1" /> 
@@ -214,7 +216,7 @@
 </div>
 
 <script>
-var type_in = "Type in your constituency";
+var type_in = $("#autocompleteState").val();
 $('select').material_select();
 $('#autocompleteState').data('array', get_constituencies());
 $('#autocompleteState').click(function(){
@@ -242,19 +244,39 @@ $('#autocompleteState').focusout(function(){
 
 {% block bottom %}
 <script type='text/javascript'>
+var validate = function(){
+	var age = $("#age_select option:selected").text();
+	var gender = $("#gender_select option:selected").text();
+	var intention = $("#intention_select option:selected").text();
+	var consti = $("#autocompleteState").val();
+	return true;
+}
+
 $(document).ready(function(){
+	var toast_visible = false;
 	$('#demog_form').on('submit', function(e){
 		e.preventDefault();
-		$.ajax({
-			url: "https://docs.google.com/forms/d/1sCAbHugyenEva7HXDCNPn3aNvl1steoeyJYxzjo4meI/formResponse",
-			type:'post',
-			data:$('#demog_form').serialize(),
-			success:function(result){
+		if (validate()){
+			$.ajax({
+				url: "https://docs.google.com/forms/d/1sCAbHugyenEva7HXDCNPn3aNvl1steoeyJYxzjo4meI/formResponse",
+				type:'post',
+				data:$('#demog_form').serialize(),
+				success:function(result){
+				}
+			});
+			$(".demo_form").fadeOut();
+			$(".tell_us").fadeOut();
+			$("#thank_you").fadeIn();
+		}
+		else{
+			if (!toast_visible){
+				Materialize.toast("Please fill in all items.", 4000, 
+							      "", function(){
+					toast_visible = false;
+					});
 			}
-		});
-		$(".demo_form").fadeOut();
-		$(".tell_us").fadeOut();
-		$("#thank_you").fadeIn();
+			toast_visible = true;
+		}
 	});
 });
 </script>
