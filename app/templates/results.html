@@ -211,7 +211,7 @@
 </div>
 
 <div class="row text-center">
-	<a name="stances">
+	<a name="stances"></a>
     <div class = "col-md-8 col-md-offset-2">
         <h2 class="where_stand">Where experts and the campaigns stand:</h2>
     </div>
@@ -283,6 +283,9 @@
 
 								{# experts #}
 								<div class="col-md-12 experts">
+									<div class="text-center">
+									<h2>Experts say:</h2>
+									</div>
 									<ul class="collection">
 										{% for name, view in expert_views[qn_id].iteritems() %}
 										<li>
