@@ -209,12 +209,15 @@ h2{
 [type="radio"].with-gap:checked+label:after,
 [type="radio"]:not(:checked)+label:before, 
 [type="radio"]:not(:checked)+label:after {
-	border-color:#fff !important;
+	border:#2196f3;
+	display:none;
 }
 
 [type="radio"]:checked+label:after, 
 [type="radio"].with-gap:checked+label:after{
-	background-color:#fff;
+	background-color:#2196f3;
+	border:0px;
+	display:none;
 }
 
 .progress{
@@ -265,6 +268,10 @@ h2{
 	font-size:12pt;
 }
 
+.expert_name{
+	padding-bottom:10px !important;
+}
+
 .expert_view{
 	font-size:10pt;
 	margin: 20px 0;
@@ -276,6 +283,7 @@ h2{
 
 .expert_source{
 	margin-left:50px;
+	margin-top:0px !important;
 }
 
 .legend p{
@@ -351,6 +359,7 @@ h2{
 .before_taking .select-wrapper ul li{
 	font-size:10pt !important;	
 }
+
 
 .result_card{ 
 	color:#fff;
@@ -621,6 +630,11 @@ h2{
 		border:0px;
 		padding-bottom:5px;
 		border-bottom: 1px solid #e0e0e0;
+	}
+
+	.consti_select_parent input.select-dropdown,
+	.intention_select_parent input.select-dropdown{
+		font-size:9pt;
 	}
 
 	.no_bottom_border{

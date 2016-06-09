@@ -66,10 +66,11 @@ def process_expert_view(text, is_non):
     
         quotes = []
         for match in matches[0:-1]:
-            if len(match.strip()) > 0:
-                if match[0] == "\"" and match[-1] == "\"":
-                    match = match[1:-1]
-                quotes.append(match)
+            m = match.strip()
+            if len(m) > 0:
+                if m[0] == "\"" and m[-1] == "\"":
+                    m = m[1:-1]
+                quotes.append(m)
 
         processed["url"] = matches[-1]
         processed["quotes"] = quotes
