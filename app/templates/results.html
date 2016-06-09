@@ -209,6 +209,119 @@
     </div>
 </div>
 
+{# TODO #}
+<div class="row text-center">
+    <div class = "col-md-8 col-md-offset-2">
+        <h2 class="where_stand">Where the campaigns and experts stand</h2>
+    </div>
+</div>
+
+{# Expln #}
+<div class="row explanation">
+	<div class="col-md-8 col-md-offset-2">
+		<ul class="collapsible" data-collapsible="accordion">
+			{% for qn_id, q in questions.iteritems() %}
+				<li>
+					<div class="collapsible-header">
+							<i class="fa fa-chevron-down" aria-hidden="true"></i>
+							<p>{{loop.index}}. {{q.text}}</p>
+					</div>
+
+					<div class="collapsible-body">
+						<ul class="collection">
+							<li>
+								<div class="col-md-6 expln_remain">
+									<div class="col-md-12 text-right expln_side">
+										<h2>Remain</h2>
+										<ul id="remain_ul" class="collection text-left">
+											{% for a in agreement[qn_id].remain %}
+											<li class="collection-item">{{a.campaign_name}} 
+												<span class="agree_symbol" style="float:right;">
+													{% if a.agreement == 2 %}
+													<i class="fa fa-check" aria-hidden="true"></i>
+													{% elif a.agreement == 1 %}
+													<i class="fa fa-times" aria-hidden="true"></i>
+													{% elif a.agreement == 0 %}
+													<i class="fa fa-minus" aria-hidden="true"></i>
+													{% endif %}
+												</span>
+											</li>
+											{% endfor %}
+										</ul>
+									</div>
+								</div>
+
+								<div class="col-md-6 expln_leave">
+									<div class="col-md-12 text-left expln_side">
+										<h2>Leave</h2>
+										<ul id="leave_ul" class="collection text-">
+											{% for a in agreement[qn_id].leave %}
+											<li class="collection-item">{{a.campaign_name}} 
+												<span class="agree_symbol" style="float:right;">
+													{% if a.agreement == 2 %}
+													<i class="fa fa-check" aria-hidden="true"></i>
+													{% elif a.agreement == 1 %}
+													<i class="fa fa-times" aria-hidden="true"></i>
+													{% elif a.agreement == 0 %}
+													<i class="fa fa-minus" aria-hidden="true"></i>
+													{% endif %}
+												</span>
+											</li>
+											{% endfor %}
+										</ul>
+									</div>
+								</div>
+
+								<div class="col-md-5 col-md-offset-4 legend">
+									<p>
+									<i class="fa fa-check"></i> &nbsp;Agrees with the above <br />
+									<i class="fa fa-minus"></i> &nbsp;No mention <br />
+									<i class="fa fa-times"></i> &nbsp;Disagrees with the above
+									</p>
+								</div>
+
+								{# experts #}
+								<div class="col-md-12 experts">
+									<ul class="collection">
+										{% for name, view in expert_views[qn_id].iteritems() %}
+										<li>
+											<p class="expert_name">{{ name }}</p>
+											{% for v in view %}
+												{% for q in v.quotes %}
+												<blockquote class="expert_view">{{ q|escape }}</blockquote>
+												{% endfor %}
+											<a href="{{v.url}}" class="expert_source" target="_blank">Source</a>
+											{% endfor %}
+										</li>
+										{% endfor %}
+									</ul>
+								</div>
+
+							</li>
+						</ul>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+	{#
+
+	<div class="col-md-offset-0 col-md-12 text-center">
+		<div class="col-md-offset-0 col-md-12 show_expln_btn_parent">
+			<button type="submit" 
+					class="btn red lighten-1 standard_btn show_expln_btn">
+				{% if qn_id == num_qns - 1 %}
+					View my results
+				{% else %}
+					Next Question
+				{% endif %}
+			</button>
+		</div>
+	</div>
+	#}
+</div>
+
 <div class="row text-center how_to_vote">
     <div class = "col-md-8 col-md-offset-2">
 		<p><a href="http://www.aboutmyvote.co.uk/uk-voters" target="_blank">How to vote on June 23rd</a>

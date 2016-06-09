@@ -227,17 +227,37 @@ h2{
 	padding:0px;
 }
 
+.explanation .collapsible-header p{
+	line-height:1.4em;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.explanation .collapsible-header i{
+	float:right;
+	font-size:12pt;
+}
+
 .expln_remain{
-	border-right:solid 5px;
-	border-color:#999999;
+	border-right:solid 1px;
+	border-color:#afafaf;
+}
+
+.experts{
+	margin-bottom:10px;
 }
 
 .experts h3 i{
 	float:right;
 }
 
+.experts .collapsible{
+	box-shadow:none;
+}
+
 .experts .collapsible-header{
 	padding-bottom:10px;
+	font-weight:bold;
 }
 
 .expert_name{
@@ -255,11 +275,12 @@ h2{
 }
 
 .expert_source{
-	margin-left:20px;
+	margin-left:50px;
 }
 
-.legend {
-	margin-top:10px;
+.legend p{
+	padding-top:10px;
+	padding-bottom:10px;
 }
 
 .show_expln_btn_parent{
@@ -532,8 +553,15 @@ h2{
 		text-align:left !important;
 	}
 
-	.expln_remain {
+	.expln_remain, .expln_leave{
 		border:0px;
+	}
+
+	.expln_remain h2, .expln_leave h2{
+		padding-left:20px;
+		font-size:14pt !important;
+		margin-bottom:5px;
+		font-weight:bold;
 	}
 
 	.importance{

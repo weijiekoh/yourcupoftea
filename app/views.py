@@ -67,6 +67,8 @@ def process_expert_view(text, is_non):
         quotes = []
         for match in matches[0:-1]:
             if len(match.strip()) > 0:
+                if match[0] == "\"" and match[-1] == "\"":
+                    match = match[1:-1]
                 quotes.append(match)
 
         processed["url"] = matches[-1]
@@ -103,7 +105,10 @@ def get_expert_views(qn_id):
                         row = row.strip()
                         if len(row) > 0:
                             if row.startswith("\""):
-                                quotes.append(row)
+                                r = row
+                                if r[0] == "\"" and r[-1] == "\"":
+                                    r = r[1:-1]
+                                quotes.append(r)
                             elif row.startswith("("):
                                 expert = re.findall("\((.+)\)", row)[0]
 
@@ -222,12 +227,8 @@ def quiz():
 
     return render_template("quiz.html", 
                            question=questions[qn_id],
-                           agreement=agreement(qn_id),
                            qn_id=qn_id,
-                           experts=experts,
-                           expert_views=get_expert_views(qn_id),
                            num_qns=len(questions), 
-                           trans=translations, lang="en", 
                            fb_share_image=fb_share_image("neutral"))
 
 
@@ -343,14 +344,25 @@ def results_for_fb(result_str):
     if not tt in session:
         session[tt] = -1
 
+    a = {}
+    e = {}
+    for qn_id in questions:
+        a[qn_id] = agreement(qn_id)
+        e[qn_id] = get_expert_views(qn_id)
+
+
     return render_template("results.html", 
                            demo_quiz_data=demo_quiz_data,
+                           agreement=a,
+                           expert_views=e,
                            remain_big_score=remain_big_score,
                            leave_big_score=leave_big_score,
                            remain_scores=remain, 
                            result_share_str=r,
                            leave_scores=leave, 
                            campaigns=campaigns,
+                           questions=questions,
+                           experts=experts,
                            times_taken=session[tt],
                            image=image,
                            fb_share_image=fb_share_image(image),

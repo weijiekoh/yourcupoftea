@@ -27,103 +27,13 @@
         <h1 class="qn_text">{{question["text"]}}</h1>
     </div>
 </div>
+
 {# Submit to /results if it's the last qn, else submit to /quiz/n+1 #}
 {% if qn_id == num_qns - 1 %}
 <form method="POST" action="/results" id="quiz_form">
 {% else %}
 <form method="POST" action="/quiz/" id="quiz_form">
 {% endif %}
-    {# Expln #}
-    <div class="row explanation">
-        <div class="col-md-4 col-md-offset-2 expln_remain">
-            <div class="col-md-12 text-right expln_side">
-                <h2>Remain</h2>
-                <ul id="remain_ul" class="collection text-left">
-                    {% for a in agreement.remain %}
-                    <li class="collection-item">{{a.campaign_name}} 
-                        <span class="agree_symbol" style="float:right;">
-                            {% if a.agreement == 2 %}
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                            {% elif a.agreement == 1 %}
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                            {% elif a.agreement == 0 %}
-                            <i class="fa fa-minus" aria-hidden="true"></i>
-                            {% endif %}
-                        </span>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-md-4 expln_leave">
-            <div class="col-md-12 text-left expln_side">
-                <h2>Leave</h2>
-                <ul id="leave_ul" class="collection text-">
-                    {% for a in agreement.leave %}
-                    <li class="collection-item">{{a.campaign_name}} 
-                        <span class="agree_symbol" style="float:right;">
-                            {% if a.agreement == 2 %}
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                            {% elif a.agreement == 1 %}
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                            {% elif a.agreement == 0 %}
-                            <i class="fa fa-minus" aria-hidden="true"></i>
-                            {% endif %}
-                        </span>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-md-offset-5 col-sm-10 col-sm-offset-1 legend">
-            <p>
-                <i class="fa fa-check"></i> &nbsp;Agrees with the above <br />
-                <i class="fa fa-minus"></i> &nbsp;No mention <br />
-                <i class="fa fa-times"></i> &nbsp;Disagrees with the above
-            </p>
-        </div>
-
-		<div class="col-md-8 col-md-offset-2 experts">
-			<ul class="collapsible" data-collapsible="accordion">
-				<li>
-					<div class="collapsible-header text-center">
-						<h3>What experts have to say
-							<i class="text-right fa fa-chevron-down" aria-hidden="true"></i>
-						</h3>
-					</div>
-					<div class="collapsible-body">
-						<ul class="collection">
-						{% for name, view in expert_views.iteritems() %}
-						<li>
-							<p class="expert_name">{{ name }}</p>
-							{% for v in view %}
-								{% for q in v.quotes %}
-								 <blockquote class="expert_view">{{ q|escape }}</blockquote>
-								 {% endfor %}
-								 <a href="{{v.url}}" class="expert_source" target="_blank">Source</a>
-							 {% endfor %}
-						</li>
-						{% endfor %}
-						</ul>
-					</div>
-				</li>
-		</div>
-
-        <div class="col-md-offset-0 col-md-12 text-center">
-            <div class="col-md-offset-0 col-md-12 show_expln_btn_parent">
-                <button type="submit" 
-                        class="btn red lighten-1 standard_btn show_expln_btn">
-                    {% if qn_id == num_qns - 1 %}
-                        View my results
-                    {% else %}
-                        Next Question
-                    {% endif %}
-                </button>
-            </div>
-        </div>
-    </div>
 
     <input type="hidden" name="qn_id" value="{{qn_id}}" />
 
@@ -161,19 +71,13 @@
         }
 
         $(document).ready(function() {
-            // hide all expln divs at the start
-			$(".explanation").hide();
-
             // hide radio buttons
             document.styleSheets[0].addRule(".option_card label:before",
                                             "display:none");
-            var has_selected = false;
 
             // click anyware on option_card to select radio and show the expln
             $(".option_radio").click(function(){
-                $("#quiz_controls").hide();
-                $(".explanation").show();
-                $("#ok_btn").hide();
+				submit_form();
             });
         });
     </script>
