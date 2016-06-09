@@ -1,6 +1,5 @@
 var get_constituencies = function(){
     return [
-'I am not from the UK',
 'Aberavon',
  'Aberconwy',
  'Aberdeen North',

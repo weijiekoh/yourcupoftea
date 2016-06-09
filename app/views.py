@@ -290,6 +290,13 @@ def results():
     # print "---------------"
 
     session["demo_quiz_data"] = base64.b64encode(zlib.compress(str(all_responses)))
+
+    # keep track of the number of times this user has taken the quiz
+    tt = "times_taken"
+    if tt in session:
+        session[tt] += 1
+    else:
+        session[tt] = 1
  
     c = ranking.calculate(all_responses)
     code = ranking.encode(c)
@@ -332,6 +339,10 @@ def results_for_fb(result_str):
         demo_quiz_data = session["demo_quiz_data"]
     session.pop("demo_quiz_data", None)
 
+    tt = "times_taken"
+    if not tt in session:
+        session[tt] = -1
+
     return render_template("results.html", 
                            demo_quiz_data=demo_quiz_data,
                            remain_big_score=remain_big_score,
@@ -340,6 +351,7 @@ def results_for_fb(result_str):
                            result_share_str=r,
                            leave_scores=leave, 
                            campaigns=campaigns,
+                           times_taken=session[tt],
                            image=image,
                            fb_share_image=fb_share_image(image),
                            trans=translations)
