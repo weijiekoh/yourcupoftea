@@ -233,7 +233,7 @@ if __name__ == "__main__":
                      [current_option_index] \
                      ["expert_views"].append({
                          "id": current_expert_id,
-                         "view": c
+                         "view": unicode(c, "utf-8")
                          })
             j += 1
 

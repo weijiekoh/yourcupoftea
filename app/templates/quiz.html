@@ -85,11 +85,31 @@
             </p>
         </div>
 
-        {#
-        <div class="col-md-12 experts">
-            <h3>What the experts have to say</h3>
-        </div>
-        #}
+		<div class="col-md-8 col-md-offset-2 experts">
+			<ul class="collapsible" data-collapsible="accordion">
+				<li>
+					<div class="collapsible-header text-center">
+						<h3>What the experts have to say
+							<i class="text-right fa fa-chevron-down" aria-hidden="true"></i>
+						</h3>
+					</div>
+					<div class="collapsible-body">
+						<ul class="collection">
+						{% for name, view in expert_views.iteritems() %}
+						<li>
+							<p class="expert_name">{{ name }}</p>
+							{% for v in view %}
+								{% for q in v.quotes %}
+								 <blockquote class="expert_view">{{ q|escape }}</blockquote>
+								 {% endfor %}
+								 <a href="{{v.url}}" class="expert_source" target="_blank">Source</a>
+							 {% endfor %}
+						</li>
+						{% endfor %}
+						</ul>
+					</div>
+				</li>
+		</div>
 
         <div class="col-md-offset-0 col-md-12 text-center">
             <div class="col-md-offset-0 col-md-12 show_expln_btn_parent">
@@ -142,7 +162,7 @@
 
         $(document).ready(function() {
             // hide all expln divs at the start
-            $(".explanation").hide();
+			$(".explanation").hide();
 
             // hide radio buttons
             document.styleSheets[0].addRule(".option_card label:before",

@@ -7,6 +7,7 @@ import urlparse
 import os
 import base64
 import zlib
+import re
 
 
 if "FLASK_SECRET_KEY" in os.environ:
@@ -53,6 +54,66 @@ def about():
     return render_template("about.html", 
             trans = translations, 
             fb_share_image = fb_share_image("neutral"))
+
+
+def process_expert_view(text, is_non):
+    processed = {}
+    if is_non:
+        pass
+    else:
+        # matches = re.findall(r, text)
+        matches = text.split("\n")
+    
+        quotes = []
+        for match in matches[0:-1]:
+            if len(match.strip()) > 0:
+                quotes.append(match)
+
+        processed["url"] = matches[-1]
+        processed["quotes"] = quotes
+
+    return processed
+
+
+def get_expert_views(qn_id):
+    # return {name: [views]}
+    expert_views = {}
+    non = "Non-economic questions"
+
+    for option in questions[qn_id]["options"]: # for each option
+        for view in option["expert_views"]: # for each expert view
+            view_text = view["view"]
+
+            if not (view_text.strip() == "" or view_text.startswith("No mention")):
+                expert_name = experts[view["id"]]["name"]
+
+                if expert_name != non:
+                    p = process_expert_view(unicode(view_text, "utf-8"), False)
+
+                    if expert_name in expert_views:
+                        expert_views[expert_name].append(p)
+                    else:
+                        expert_views[expert_name] = [p]
+                else:
+                    rows = unicode(view_text, "utf-8").split("\n")
+                    url = rows[-1]
+                    quotes = []
+                    expert = None
+                    for row in rows[0:-1]:
+                        row = row.strip()
+                        if len(row) > 0:
+                            if row.startswith("\""):
+                                quotes.append(row)
+                            elif row.startswith("("):
+                                expert = re.findall("\((.+)\)", row)[0]
+
+                    d = {"quotes":quotes, "url":url}
+                    if expert in expert_views:
+                        expert_views[expert].append(d)
+                    else:
+                        expert_views[expert] = [d]
+
+    return expert_views
 
 
 def get_quiz_responses():
@@ -157,12 +218,14 @@ def quiz():
     print "Response", this_response
     print "All responses so far:", responses_so_far
     print "------------------------\n"
-
+    
 
     return render_template("quiz.html", 
                            question=questions[qn_id],
                            agreement=agreement(qn_id),
                            qn_id=qn_id,
+                           experts=experts,
+                           expert_views=get_expert_views(qn_id),
                            num_qns=len(questions), 
                            trans=translations, lang="en", 
                            fb_share_image=fb_share_image("neutral"))
@@ -199,7 +262,7 @@ def agreement(qn_id):
     return all_agreement
 
 
-app.route("/results", methods=["POST"])
+@app.route("/results", methods=["POST"])
 def results():
     this_response = request.form.lists()
     all_responses = get_quiz_responses() + this_response
@@ -226,7 +289,7 @@ def results():
     print "All responses", all_responses
     print "---------------"
 
-    session["demo_quiz_data"] = base64.b64encode(zlib.compress(all_responses))
+    session["demo_quiz_data"] = base64.b64encode(zlib.compress(str(all_responses)))
  
     c = ranking.calculate(all_responses)
     code = ranking.encode(c)
