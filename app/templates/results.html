@@ -166,48 +166,49 @@
 </div>
 
 <div class="row">
-    <div class = "col-md-4 col-md-offset-2 campaign">
-        <h3>Remain</h3>
-        {% for campaign_id, score in remain_scores %}
-        <div class="collection {% if loop.last %}no_bottom_border{% endif%}">
-            <div class="col-sm-5">
-                <img src="/static/img/logos/{{campaigns[campaign_id].initials}}.png" 
-                     alt="{{campaigns[campaign_id].name}}" />
-            </div>
-            <div class="col-sm-7">
-                <span class="title">
-					<a href="{{campaigns[campaign_id].url}}" target="_blank">
-						{{campaigns[campaign_id].name}}
-					</a>
-				</span>
-                <p>{{score}}%</p>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+	<div class="col-md-8 col-md-offset-2 pseudo_card">
+		<div class = "col-md-6 col-md-offset-0 campaign">
+			<h3>Remain</h3>
+			{% for campaign_id, score in remain_scores %}
+			<div class="collection {% if loop.last %}no_bottom_border{% endif%}">
+				<div class="col-sm-5">
+					<img src="/static/img/logos/{{campaigns[campaign_id].initials}}.png" 
+		  alt="{{campaigns[campaign_id].name}}" />
+				</div>
+				<div class="col-sm-7">
+					<span class="title">
+						<a href="{{campaigns[campaign_id].url}}" target="_blank">
+							{{campaigns[campaign_id].name}}
+						</a>
+					</span>
+					<p>{{score}}%</p>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
 
-    <div class = "col-md-4 campaign">
-        <h3>Leave</h3>
-        {% for campaign_id, score in leave_scores %}
-        <div class="collection {% if loop.last %}no_bottom_border{% endif%}">
-            <div class="col-sm-5">
-                <img src="/static/img/logos/{{campaigns[campaign_id].initials}}.png" 
-                     alt="{{campaigns[campaign_id].name}}" />
-            </div>
-            <div class="col-sm-7">
-                <span class="title">
-					<a href="{{campaigns[campaign_id].url}}" target="_blank">
-						{{campaigns[campaign_id].name}}
-					</a>
-				</span>
-                <p>{{score}}%</p>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+		<div class = "col-md-6 campaign">
+			<h3>Leave</h3>
+			{% for campaign_id, score in leave_scores %}
+			<div class="collection {% if loop.last %}no_bottom_border{% endif%}">
+				<div class="col-sm-5">
+					<img src="/static/img/logos/{{campaigns[campaign_id].initials}}.png" 
+		  alt="{{campaigns[campaign_id].name}}" />
+				</div>
+				<div class="col-sm-7">
+					<span class="title">
+						<a href="{{campaigns[campaign_id].url}}" target="_blank">
+							{{campaigns[campaign_id].name}}
+						</a>
+					</span>
+					<p>{{score}}%</p>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
 </div>
 
-{# TODO #}
 <div class="row text-center">
     <div class = "col-md-8 col-md-offset-2">
         <h2 class="where_stand">Where experts and the campaigns stand:</h2>
@@ -216,7 +217,7 @@
 
 {# Expln #}
 <div class="row explanation">
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-8 col-md-offset-2 pseudo_card">
 		<ul class="collapsible" data-collapsible="expandable">
 			{% for qn_id, q in questions.iteritems() %}
 				<li>
