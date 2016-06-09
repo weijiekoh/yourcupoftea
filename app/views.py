@@ -45,8 +45,7 @@ def index():
     return render_template("index.html", 
             qn_types_first_half = qn_types_first_half,
             qn_types_second_half = qn_types_second_half,
-            trans = translations, 
-            fb_share_image = fb_share_image("neutral"))
+            trans = translations)
 
 
 @app.route("/about")
@@ -338,10 +337,6 @@ def results_for_fb(result_str):
     else:
         image = "remain"
 
-    r = "My EU referendum quiz results: " +\
-                            str(remain_big_score) + "% remain, " +\
-                            str(leave_big_score) + "% leave."
-
     demo_quiz_data = None
     if "demo_quiz_data" in session:
         demo_quiz_data = session["demo_quiz_data"]
@@ -358,6 +353,11 @@ def results_for_fb(result_str):
         e[qn_id] = get_expert_views(qn_id)
 
 
+    result_share_str = "My Remain vs Leave quiz results: " +\
+                            str(remain_big_score) + "% remain, " +\
+                            str(leave_big_score) + "% leave."
+
+
     return render_template("results.html", 
                            demo_quiz_data=demo_quiz_data,
                            agreement=a,
@@ -365,7 +365,7 @@ def results_for_fb(result_str):
                            remain_big_score=remain_big_score,
                            leave_big_score=leave_big_score,
                            remain_scores=remain, 
-                           result_share_str=r,
+                           result_share_str=result_share_str,
                            leave_scores=leave, 
                            campaigns=campaigns,
                            questions=questions,

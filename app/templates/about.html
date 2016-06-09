@@ -3,18 +3,140 @@
 
 {% block content %}
 <div class="row">
-    <div class="quiz_bg_box col-md-8 col-md-offset-2 text-center">
-        <h1>About Remain vs Leave</h1>
+    <div class="quiz_bg_box col-md-8 col-md-offset-2 text-left">
+        <h1 class="text-center">About Remain vs Leave</h1>
         <p>
+        Should the UK stay in the European Union, or leave?
         </p>
 
         <p>
+        <a href="/">Remain vs Leave</a> helps you find out which side you’re really rooting for.
         </p>
 
         <p>
+        We read the arguments from three of the most prominent campaigns on each side
+        of the debate, and created an interactive questionnaire to help you find out
+        which campaigns think like you.
         </p>
 
         <p>
+        Remain vs Leave thanks the <a
+            href="http://electionaire.info">Electionaire</a> and <a
+            href="http://electionance.com">Electionance</a> teams for their
+        permission to adapt and modify their site. Many parts of Remain vs
+        Leave, such as its source code, its research process, and this page
+        were adapted from Electionance. We were also inspired by <a
+            href="http://www.bernievshillary.org">Bernie vs Hillary</a> by
+        Incitement Design.
+        </p>
+
+        <h2>Remain vs Leave is independent</h2>
+
+        <p>
+        It remains unaffiliated and unaligned with any political party,
+        referendum campaign, think tank, or EU body. We received no funding or
+        support from any such groups. Each team member contributed to the
+        project in their personal capacity.
+        </p>
+
+        <h2>Remain vs Leave strives to be objective.</h2>
+
+        <p>
+        The team carefully read each campaign’s stances to choose topics and
+        questions that voters care about, and to keep them relevant and timely.
+        We assigned scores to each campaign on each question, and sought advice
+        from people familiar with the topics. It is impossible to accurately
+        quantify policy positions into a simple quiz, but we strove to make it
+        as objective and accurate as possible.
+        </p>
+
+        <p>
+        When choosing sources for expert views on the results page, we sought
+        to find a balance of pro- and anti-exit stances. We do not endorse any
+        of these sources and merely present them <i>as is</i>. 
+        </p>
+        
+        <h2>Remain vs Leave does not tell you who to vote for.</h2>
+
+        <p>
+        Instead, do your own research and decide for yourself. As with any
+        information source, take this quiz with a critical eye.
+        </p>
+
+        <h2>How Remain vs Leave calculates your scores</h2>
+        <p>
+        We examined the websites and public statements of each campaign and
+        identified their stances on each question. If a clear stance was not
+        explicitly available, the team tried to find a quote on a related
+        topic. If the team could not find a related quote, the team marked the
+        stance as “no position”. See the spreadsheet <a href="https://docs.google.com/spreadsheets/d/1vznjzgriT_meUO9jTM14H43TZTo8LbYYTmdRwGzMwOM/edit#gid=0">here</a>.
+
+        </p>
+
+        <p>
+        There are two sets of scores on each results page: the overall
+        remain/leave scores, and the individual campaign scores.
+        </p>
+
+        <p>
+        Overall scores indicate the proportion of answers which match each side
+        of the debate.
+        </p>
+
+        <p>
+        Individual campaign scores indicate how much you think like a
+        particular campaign. If your overall score is high for one side (e.g.
+        leave) but your scores for the Leave campaigns are low, that is normal
+        because the individual campaigns scores account for qualified yes/no
+        answers more strongly than the overall scores.
+        </p>
+
+        <p>
+        The exact algorithm for individual campaign scores is as follows:
+        </p>
+
+        <pre>
+Total Deviation = 
+    Sum of (weight of each question as set by user: 0.75 or 1.0) * 
+        (party value - user's value)
+    for all questions
+
+Final percentage = 100 - total deviation / 
+    (max possible total deviation - min possible deviation)
+        </pre>
+
+
+        <h2>The Team</h2>
+        <p>
+        Responsible for all research, design, and development are:
+        </p>
+
+        <ol>
+            <li>Adlin Zainal, Yale-NUS ‘17</li>
+            <li>Adrian Stymne, Yale-NUS ‘17</li>
+            <li>Dave Chappell, Yale-NUS ‘18</li>
+            <li>Koh Wei Jie, Yale-NUS ‘17</li>
+            <li>Martin Vasev, Yale-NUS ‘18</li>
+            <li>Natalie Tan, Yale-NUS ‘17</li>
+            <li>Shalmoli Halder, Yale University ‘15</li>
+            <li>Siddharth Rajgopalan, National University of Singapore ‘14, LSE ’18</li>
+            <li>Simonas Bartulis, Yale-NUS ‘18</li>
+            <li>Swarnima Sircar, Yale-NUS ‘19</li>
+            <li>Yip Wing Yan, Yale-NUS ‘19</li>
+        </ol>
+
+        <p>
+        All information collected is anonymous and will not be used for
+        commercial purposes.
+        </p>
+
+        <p>
+        Contact us at <a href="mailto:contact@remainvsleave.co.uk">contact@remainvsleave.co.uk</a>.
+        </p>
+
+        <h2>Icon credit</h2>
+        <p>
+        Teacup by <a href="https://thenounproject.com/vectorsmarket/">Vectors Market</a>
         </p>
 
     </div>

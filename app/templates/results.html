@@ -211,6 +211,7 @@
 </div>
 
 <div class="row text-center">
+	<a name="stances">
     <div class = "col-md-8 col-md-offset-2">
         <h2 class="where_stand">Where experts and the campaigns stand:</h2>
     </div>
@@ -222,7 +223,7 @@
 		<ul class="collapsible" data-collapsible="expandable">
 			{% for qn_id, q in questions.iteritems() %}
 				<li>
-					<div class="collapsible-header" id="expln_colla_header">
+					<div class="collapsible-header">
 							<i class="fa fa-chevron-down" aria-hidden="true"></i>
 							<p>{{loop.index}}. {{q.text}}</p>
 					</div>
@@ -375,15 +376,28 @@ var validate = function(){
 }
 
 $(document).ready(function(){
-	/*
-	$("#expln_colla_header").click(function(){
+	$(".collapsible-header").click(function(){
 		if ($(window).width() < 992) {
 			$('html, body').animate({
 				scrollTop: $(this).offset().top
 			}, 0);
 		}
+
+		var up = "fa fa-chevron-up";
+		var down = "fa fa-chevron-down";
+
+		var che = $($(this).find("i")[0]);
+		var che_class = che.attr("class");
+		if (che_class == down){
+			che.removeClass(down);
+			che.addClass(up);
+		}
+		else{
+			che.removeClass(up);
+			che.addClass(down);
+		}
 	});
-	*/
+
 	var toast_visible = false;
 	$('#demog_form').on('submit', function(e){
 		e.preventDefault();
