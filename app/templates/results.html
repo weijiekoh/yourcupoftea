@@ -16,7 +16,8 @@
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <img src="/static/img/results/{{image}}.png" class="queen_image" />
+        <!--<img src="/static/img/results/{{image}}.png" class="queen_image" />-->
+        <img src="/static/img/results/neutral.png" class="queen_image" />
     </div>
 </div>
 
@@ -43,7 +44,7 @@
 
 <div class="row share_btns">
     <div class="col-md-8 col-md-offset-2">
-        <div class="col-sm-4">
+        <div class="col-sm-4 text-center">
             <div class="btn-group fb-share-button">
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{request.url}}" 
                    onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{request.url}}','name','width=694,height=432')"
@@ -56,7 +57,7 @@
             </div>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-4 text-center">
             <div class="btn-group twitter-share-button">
                 <a href="https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw"
                    onclick="window.open('https://twitter.com/intent/tweet?text={{result_share_str|urlencode}} {{request.url_root}}?utm_medium=tw','name','width=694,height=432')"
@@ -70,7 +71,7 @@
             </div>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-4 text-center">
             <div class="btn-group whatsapp-share-button">
                 <a class="btn btn-whatsapp" 
                    title="Share on Whatsapp" 
