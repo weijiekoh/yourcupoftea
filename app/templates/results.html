@@ -210,17 +210,17 @@
 {# TODO #}
 <div class="row text-center">
     <div class = "col-md-8 col-md-offset-2">
-        <h2 class="where_stand">Where the campaigns and experts stand</h2>
+        <h2 class="where_stand">Where experts and the campaigns stand:</h2>
     </div>
 </div>
 
 {# Expln #}
 <div class="row explanation">
 	<div class="col-md-8 col-md-offset-2">
-		<ul class="collapsible" data-collapsible="accordion">
+		<ul class="collapsible" data-collapsible="expandable">
 			{% for qn_id, q in questions.iteritems() %}
 				<li>
-					<div class="collapsible-header">
+					<div class="collapsible-header" id="expln_colla_header">
 							<i class="fa fa-chevron-down" aria-hidden="true"></i>
 							<p>{{loop.index}}. {{q.text}}</p>
 					</div>
@@ -298,6 +298,12 @@
 									</ul>
 								</div>
 
+								<div class="col-md-8 col-md-offset-2 text-right back_to_top">
+									<a href="#stances">
+										<i class="fa fa-chevron-up"></i>
+										Back to top</a>
+								</div>
+
 							</li>
 						</ul>
 					</div>
@@ -367,6 +373,15 @@ var validate = function(){
 }
 
 $(document).ready(function(){
+	/*
+	$("#expln_colla_header").click(function(){
+		if ($(window).width() < 992) {
+			$('html, body').animate({
+				scrollTop: $(this).offset().top
+			}, 0);
+		}
+	});
+	*/
 	var toast_visible = false;
 	$('#demog_form').on('submit', function(e){
 		e.preventDefault();

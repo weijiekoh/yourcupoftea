@@ -219,8 +219,8 @@ def quiz():
         # store this response to the session var
         update_stored_responses(this_response)
 
-    debug = True
-    # debug = False
+    # debug = True
+    debug = False
     if debug:
         print "------------------------"
         print "Prev question", qn_id
@@ -289,7 +289,8 @@ def results():
     elif len(correct_qn_ids) < len(qn_ids):
         all_responses = remove_duplicates(all_responses)
 
-    debug = True
+    # debug = True
+    debug = False
     if debug:
         print "---------------"
         print "Results"

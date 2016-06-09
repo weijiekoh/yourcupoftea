@@ -173,7 +173,6 @@ h2{
 	text-align:justify !important;
 }
 
-
 .find_out_text{
 	margin-top:10px !important;
 }
@@ -234,6 +233,7 @@ h2{
 	line-height:1.4em;
 	padding-top:10px;
 	padding-bottom:10px;
+	font-weight:bold;
 }
 
 .explanation .collapsible-header i{
@@ -289,6 +289,10 @@ h2{
 .legend p{
 	padding-top:10px;
 	padding-bottom:10px;
+}
+
+.back_to_top{
+	margin-bottom:20px;
 }
 
 .show_expln_btn_parent{
@@ -379,6 +383,8 @@ h2{
 
 .how_to_vote{
 	margin-top:30px;
+	font-size:16pt;
+	margin-bottom:30px !important;
 } 
 
 .share_btns{

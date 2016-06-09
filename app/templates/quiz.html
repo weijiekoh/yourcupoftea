@@ -72,7 +72,8 @@
 
         $(document).ready(function() {
             // hide radio buttons
-			document.styleSheets[0].addRule(".option_card label:before", "display:none");
+			// doesn't work on Firefox
+			//document.styleSheets[0].addRule(".option_card label:before", "display:none");
 
             // click anyware on option_card to select radio and show the expln
             $(".option_radio").click(function(){
