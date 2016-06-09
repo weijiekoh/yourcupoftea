@@ -210,14 +210,14 @@ h2{
 [type="radio"]:not(:checked)+label:before, 
 [type="radio"]:not(:checked)+label:after {
 	border:#2196f3;
-	display:none;
+	visibility:hidden;
 }
 
 [type="radio"]:checked+label:after, 
 [type="radio"].with-gap:checked+label:after{
 	background-color:#2196f3;
 	border:0px;
-	display:none;
+	visibility:hidden;
 }
 
 .progress{

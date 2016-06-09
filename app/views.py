@@ -219,11 +219,14 @@ def quiz():
         # store this response to the session var
         update_stored_responses(this_response)
 
-    # print "------------------------"
-    # print "Prev question", qn_id
-    # print "Response", this_response
-    # print "All responses so far:", responses_so_far
-    # print "------------------------\n"
+    debug = True
+    # debug = False
+    if debug:
+        print "------------------------"
+        print "Prev question", qn_id
+        print "Response", this_response
+        print "All responses so far:", responses_so_far
+        print "------------------------\n"
     
 
     return render_template("quiz.html", 
@@ -286,10 +289,12 @@ def results():
     elif len(correct_qn_ids) < len(qn_ids):
         all_responses = remove_duplicates(all_responses)
 
-    # print "---------------"
-    # print "Results"
-    # print "All responses", all_responses
-    # print "---------------"
+    debug = True
+    if debug:
+        print "---------------"
+        print "Results"
+        print "All responses", all_responses
+        print "---------------"
 
     session["demo_quiz_data"] = base64.b64encode(zlib.compress(str(all_responses)))
 
