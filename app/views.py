@@ -268,6 +268,21 @@ def agreement(qn_id):
     return all_agreement
 
 
+def log_error_data(this_response, all_responses, error_msg):
+    u = None
+    if "uid" in session:
+        u = session["uid"]
+
+    d = {
+        "error_msg": error_msg,
+        "this_response": this_response,
+        "all_responses": all_responses,
+        "uid": u
+        }
+
+    pass
+
+
 @app.route("/results", methods=["POST"])
 def results():
     this_response = request.form.lists()
@@ -275,6 +290,7 @@ def results():
 
     if "culm_responses" not in session:
         print "culm_responses not found"
+        log_error_data(this_response, all_responses, "culm_responses not found")
         return template_500()
     else:
         clear_response_session_data()
@@ -286,6 +302,7 @@ def results():
     if len(correct_qn_ids) > len(qn_ids):
         print "not all qns answered:", qn_ids
         clear_response_session_data()
+        log_error_data(this_response, all_responses, "not all qns answered")
         return template_500()
     elif len(correct_qn_ids) < len(qn_ids):
         all_responses = remove_duplicates(all_responses)
