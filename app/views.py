@@ -9,6 +9,11 @@ import base64
 import zlib
 import uuid
 import re
+import requests
+import json
+import urllib
+import urllib2
+
 
 
 if "FLASK_SECRET_KEY" in os.environ:
@@ -26,6 +31,7 @@ def fb_share_image(image):
 
 @app.route("/demo_form_349574")
 def demo():
+    log_error_data("this", "all", "msg")
     return render_template("demo_form.html", 
             fb_share_image = fb_share_image("neutral"))
 
@@ -269,17 +275,29 @@ def agreement(qn_id):
 
 
 def log_error_data(this_response, all_responses, error_msg):
-    u = None
-    if "uid" in session:
-        u = session["uid"]
+    # u = None
+    # if "uid" in session:
+        # u = session["uid"]
 
-    d = {
-        "error_msg": error_msg,
-        "this_response": this_response,
-        "all_responses": all_responses,
-        "uid": u
-        }
-
+    # d = {
+        # "error_msg": error_msg,
+        # "this_response": this_response,
+        # "all_responses": all_responses,
+        # "uid": u
+        # }
+    
+    # user_agent = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)'
+    # header={'User-Agent' : user_agent}
+    # url = "https://docs.google.com/forms/d/1K63gV8XbNxk6uKFQ5d-eCPJYOBnT5aPClF4Oud4JYQ4/formResponse"
+    # payload = {
+            # "entry.1303317552": base64.b64encode(zlib.compress(str(d))),
+            # "fvv": "1",
+            # "draftResponse": '[,,"1334405015804969132"]',
+            # "pageHistory": "0",
+            # "fbzx": "1334405015804969132"
+            # }
+    # # r = requests.post(url, data=json.dumps(payload))
+    # urllib2.Request(url, urllib.urlencode(payload), header)
     pass
 
 

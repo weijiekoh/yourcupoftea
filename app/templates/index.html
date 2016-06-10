@@ -4,10 +4,10 @@
 <meta property="og:image" content="{{fb_share_image}}" />
 <meta property="og:url" content="{{request.base_url}}" />
 <meta property="og:description" content="Remain or Leave? Find out where you stand on the EU Referendum."/>
-<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+{#<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
 <script type="text/javascript">
     window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"OK","learnMore":"More info","link":null,"theme":"light-bottom"};
-</script>
+</script> #}
 {% endblock %}
 
 {% block content %}
@@ -71,6 +71,9 @@
                 <button class="btn blue lighten-1 standard_btn"
                         type="submit">Take the quiz</button>
             </a>
+			<p class="text-center cookies">
+			This site uses cookies; by continuing to browse it, you are agreeing to our use of cookies.
+			</p>
         </div>
     </div>
 </form>
