@@ -75,6 +75,19 @@ h2{
 	font-size:20pt !important;
 }
 
+.cc_container .cc_btn, .cc_container .cc_btn:visited{
+	background-color:#fff !important;
+	color:#999999 !important;
+}
+
+.cc_container{
+	font-family: 'Roboto Slab' !important;
+	padding-top:3px !important;
+	padding-bottom:3px !important;
+	font-size:10pt;
+}
+
+
 .card h2{
 	color:#fff;
 }
