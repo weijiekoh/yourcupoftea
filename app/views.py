@@ -7,6 +7,7 @@ import urlparse
 import os
 import base64
 import zlib
+import uuid
 import re
 
 
@@ -300,6 +301,9 @@ def results():
     session["demo_quiz_data"] = base64.b64encode(zlib.compress(str(all_responses)))
 
     # keep track of the number of times this user has taken the quiz
+    if "uid" not in session:
+        session["uid"] = uuid.uuid4()
+
     tt = "times_taken"
     if tt in session:
         session[tt] += 1
@@ -347,6 +351,9 @@ def results_for_fb(result_str):
     if not tt in session:
         session[tt] = -1
 
+    if not "uid" in session:
+        session["uid"] = -1
+
     a = {}
     e = {}
     for qn_id in questions:
@@ -372,6 +379,7 @@ def results_for_fb(result_str):
                            questions=questions,
                            experts=experts,
                            times_taken=session[tt],
+                           uid=session["uid"],
                            image=image,
                            fb_share_image=fb_share_image(image),
                            trans=translations)
