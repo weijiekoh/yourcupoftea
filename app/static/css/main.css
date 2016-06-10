@@ -132,6 +132,14 @@ h2{
 	font-family:SquareFont !important;
 }
 
+.find_out_text{
+	margin-bottom:20px;
+}
+
+.find_out_heading{
+	margin-top:5px;
+}
+
 .queen_image{
 	max-width:100%;
 	margin-top:10px;
