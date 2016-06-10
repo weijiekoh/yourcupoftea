@@ -26,7 +26,7 @@ def fb_share_image(image):
     return domain + "static/img/fb/" + image + ".png"
 
 
-@app.route("/demo_form_3495740968769879")
+@app.route("/error-test-fire-298346823746876534")
 def demo():
     log_error_data("test 1", "test 2", "msg")
     return redirect("/")
